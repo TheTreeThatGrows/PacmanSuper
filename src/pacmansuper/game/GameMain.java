@@ -967,7 +967,6 @@ public class GameMain extends GameApplication {
 
                     getMasterTimer().runOnceAfter(() -> {
 
-                        getDisplay().showMessageBox("Also, don't forget to visit the Shop once in a while!");
                         getDisplay().showMessageBox("Press 'Esc' to Pause the Game and Save your progress");
                         getDisplay().showMessageBox("Tutorial Complete!");
                         initGame();
