@@ -118,6 +118,10 @@ public class Menu extends FXGLMenu {
         itemOptions.setChild(createOptionsMenu());
         box.add(itemOptions);
 
+        MenuButton itemLogout = new MenuButton("menu.logout");
+        itemLogout.setOnAction(e -> fireLogout());
+        box.add(itemLogout);
+
         MenuButton itemExit = new MenuButton("menu.exit");
         itemExit.setOnAction(e -> fireExit());
         box.add(itemExit);

@@ -78,7 +78,7 @@ public class GameMain extends GameApplication {
         settings.setWidth(1280);
         settings.setHeight(770); //770
         settings.setProfilingEnabled(false); //Profile
-        settings.setIntroEnabled(false);
+        settings.setIntroEnabled(true);
         settings.setCloseConfirmation(false);
         settings.setMenuEnabled(true); //Menu
 
