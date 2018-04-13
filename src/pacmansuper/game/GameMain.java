@@ -93,17 +93,20 @@ public class GameMain extends GameApplication {
         //Player Stats
         Serializable gold = getGameState().getInt("Gold") ;
 
-        return new DataFile(gold);
+        Bundle bundleRoot = new Bundle("Root");
+        bundleRoot.put("gold", gold);
+
+        return new DataFile(bundleRoot);
     }
 
     @Override
     public void loadState(DataFile dataFile) {
 
         //Load Data
-        Serializable gold = dataFile.getData();
+        Bundle bundleRoot = (Bundle) dataFile.getData();
 
         //Player Stats
-        int gp = (int) gold;
+        int gp = bundleRoot.get("gold");
 
         //Implement Load Data
         getGameState().setValue("Gold", + gp);
