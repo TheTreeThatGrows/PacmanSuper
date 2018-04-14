@@ -39,6 +39,8 @@ public class GameMain extends GameApplication {
     private Entity player;
     private int Health;
     private int Gold;
+    private int Rank;
+    private int Points;
 
     private int Fireball;
     private int Fireblast;
@@ -78,7 +80,7 @@ public class GameMain extends GameApplication {
         settings.setWidth(1280);
         settings.setHeight(770); //770
         settings.setProfilingEnabled(false); //Profile
-        settings.setIntroEnabled(true);
+        settings.setIntroEnabled(false);
         settings.setCloseConfirmation(false);
         settings.setMenuEnabled(true); //Menu
 
@@ -91,9 +93,13 @@ public class GameMain extends GameApplication {
     public DataFile saveState() {
 
         //Player Stats
+        Serializable rank = getGameState().getInt("Rank") ;
+        Serializable points = getGameState().getInt("Points") ;
         Serializable gold = getGameState().getInt("Gold") ;
 
         Bundle bundleRoot = new Bundle("Root");
+        bundleRoot.put("Rank", rank);
+        bundleRoot.put("Points", points);
         bundleRoot.put("gold", gold);
 
         return new DataFile(bundleRoot);
@@ -106,10 +112,15 @@ public class GameMain extends GameApplication {
         Bundle bundleRoot = (Bundle) dataFile.getData();
 
         //Player Stats
+        int rank = bundleRoot.get("Rank");
+        int pts = bundleRoot.get("Points");
         int gp = bundleRoot.get("gold");
 
         //Implement Load Data
-        getGameState().setValue("Gold", + gp);
+        getGameState().setValue("Rank", rank);
+        getGameState().setValue("Points", pts);
+        getGameState().setValue("Gold", gp);
+
 
         //Init Game
         initGame();
@@ -149,7 +160,7 @@ public class GameMain extends GameApplication {
 
         getGameWorld().setLevelFromMap("base.json");
 
-        if (getGameState().getInt("Gold") > 0) {
+        if (getGameState().getInt("Rank") > 1) {
             //Message
             String message = "Welcome Back!";
             FXGL.getNotificationService().pushNotification(message);
@@ -162,7 +173,7 @@ public class GameMain extends GameApplication {
         }
 
         //Initialize Player
-        if (getGameState().getInt("Gold") > 0) {
+        if (getGameState().getInt("Rank") > 1) {
             player = getGameWorld().spawn("player", 850, 410);
         } else {
             player = getGameWorld().spawn("player", 2880, 420);
@@ -582,7 +593,8 @@ public class GameMain extends GameApplication {
         getInput().addAction(new UserAction("Cheat") {
             @Override
             protected void onAction() {
-                getGameState().increment("Health", 15000);
+                getGameState().setValue("Rank", 100);
+                getGameState().setValue("Points", 100);
                 getGameState().increment("Gold", 9999);
                 getDisplay().showMessageBox("Cheats Activated!");
             }
@@ -970,7 +982,10 @@ public class GameMain extends GameApplication {
 
                     getMasterTimer().runOnceAfter(() -> {
 
+                        getGameState().increment("Rank", +1);
+                        getGameState().increment("Points", +1);
                         getDisplay().showMessageBox("Press 'Esc' to Pause the Game and Save your progress");
+                        getDisplay().showMessageBox("Rank Increased!");
                         getDisplay().showMessageBox("Tutorial Complete!");
                         initGame();
                     }, Duration.seconds(9));
@@ -1119,6 +1134,9 @@ public class GameMain extends GameApplication {
                     }, Duration.seconds(8.9));
 
                     getMasterTimer().runOnceAfter(() -> {
+                        getGameState().increment("Rank", +1);
+                        getGameState().increment("Points", +1);
+                        getDisplay().showMessageBox("Rank Increased!");
                         initGame();
                     }, Duration.seconds(9));
 
@@ -1259,6 +1277,9 @@ public class GameMain extends GameApplication {
                     }, Duration.seconds(8.9));
 
                     getMasterTimer().runOnceAfter(() -> {
+                        getGameState().increment("Rank", +1);
+                        getGameState().increment("Points", +1);
+                        getDisplay().showMessageBox("Rank Increased!");
                         initGame();
                     }, Duration.seconds(9));
 
@@ -1444,6 +1465,9 @@ public class GameMain extends GameApplication {
                     }, Duration.seconds(8.9));
 
                     getMasterTimer().runOnceAfter(() -> {
+                        getGameState().increment("Rank", +1);
+                        getGameState().increment("Points", +1);
+                        getDisplay().showMessageBox("Rank Increased!");
                         initGame();
                     }, Duration.seconds(9));
 
@@ -1573,9 +1597,8 @@ public class GameMain extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity player, Entity door_dive_boss1) {
 
-                if (getGameState().getInt("Gold") >= 1000) {
+                if (getGameState().getInt("Rank") >= 5) {
 
-                    getGameState().increment("Gold", -1000);
                     canMove = false;
                     canFly = false;
 
@@ -1589,7 +1612,7 @@ public class GameMain extends GameApplication {
                         initDiveBoss1();
                     }, Duration.seconds(5));
                 } else {
-                    getDisplay().showMessageBox("You need atleast 1000 Gold to Travel to This Boss");
+                    getDisplay().showMessageBox("Required Rank: 5");
                 }
 
             }
@@ -1609,9 +1632,8 @@ public class GameMain extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity player, Entity door_dive_boss2) {
 
-                if (getGameState().getInt("Gold") >= 2000) {
+                if (getGameState().getInt("Rank") >= 10) {
 
-                    getGameState().increment("Gold", -2000);
                     canMove = false;
                     canFly = false;
 
@@ -1625,7 +1647,7 @@ public class GameMain extends GameApplication {
                         initDiveBoss2();
                     }, Duration.seconds(5));
                 } else {
-                    getDisplay().showMessageBox("You need atleast 2000 Gold to Travel to This Boss");
+                    getDisplay().showMessageBox("Required Rank: 10");
                 }
             }
         });
@@ -1644,9 +1666,8 @@ public class GameMain extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity player, Entity door_dive_bossfinal) {
 
-                if (getGameState().getInt("Gold") >= 3000) {
+                if (getGameState().getInt("Rank") >= 15) {
 
-                    getGameState().increment("Gold", -3000);
                     canMove = false;
                     canFly = false;
 
@@ -1660,7 +1681,7 @@ public class GameMain extends GameApplication {
                         initDiveBossFinal();
                     }, Duration.seconds(5));
                 } else {
-                    getDisplay().showMessageBox("You need atleast 3000 Gold to Travel to This Boss");
+                    getDisplay().showMessageBox("Required Rank: 15");
                 }
             }
         });
@@ -2030,21 +2051,58 @@ public class GameMain extends GameApplication {
     @Override
     protected void initUI() {
 
-        //Stats UI
-        Texture HealthIcon = getAssetLoader().loadTexture("HeartIcon.gif");
-        HealthIcon.setTranslateX(10);
-        HealthIcon.setTranslateY(15);
+        //Rank UI
+        Text RankText = new Text();
+        RankText.setText("Rank:");
+        RankText.setFont(Font.font ("Berlin Sans FB Demi", 28));
+        RankText.setFill(Color.WHITE);
+        RankText.setTranslateX(1120);
+        RankText.setTranslateY(50);
 
-        Texture GoldIcon = getAssetLoader().loadTexture("GoldIcon.gif");
-        GoldIcon.setTranslateX(1090);
-        GoldIcon.setTranslateY(15);
+        Text Rank = new Text();
+        Rank.setFont(Font.font ("Berlin Sans FB Demi", 28));
+        Rank.setFill(Color.WHITE);
+        Rank.setTranslateX(1215);
+        Rank.setTranslateY(50);
+
+        Rectangle RankUI = new Rectangle(160, 35);
+        RankUI.setFill(Color.rgb(0, 0, 0, 0.7));
+        RankUI.setArcHeight(15);
+        RankUI.setArcWidth(15);
+        RankUI.setTranslateX(1110);
+        RankUI.setTranslateY(23);
+
+        //Points UI
+        Text PointsText = new Text();
+        PointsText.setText("Points:");
+        PointsText.setFont(Font.font ("Berlin Sans FB Demi", 28));
+        PointsText.setFill(Color.WHITE);
+        PointsText.setTranslateX(1120);
+        PointsText.setTranslateY(102);
+
+        Text Points = new Text();
+        Points.setFont(Font.font ("Berlin Sans FB Demi", 28));
+        Points.setFill(Color.WHITE);
+        Points.setTranslateX(1215);
+        Points.setTranslateY(102);
+
+        Rectangle PointsUI = new Rectangle(160, 35);
+        PointsUI.setFill(Color.rgb(0, 0, 0, 0.7));
+        PointsUI.setArcHeight(15);
+        PointsUI.setArcWidth(15);
+        PointsUI.setTranslateX(1110);
+        PointsUI.setTranslateY(75);
 
         //Control UI
         Texture controlUI = getAssetLoader().loadTexture("ControlUI.png");
         controlUI.setTranslateX(1110);
         controlUI.setTranslateY(620);
 
-        //Health Number
+        //Health
+        Texture HealthIcon = getAssetLoader().loadTexture("HeartIcon.gif");
+        HealthIcon.setTranslateX(10);
+        HealthIcon.setTranslateY(15);
+
         Text Health = new Text();
         Health.setFont(Font.font ("Berlin Sans FB Demi", 36));
         Health.setFill(Color.WHITE);
@@ -2065,19 +2123,23 @@ public class GameMain extends GameApplication {
         HealthUI.setTranslateX(70);
         HealthUI.setTranslateY(23);
 
-        //Gold Number
+        //Gold
+        Texture GoldIcon = getAssetLoader().loadTexture("GoldIcon.gif");
+        GoldIcon.setTranslateX(17);
+        GoldIcon.setTranslateY(70);
+
         Text Gold = new Text();
         Gold.setFont(Font.font ("Berlin Sans FB Demi", 36));
         Gold.setFill(Color.WHITE);
-        Gold.setTranslateX(1150);
-        Gold.setTranslateY(50);
+        Gold.setTranslateX(80);
+        Gold.setTranslateY(102);
 
         Rectangle GoldUI = new Rectangle(110, 35);
         GoldUI.setFill(Color.rgb(0, 0, 0, 0.7));
         GoldUI.setArcHeight(15);
         GoldUI.setArcWidth(15);
-        GoldUI.setTranslateX(1140);
-        GoldUI.setTranslateY(23);
+        GoldUI.setTranslateX(70);
+        GoldUI.setTranslateY(75);
 
         //Skills UI
         Texture skillsUI = getAssetLoader().loadTexture("skillslUI.png");
@@ -2242,6 +2304,19 @@ public class GameMain extends GameApplication {
         getGameScene().addUINode(HealthUI);
         getGameScene().addUINode(Health);
         getGameScene().addUINode(HealthPercent);
+        getGameScene().addUINode(HealthIcon);
+
+        getGameScene().addUINode(GoldIcon);
+        getGameScene().addUINode(GoldUI);
+        getGameScene().addUINode(Gold);
+
+        getGameScene().addUINode(RankUI);
+        getGameScene().addUINode(Rank);
+        getGameScene().addUINode(RankText);
+
+        getGameScene().addUINode(PointsUI);
+        getGameScene().addUINode(Points);
+        getGameScene().addUINode(PointsText);
 
         //Skills
         getGameScene().addUINode(skillsUI);
@@ -2263,12 +2338,7 @@ public class GameMain extends GameApplication {
         getGameScene().addUINode(FireblastNumberUI);
         getGameScene().addUINode(Fireblast);
         getGameScene().addUINode(FireblastCharge);
-
         getGameScene().addUINode(controlUI);
-        getGameScene().addUINode(HealthIcon);
-        getGameScene().addUINode(GoldIcon);
-        getGameScene().addUINode(GoldUI);
-        getGameScene().addUINode(Gold);
 
         //getGameScene().addUINode(EnemyHealth);
 
@@ -2287,6 +2357,8 @@ public class GameMain extends GameApplication {
         //Player
         Health.textProperty().bind(getGameState().intProperty("Health").asString());
         Gold.textProperty().bind(getGameState().intProperty("Gold").asString());
+        Rank.textProperty().bind(getGameState().intProperty("Rank").asString());
+        Points.textProperty().bind(getGameState().intProperty("Points").asString());
 
         //Skills
         Fireball.textProperty().bind(getGameState().intProperty("Fireball").asString());
@@ -2311,6 +2383,9 @@ public class GameMain extends GameApplication {
         //View in-game
         vars.put("Health", 100);
         vars.put("Gold", 0);
+        vars.put("Rank", 1);
+        vars.put("Points", 0);
+
         vars.put("Energy", 100);
 
         //Skill
