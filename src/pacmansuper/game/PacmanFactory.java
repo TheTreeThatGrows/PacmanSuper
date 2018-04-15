@@ -387,17 +387,50 @@ public class PacmanFactory implements EntityFactory {
                 .with(new Airship())
                 .build();
     }
-    @Spawns("buyhealth")
-    public Entity newBuyHealth(SpawnData data) {
+
+    //Upgrade Skill Shop
+    @Spawns("first_upgrade")
+    public Entity newFirstUpgrade(SpawnData data) {
         return Entities.builder()
-                .type(GameType.BUYHEALTH)
+                .type(GameType.FIRST_UPGRADE)
                 .from(data)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new PhysicsComponent())
-                .with(new CollidableComponent(true)) //Buy Health Can Collide
+                .with(new CollidableComponent(true))
                 .build();
     }
 
+    @Spawns("supernova_upgrade")
+    public Entity newSupernovaUpgrade(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.SUPERNOVA_UPGRADE)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .build();
+    }
+    @Spawns("flamestrike_upgrade")
+    public Entity newFlamestrikeUpgrade(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.FLAMESTRIKE_UPGRADE)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .build();
+    }
+    @Spawns("fireblast_upgrade")
+    public Entity newFireblastUpgrade(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.FIREBLAST_UPGRADE)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    //Map Level Doors
     @Spawns("door_dive_tutorial")
     public Entity newDoor_DiveTutorial(SpawnData data) {
         return Entities.builder()

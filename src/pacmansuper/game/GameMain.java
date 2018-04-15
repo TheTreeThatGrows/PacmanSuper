@@ -18,6 +18,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -44,8 +45,11 @@ public class GameMain extends GameApplication {
 
     private int Fireball;
     private int Fireblast;
+    private int FireblastLevel;
     private int Flamestrike;
+    private int FlamestrikeLevel;
     private int Supernova;
+    private int SupernovaLevel;
 
     //Enemy
     private int EnemyHealth;
@@ -66,6 +70,10 @@ public class GameMain extends GameApplication {
     private boolean canFlamestrikeValue = true;
     private boolean canSupernovaValue = true;
 
+    //-- Level Map Completion --
+    //Base
+    private int first_upgrade;
+    private int LvlComplete_Tutorial;
 
     //Other
     private LocalTimer returnTimer;
@@ -92,23 +100,45 @@ public class GameMain extends GameApplication {
     @Override
     public DataFile saveState() {
 
+        //-- Save to Serializable Data --
+
         //Player Stats
         Serializable rank = getGameState().getInt("Rank") ;
         Serializable points = getGameState().getInt("Points") ;
         Serializable gold = getGameState().getInt("Gold") ;
 
+        Serializable fireblastLevel = getGameState().getInt("FireblastLevel");
+        Serializable flamestrikeLevel = getGameState().getInt("FlamestrikeLevel");
+        Serializable supernovaLevel = getGameState().getInt("SupernovaLevel");
+
+        //Map Level Completion
+        Serializable first_upgrade = getGameState().getInt("first_upgrade") ;
+        Serializable LvlComplete_Tutorial = getGameState().getInt("LvlComplete_Tutorial") ;
+
+        //-- Pack to Bundle --
+
+        //Player stats
         Bundle bundleRoot = new Bundle("Root");
         bundleRoot.put("Rank", rank);
         bundleRoot.put("Points", points);
         bundleRoot.put("gold", gold);
 
+        bundleRoot.put("FireblastLevel", fireblastLevel);
+        bundleRoot.put("FlamestrikeLevel", flamestrikeLevel);
+        bundleRoot.put("SupernovaLevel", supernovaLevel);
+
+        //Map Level Completion
+        bundleRoot.put("first_upgrade", first_upgrade);
+        bundleRoot.put("LvlComplete_Tutorial", LvlComplete_Tutorial);
+
+        //return the Data
         return new DataFile(bundleRoot);
     }
 
     @Override
     public void loadState(DataFile dataFile) {
 
-        //Load Data
+        //-- Load Data --
         Bundle bundleRoot = (Bundle) dataFile.getData();
 
         //Player Stats
@@ -116,11 +146,28 @@ public class GameMain extends GameApplication {
         int pts = bundleRoot.get("Points");
         int gp = bundleRoot.get("gold");
 
-        //Implement Load Data
+        int fireblastLvl = bundleRoot.get("FireblastLevel");
+        int flamestrikeLvl = bundleRoot.get("FlamestrikeLevel");
+        int supernovaLvl = bundleRoot.get("SupernovaLevel");
+
+        //Map Level Completion
+        int first_upgrade = bundleRoot.get("first_upgrade");
+        int LvlComplete_Tutorial = bundleRoot.get("LvlComplete_Tutorial");
+
+        //-- Implement Load Data --
+
+        //Player stats
         getGameState().setValue("Rank", rank);
         getGameState().setValue("Points", pts);
         getGameState().setValue("Gold", gp);
 
+        getGameState().setValue("FireblastLevel", fireblastLvl);
+        getGameState().setValue("FlamestrikeLevel", flamestrikeLvl);
+        getGameState().setValue("SupernovaLevel", supernovaLvl);
+
+        //Map Level Completion
+        getGameState().setValue("first_upgrade", first_upgrade);
+        getGameState().setValue("LvlComplete_Tutorial", LvlComplete_Tutorial);
 
         //Init Game
         initGame();
@@ -160,20 +207,20 @@ public class GameMain extends GameApplication {
 
         getGameWorld().setLevelFromMap("base.json");
 
-        if (getGameState().getInt("Rank") > 1) {
+        if (getGameState().getInt("LvlComplete_Tutorial") > 0) {
             //Message
             String message = "Welcome Back!";
             FXGL.getNotificationService().pushNotification(message);
         } else {
             getMasterTimer().runOnceAfter(() -> {
-                getDisplay().showMessageBox("Use the 'Arrow Keys' To Move Around");
-                getDisplay().showMessageBox("Head to the Tutorial to begin your Adventure...");
+                getDisplay().showMessageBox("Use the 'ARROW KEYS' To Move Around");
+                getDisplay().showMessageBox("Head to the TUTORIAL to begin your Adventure...");
                 getDisplay().showMessageBox("Welcome to Pacman Super!");
-            }, Duration.seconds(1));
+            }, Duration.seconds(0.5));
         }
 
         //Initialize Player
-        if (getGameState().getInt("Rank") > 1) {
+        if (getGameState().getInt("LvlComplete_Tutorial") > 0) {
             player = getGameWorld().spawn("player", 850, 410);
         } else {
             player = getGameWorld().spawn("player", 2880, 420);
@@ -183,6 +230,8 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
         FireballCharge();
         FireblastCharge();
         FlamestrikeCharge();
@@ -213,6 +262,8 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
         FireballCharge();
         FireblastCharge();
         FlamestrikeCharge();
@@ -238,6 +289,8 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
         FireballCharge();
         FireblastCharge();
         FlamestrikeCharge();
@@ -270,6 +323,8 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
         FireballCharge();
         FireblastCharge();
         FlamestrikeCharge();
@@ -305,6 +360,8 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
         FireballCharge();
         FireblastCharge();
         FlamestrikeCharge();
@@ -340,6 +397,8 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
         FireballCharge();
         FireblastCharge();
         FlamestrikeCharge();
@@ -365,6 +424,8 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
         FireballCharge();
         FireblastCharge();
         FlamestrikeCharge();
@@ -399,6 +460,8 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
         FireballCharge();
         FireblastCharge();
         FlamestrikeCharge();
@@ -427,6 +490,8 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
         FireballCharge();
         FireblastCharge();
         FlamestrikeCharge();
@@ -461,6 +526,8 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
         FireballCharge();
         FireblastCharge();
         FlamestrikeCharge();
@@ -487,6 +554,8 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
         FireballCharge();
         FireblastCharge();
         FlamestrikeCharge();
@@ -522,6 +591,8 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
         FireballCharge();
         FireblastCharge();
         FlamestrikeCharge();
@@ -593,9 +664,13 @@ public class GameMain extends GameApplication {
         getInput().addAction(new UserAction("Cheat") {
             @Override
             protected void onAction() {
-                getGameState().setValue("Rank", 100);
-                getGameState().setValue("Points", 100);
-                getGameState().increment("Gold", 9999);
+                getGameState().setValue("Rank", 15);
+                getGameState().setValue("Points", 15);
+                getGameState().setValue("Gold", 9999);
+
+                getGameState().increment("FireblastLevel", 1);
+                getGameState().increment("FlamestrikeLevel", 1);
+                getGameState().increment("SupernovaLevel", 1);
                 getDisplay().showMessageBox("Cheats Activated!");
             }
         }, KeyCode.BACK_SPACE);
@@ -666,6 +741,40 @@ public class GameMain extends GameApplication {
                 getGameState().setValue("Health", 100);
             }
         }, Duration.seconds(0.2));
+    }
+
+    //Player Max Rank & Points Cap
+    private void RankPointsCap() {
+        getMasterTimer().runAtInterval(() -> {
+
+            if (getGameState().getInt("Rank") > 15) {
+                getGameState().setValue("Rank", 15);
+            }
+            if (getGameState().getInt("Points") > 15) {
+                getGameState().setValue("Points", 15);
+            }
+
+        }, Duration.seconds(0));
+    }
+
+    //Skill Upgrade Cap
+    private void SkillUpgradeCap() {
+        getMasterTimer().runAtInterval(() -> {
+            //Fireblast Max Level
+            if (getGameState().getInt("FireblastLevel") > 5) {
+            getGameState().setValue("FireblastLevel", 5);
+             }
+
+            //Flamestrike Max Level
+            if (getGameState().getInt("FlamestrikeLevel") > 5) {
+            getGameState().setValue("FlamestrikeLevel", 5);
+            }
+
+            //Supernova Max Level
+            if (getGameState().getInt("SupernovaLevel") > 5) {
+                getGameState().setValue("SupernovaLevel", 5);
+            }
+        }, Duration.seconds(0));
     }
 
     //Fireball
@@ -886,7 +995,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Enemy
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("EnemyHealth", -250);
+
+                //Level 1 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 1) {
+                    getGameState().increment("EnemyHealth", -250);
+                }
+
+                //Level 2 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 2) {
+                    getGameState().increment("EnemyHealth", -255);
+                }
+
+                //Level 3 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 3) {
+                    getGameState().increment("EnemyHealth", -260);
+                }
+
+                //Level 4 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 4) {
+                    getGameState().increment("EnemyHealth", -265);
+                }
+
+                //Level 5 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 5) {
+                    getGameState().increment("EnemyHealth", -270);
+                }
 
                 if (getGameState().getInt("EnemyHealth") <= 0) {
                     getAudioPlayer().playSound("enemyDeath.wav");
@@ -905,7 +1038,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Enemy
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("EnemyHealth", -250);
+
+                //Level 1 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 1) {
+                    getGameState().increment("EnemyHealth", -250);
+                }
+
+                //Level 2 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 2) {
+                    getGameState().increment("EnemyHealth", -255);
+                }
+
+                //Level 3 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 3) {
+                    getGameState().increment("EnemyHealth", -260);
+                }
+
+                //Level 4 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 4) {
+                    getGameState().increment("EnemyHealth", -265);
+                }
+
+                //Level 5 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 5) {
+                    getGameState().increment("EnemyHealth", -270);
+                }
 
                 if (getGameState().getInt("EnemyHealth") <= 0) {
                     getAudioPlayer().playSound("enemyDeath.wav");
@@ -924,7 +1081,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Enemy
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("EnemyHealth", -150);
+
+                //Level 1 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 1) {
+                    getGameState().increment("EnemyHealth", -250);
+                }
+
+                //Level 2 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 2) {
+                    getGameState().increment("EnemyHealth", -255);
+                }
+
+                //Level 3 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 3) {
+                    getGameState().increment("EnemyHealth", -260);
+                }
+
+                //Level 4 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 4) {
+                    getGameState().increment("EnemyHealth", -265);
+                }
+
+                //Level 5 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 5) {
+                    getGameState().increment("EnemyHealth", -270);
+                }
 
                 if (getGameState().getInt("EnemyHealth") <= 0) {
                     getAudioPlayer().playSound("enemyDeath.wav");
@@ -970,7 +1151,11 @@ public class GameMain extends GameApplication {
                     boss_darkflamemaster.removeFromWorld();
                     getGameState().setValue("DarkFlameMasterHealth", 9000);
 
+                    //Map Complete
+                    getGameState().setValue("LvlComplete_Tutorial", 1);
+
                     //Message
+                    getDisplay().showMessageBox("Tutorial Complete!");
                     String messageDarkFlameMasterDefeated1 = "Dark Flame Master Defeated!";
                     String messageDarkFlameMasterDefeated2 = "Returning back to base in 5 seconds...";
                     FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated1);
@@ -984,9 +1169,11 @@ public class GameMain extends GameApplication {
 
                         getGameState().increment("Rank", +1);
                         getGameState().increment("Points", +1);
-                        getDisplay().showMessageBox("Press 'Esc' to Pause the Game and Save your progress");
-                        getDisplay().showMessageBox("Rank Increased!");
-                        getDisplay().showMessageBox("Tutorial Complete!");
+                        getDisplay().showMessageBox("Press 'Esc' to PAUSE and SAVE your progress");
+
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                        }
                         initGame();
                     }, Duration.seconds(9));
 
@@ -1002,7 +1189,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Dark Flame Master
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("DarkFlameMasterHealth", -250);
+
+                //Level 1 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 1) {
+                    getGameState().increment("DarkFlameMasterHealth", -250);
+                }
+
+                //Level 2 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 2) {
+                    getGameState().increment("DarkFlameMasterHealth", -255);
+                }
+
+                //Level 3 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 3) {
+                    getGameState().increment("DarkFlameMasterHealth", -260);
+                }
+
+                //Level 4 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 4) {
+                    getGameState().increment("DarkFlameMasterHealth", -265);
+                }
+
+                //Level 5 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 5) {
+                    getGameState().increment("DarkFlameMasterHealth", -270);
+                }
             }
         });
 
@@ -1014,7 +1225,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Dark Flame Master
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("DarkFlameMasterHealth", -250);
+
+                //Level 1 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 1) {
+                    getGameState().increment("DarkFlameMasterHealth", -250);
+                }
+
+                //Level 2 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 2) {
+                    getGameState().increment("DarkFlameMasterHealth", -255);
+                }
+
+                //Level 3 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 3) {
+                    getGameState().increment("DarkFlameMasterHealth", -260);
+                }
+
+                //Level 4 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 4) {
+                    getGameState().increment("DarkFlameMasterHealth", -265);
+                }
+
+                //Level 5 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 5) {
+                    getGameState().increment("DarkFlameMasterHealth", -270);
+                }
             }
         });
 
@@ -1026,7 +1261,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Dark Flame Master
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("DarkFlameMasterHealth", -150);
+
+                //Level 1 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 1) {
+                    getGameState().increment("DarkFlameMasterHealth", -150);
+                }
+
+                //Level 2 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 2) {
+                    getGameState().increment("DarkFlameMasterHealth", -155);
+                }
+
+                //Level 3 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 3) {
+                    getGameState().increment("DarkFlameMasterHealth", -160);
+                }
+
+                //Level 4 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 4) {
+                    getGameState().increment("DarkFlameMasterHealth", -165);
+                }
+
+                //Level 5 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 5) {
+                    getGameState().increment("DarkFlameMasterHealth", -170);
+                }
             }
         });
 
@@ -1152,7 +1411,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Rhatbu
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("RhatbuHealth", -250);
+
+                //Level 1 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 1) {
+                    getGameState().increment("RhatbuHealth", -250);
+                }
+
+                //Level 2 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 2) {
+                    getGameState().increment("RhatbuHealth", -255);
+                }
+
+                //Level 3 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 3) {
+                    getGameState().increment("RhatbuHealth", -260);
+                }
+
+                //Level 4 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 4) {
+                    getGameState().increment("RhatbuHealth", -265);
+                }
+
+                //Level 5 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 5) {
+                    getGameState().increment("RhatbuHealth", -270);
+                }
             }
         });
 
@@ -1164,7 +1447,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Rhatbu
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("RhatbuHealth", -250);
+
+                //Level 1 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 1) {
+                    getGameState().increment("RhatbuHealth", -250);
+                }
+
+                //Level 2 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 2) {
+                    getGameState().increment("RhatbuHealth", -255);
+                }
+
+                //Level 3 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 3) {
+                    getGameState().increment("RhatbuHealth", -260);
+                }
+
+                //Level 4 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 4) {
+                    getGameState().increment("RhatbuHealth", -265);
+                }
+
+                //Level 5 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 5) {
+                    getGameState().increment("RhatbuHealth", -270);
+                }
             }
         });
 
@@ -1176,7 +1483,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Rhatbu
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("RhatbuHealth", -150);
+
+                //Level 1 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 1) {
+                    getGameState().increment("RhatbuHealth", -150);
+                }
+
+                //Level 2 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 2) {
+                    getGameState().increment("RhatbuHealth", -155);
+                }
+
+                //Level 3 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 3) {
+                    getGameState().increment("RhatbuHealth", -160);
+                }
+
+                //Level 4 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 4) {
+                    getGameState().increment("RhatbuHealth", -165);
+                }
+
+                //Level 5 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 5) {
+                    getGameState().increment("RhatbuHealth", -170);
+                }
             }
         });
 
@@ -1295,7 +1626,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Bedj
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("BedjHealth", -250);
+
+                //Level 1 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 1) {
+                    getGameState().increment("BedjHealth", -250);
+                }
+
+                //Level 2 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 2) {
+                    getGameState().increment("BedjHealth", -255);
+                }
+
+                //Level 3 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 3) {
+                    getGameState().increment("BedjHealth", -260);
+                }
+
+                //Level 4 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 4) {
+                    getGameState().increment("BedjHealth", -265);
+                }
+
+                //Level 5 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 5) {
+                    getGameState().increment("BedjHealth", -270);
+                }
             }
         });
 
@@ -1307,7 +1662,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Bedj
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("BedjHealth", -250);
+
+                //Level 1 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 1) {
+                    getGameState().increment("BedjHealth", -250);
+                }
+
+                //Level 2 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 2) {
+                    getGameState().increment("BedjHealth", -255);
+                }
+
+                //Level 3 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 3) {
+                    getGameState().increment("BedjHealth", -260);
+                }
+
+                //Level 4 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 4) {
+                    getGameState().increment("BedjHealth", -265);
+                }
+
+                //Level 5 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 5) {
+                    getGameState().increment("BedjHealth", -270);
+                }
             }
         });
 
@@ -1319,7 +1698,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Bedj
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("BedjHealth", -150);
+
+                //Level 1 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 1) {
+                    getGameState().increment("BedjHealth", -150);
+                }
+
+                //Level 2 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 2) {
+                    getGameState().increment("BedjHealth", -155);
+                }
+
+                //Level 3 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 3) {
+                    getGameState().increment("BedjHealth", -160);
+                }
+
+                //Level 4 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 4) {
+                    getGameState().increment("BedjHealth", -165);
+                }
+
+                //Level 5 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 5) {
+                    getGameState().increment("BedjHealth", -170);
+                }
             }
         });
 
@@ -1483,7 +1886,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Grim
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("GrimHealth", -250);
+
+                //Level 1 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 1) {
+                    getGameState().increment("GrimHealth", -250);
+                }
+
+                //Level 2 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 2) {
+                    getGameState().increment("GrimHealth", -255);
+                }
+
+                //Level 3 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 3) {
+                    getGameState().increment("GrimHealth", -260);
+                }
+
+                //Level 4 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 4) {
+                    getGameState().increment("GrimHealth", -265);
+                }
+
+                //Level 5 Fireblast
+                if (getGameState().getInt("FireblastLevel") == 5) {
+                    getGameState().increment("GrimHealth", -270);
+                }
 
             }
         });
@@ -1496,7 +1923,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Grim
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("GrimHealth", -250);
+
+                //Level 1 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 1) {
+                    getGameState().increment("GrimHealth", -250);
+                }
+
+                //Level 2 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 2) {
+                    getGameState().increment("GrimHealth", -255);
+                }
+
+                //Level 3 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 3) {
+                    getGameState().increment("GrimHealth", -260);
+                }
+
+                //Level 4 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 4) {
+                    getGameState().increment("GrimHealth", -265);
+                }
+
+                //Level 5 Flamestrike
+                if (getGameState().getInt("FlamestrikeLevel") == 5) {
+                    getGameState().increment("GrimHealth", -270);
+                }
 
             }
         });
@@ -1509,8 +1960,31 @@ public class GameMain extends GameApplication {
 
                 //Kill Grim
                 getAudioPlayer().playSound("Hit_Collide.wav");
-                getGameState().increment("GrimHealth", -150);
 
+                //Level 1 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 1) {
+                    getGameState().increment("GrimHealth", -150);
+                }
+
+                //Level 2 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 2) {
+                    getGameState().increment("GrimHealth", -155);
+                }
+
+                //Level 3 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 3) {
+                    getGameState().increment("GrimHealth", -160);
+                }
+
+                //Level 4 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 4) {
+                    getGameState().increment("GrimHealth", -165);
+                }
+
+                //Level 5 Supernova
+                if (getGameState().getInt("SupernovaLevel") == 5) {
+                    getGameState().increment("GrimHealth", -170);
+                }
             }
         });
 
@@ -1571,6 +2045,125 @@ public class GameMain extends GameApplication {
 
 
         // ----- MAP COLLISIONS [BASE] -----
+
+        //PLAYER & FIRST_UPGRADE
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.FIRST_UPGRADE) {
+
+            @Override
+            protected void onCollisionBegin(Entity player, Entity tutorial_upgrade) {
+                if (getGameState().getInt("first_upgrade") == 0) {
+                    getDisplay().showMessageBox("You can earn more Points by Ranking Up");
+                    getDisplay().showMessageBox("Each upgrade will Increase your Damage");
+                    getDisplay().showMessageBox("Use your POINTS to UGPRADE your SKILLS");
+                    getGameState().setValue("first_upgrade", 1);
+                }
+            }
+        });
+
+        //PLAYER & SUPERNOVA_UPGRADE
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.SUPERNOVA_UPGRADE) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity supernova_upgrade) {
+
+                //Upgrade Supernova
+                if (getGameState().getInt("Points") <= 0) {
+                    getGameState().setValue("Points", 0);
+                    getGameState().increment("SupernovaLevel", +0);
+
+                    //Message
+                    getDisplay().showMessageBox("Not Enough Points!");
+                    getAudioPlayer().playSound("notenough.wav");
+                } else {
+                    getGameState().increment("Points", -1);
+
+                    if (getGameState().getInt("Points") < 0) {
+                        getGameState().setValue("Points", 0);
+                    }
+
+                    getGameState().increment("SupernovaLevel", +1);
+                    getAudioPlayer().playSound("EnergyBoostGet.wav");
+                }
+
+                if (getGameState().getInt("SupernovaLevel") > 5) {
+
+                    getGameState().increment("Points", + 1);
+
+                    //Message
+                    getDisplay().showMessageBox("Already at Max Level");
+                    getAudioPlayer().playSound("notenough.wav");
+                }
+            }
+        });
+
+        //PLAYER & FLAMESTRIKE_UPGRADE
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.FLAMESTRIKE_UPGRADE) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity flamestrike_upgrade) {
+
+                //Upgrade Flamestrike
+                if (getGameState().getInt("Points") <= 0) {
+                    getGameState().setValue("Points", 0);
+                    getGameState().increment("FlamestrikeLevel", +0);
+
+                    //Message
+                    getDisplay().showMessageBox("Not Enough Points!");
+                    getAudioPlayer().playSound("notenough.wav");
+                } else {
+                    getGameState().increment("Points", -1);
+
+                    if (getGameState().getInt("Points") < 0) {
+                        getGameState().setValue("Points", 0);
+                    }
+
+                    getGameState().increment("FlamestrikeLevel", +1);
+                    getAudioPlayer().playSound("EnergyBoostGet.wav");
+                }
+
+                if (getGameState().getInt("FlamestrikeLevel") > 5) {
+
+                    getGameState().increment("Points", + 1);
+
+                    //Message
+                    getDisplay().showMessageBox("Already at Max Level");
+                    getAudioPlayer().playSound("notenough.wav");
+                }
+            }
+        });
+
+        //PLAYER & FIREBLAST_UPGRADE
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.FIREBLAST_UPGRADE) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity fireblast_upgrade) {
+
+                //Upgrade Fireblast
+                if (getGameState().getInt("Points") <= 0) {
+                    getGameState().setValue("Points", 0);
+                    getGameState().increment("FireblastLevel", +0);
+
+                    //Message
+                    getDisplay().showMessageBox("Not Enough Points!");
+                    getAudioPlayer().playSound("notenough.wav");
+                } else {
+                    getGameState().increment("Points", -1);
+
+                    if (getGameState().getInt("Points") < 0) {
+                        getGameState().setValue("Points", 0);
+                    }
+
+                    getGameState().increment("FireblastLevel", +1);
+                    getAudioPlayer().playSound("EnergyBoostGet.wav");
+                }
+
+                if (getGameState().getInt("FireblastLevel") > 5) {
+
+                    getGameState().increment("Points", + 1);
+
+                    //Message
+                    getDisplay().showMessageBox("Already at Max Level");
+                    getAudioPlayer().playSound("notenough.wav");
+                }
+            }
+        });
 
         //PLAYER & DOOR_DIVE_TUTORIAL
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_DIVE_TUTORIAL) {
@@ -1692,27 +2285,6 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity player, Entity door_bossfinal) {
 
                 initBossFinal();
-            }
-        });
-
-        //PLAYER & BUYHEALTH
-        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.BUYHEALTH) {
-            @Override
-            protected void onCollisionBegin(Entity player, Entity buyhealth) {
-                getGameState().increment("Gold", -20);
-
-                if (getGameState().getInt("Gold") <= 0) {
-                    getGameState().setValue("Gold", 0);
-                    getGameState().increment("Health", +0);
-
-                    //Message
-                    String message = "Not Enough Gold!";
-                    FXGL.getNotificationService().pushNotification(message);
-                    getAudioPlayer().playSound("notenough.wav");
-                } else {
-                    getGameState().increment("Health", +200);
-                    getAudioPlayer().playSound("EnergyBoostGet.wav");
-                }
             }
         });
 
@@ -2171,6 +2743,17 @@ public class GameMain extends GameApplication {
         Fireball.setTranslateY(715);
 
         //Supernova Number
+        Text SupernovaLevel = new Text();
+        SupernovaLevel.setFont(Font.font ("Berlin Sans FB Demi", 22));
+        SupernovaLevel.setFill(Color.WHITE);
+        SupernovaLevel.setTranslateX(55);
+        SupernovaLevel.setTranslateY(635);
+
+        Circle SupernovaLevelUI = new Circle(15);
+        SupernovaLevelUI.setFill(Color.rgb(0,0,0, 0.6));
+        SupernovaLevelUI.setTranslateX(60);
+        SupernovaLevelUI.setTranslateY(630);
+
         Text Supernova = new Text();
         Supernova.setFont(Font.font ("Berlin Sans FB Demi", 24));
         Supernova.setFill(Color.WHITE);
@@ -2192,6 +2775,17 @@ public class GameMain extends GameApplication {
         SupernovaNumberUI.setTranslateY(695);
 
         //Flamestrike Number
+        Text FlamestrikeLevel = new Text();
+        FlamestrikeLevel.setFont(Font.font ("Berlin Sans FB Demi", 22));
+        FlamestrikeLevel.setFill(Color.WHITE);
+        FlamestrikeLevel.setTranslateX(160);
+        FlamestrikeLevel.setTranslateY(635);
+
+        Circle FlamestrikeLevelUI = new Circle(15);
+        FlamestrikeLevelUI.setFill(Color.rgb(0,0,0, 0.6));
+        FlamestrikeLevelUI.setTranslateX(165);
+        FlamestrikeLevelUI.setTranslateY(630);
+
         Text Flamestrike = new Text();
         Flamestrike.setFont(Font.font ("Berlin Sans FB Demi", 24));
         Flamestrike.setFill(Color.WHITE);
@@ -2213,6 +2807,17 @@ public class GameMain extends GameApplication {
         FlamestrikeNumberUI.setTranslateY(695);
 
         //Fireblast Number
+        Text FireblastLevel = new Text();
+        FireblastLevel.setFont(Font.font ("Berlin Sans FB Demi", 22));
+        FireblastLevel.setFill(Color.WHITE);
+        FireblastLevel.setTranslateX(260);
+        FireblastLevel.setTranslateY(635);
+
+        Circle FireblastLevelUI = new Circle(15);
+        FireblastLevelUI.setFill(Color.rgb(0,0,0, 0.6));
+        FireblastLevelUI.setTranslateX(265);
+        FireblastLevelUI.setTranslateY(630);
+
         Text Fireblast = new Text();
         Fireblast.setFont(Font.font ("Berlin Sans FB Demi", 24));
         Fireblast.setFill(Color.WHITE);
@@ -2267,7 +2872,7 @@ public class GameMain extends GameApplication {
         Text RhatbuHealth = new Text();
         RhatbuHealth.setFont(Font.font ("Berlin Sans FB Demi", 40));
         RhatbuHealth.setFill(Color.WHITE);
-        RhatbuHealth.setTranslateX(500);
+        RhatbuHealth.setTranslateX(700);
         RhatbuHealth.setTranslateY(40);
 
         //Bedj Health Text
@@ -2300,6 +2905,22 @@ public class GameMain extends GameApplication {
         BedjHealth.setTranslateX(600);
         BedjHealth.setTranslateY(40);
 
+        //-- Map Level Completion --
+
+        //First time Upgrade
+        Text first_upgrade = new Text();
+        first_upgrade.setFont(Font.font ("Berlin Sans FB Demi", 20));
+        first_upgrade.setFill(Color.WHITE);
+        first_upgrade.setTranslateX(600);
+        first_upgrade.setTranslateY(40);
+
+        //Tutorial
+        Text LvlComplete_Tutorial = new Text();
+        LvlComplete_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 20));
+        LvlComplete_Tutorial.setFill(Color.WHITE);
+        LvlComplete_Tutorial.setTranslateX(600);
+        LvlComplete_Tutorial.setTranslateY(40);
+
         //Add UI to scene
         getGameScene().addUINode(HealthUI);
         getGameScene().addUINode(Health);
@@ -2330,18 +2951,27 @@ public class GameMain extends GameApplication {
         getGameScene().addUINode(FlamestrikeNumberUI);
         getGameScene().addUINode(Flamestrike);
         getGameScene().addUINode(FlamestrikeCharge);
+        getGameScene().addUINode(FlamestrikeLevelUI);
+        getGameScene().addUINode(FlamestrikeLevel);
 
         getGameScene().addUINode(SupernovaNumberUI);
         getGameScene().addUINode(Supernova);
         getGameScene().addUINode(SupernovaCharge);
+        getGameScene().addUINode(SupernovaLevelUI);
+        getGameScene().addUINode(SupernovaLevel);
 
         getGameScene().addUINode(FireblastNumberUI);
         getGameScene().addUINode(Fireblast);
         getGameScene().addUINode(FireblastCharge);
+        getGameScene().addUINode(FireblastLevelUI);
+        getGameScene().addUINode(FireblastLevel);
+
         getGameScene().addUINode(controlUI);
 
+        //--Enemy Health--
         //getGameScene().addUINode(EnemyHealth);
 
+        //-- Boss Health --
         //getGameScene().addUINode(DarkFlameMasterHealth);
         //getGameScene().addUINode(DarkFlameMasterHealthUI);
 
@@ -2354,6 +2984,10 @@ public class GameMain extends GameApplication {
         //getGameScene().addUINode(GrimHealth);
         //getGameScene().addUINode(GrimHealthUI);
 
+        //-- Map Level Completion --
+        //getGameScene().addUINode(first_upgrade);
+        //getGameScene().addUINode(LvlComplete_Tutorial);
+
         //Player
         Health.textProperty().bind(getGameState().intProperty("Health").asString());
         Gold.textProperty().bind(getGameState().intProperty("Gold").asString());
@@ -2363,8 +2997,11 @@ public class GameMain extends GameApplication {
         //Skills
         Fireball.textProperty().bind(getGameState().intProperty("Fireball").asString());
         Fireblast.textProperty().bind(getGameState().intProperty("Fireblast").asString());
+        FireblastLevel.textProperty().bind(getGameState().intProperty("FireblastLevel").asString());
         Flamestrike.textProperty().bind(getGameState().intProperty("Flamestrike").asString());
+        FlamestrikeLevel.textProperty().bind(getGameState().intProperty("FlamestrikeLevel").asString());
         Supernova.textProperty().bind(getGameState().intProperty("Supernova").asString());
+        SupernovaLevel.textProperty().bind(getGameState().intProperty("SupernovaLevel").asString());
 
         //Enemy
         EnemyHealth.textProperty().bind(getGameState().intProperty("EnemyHealth").asString());
@@ -2375,6 +3012,10 @@ public class GameMain extends GameApplication {
         GrimHealth.textProperty().bind(getGameState().intProperty("GrimHealth").asString());
         DarkFlameMasterHealth.textProperty().bind(getGameState().intProperty("DarkFlameMasterHealth").asString());
 
+        //Map Level Completion
+        first_upgrade.textProperty().bind(getGameState().intProperty("first_upgrade").asString());
+        LvlComplete_Tutorial.textProperty().bind(getGameState().intProperty("LvlComplete_Tutorial").asString());
+
     }
 
     @Override
@@ -2383,7 +3024,7 @@ public class GameMain extends GameApplication {
         //View in-game
         vars.put("Health", 100);
         vars.put("Gold", 0);
-        vars.put("Rank", 1);
+        vars.put("Rank", 0);
         vars.put("Points", 0);
 
         vars.put("Energy", 100);
@@ -2391,8 +3032,11 @@ public class GameMain extends GameApplication {
         //Skill
         vars.put("Fireball", 100);
         vars.put("Fireblast", 100);
+        vars.put("FireblastLevel", 1);
         vars.put("Flamestrike", 100);
+        vars.put("FlamestrikeLevel", 1);
         vars.put("Supernova", 100);
+        vars.put("SupernovaLevel", 1);
 
         //Enemy
         vars.put("EnemyHealth", 300);
@@ -2402,6 +3046,10 @@ public class GameMain extends GameApplication {
         vars.put("RhatbuHealth", 15000);
         vars.put("BedjHealth", 20000);
         vars.put("GrimHealth", 25000);
+
+        //Map Level Completion
+        vars.put("first_upgrade", 0);
+        vars.put("LvlComplete_Tutorial", 0);
 
     }
 

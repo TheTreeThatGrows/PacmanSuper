@@ -28,9 +28,13 @@ public enum GameType {
 
     //Base
     FALL_BASE,
-    BUYHEALTH,
     PORTAL,
     AIRSHIP,
+
+    FIRST_UPGRADE,
+    SUPERNOVA_UPGRADE,
+    FLAMESTRIKE_UPGRADE,
+    FIREBLAST_UPGRADE,
 
     DOOR_DIVE_TUTORIAL,
 
