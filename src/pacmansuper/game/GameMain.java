@@ -291,6 +291,56 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    protected void initLevelClear_Jungle() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("LevelClear_Jungle.json");
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 90, 550);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 2800, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevelClear_Cave() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("LevelClear_Cave.json");
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 90, 550);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 2800, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
     protected void initDiveTutorial() {
 
         //Initialize Map
@@ -448,6 +498,155 @@ public class GameMain extends GameApplication {
 
         //Camera Settings
         getGameScene().getViewport().setBounds(0, 0, 2100, getHeight());
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initDiveLevel_1x3() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("dive_level_1x3.json");
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 700, 300);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 2800, 4900);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initDiveLevel_4x6() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("dive_level_4x6.json");
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 700, 300);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 2800, 4900);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initDiveLevel_7x9() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("dive_level_7x9.json");
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 700, 300);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 2800, 4900);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initDiveLevel_11x13() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("dive_level_11x13.json");
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 700, 300);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 2800, 4900);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initDiveLevel_14x16() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("dive_level_14x16.json");
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 700, 300);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 2800, 4900);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+    protected void initDiveLevel_17x19() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("dive_level_14x16.json");
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 700, 300);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 2800, 4900);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
@@ -699,7 +898,7 @@ public class GameMain extends GameApplication {
             protected void onAction() {
 
                 //Cheat Stats
-                getGameState().setValue("Rank", 15);
+                getGameState().setValue("Rank", 14);
                 getGameState().setValue("Points", 15);
                 getGameState().setValue("Gold", 9999);
 
@@ -2498,7 +2697,6 @@ public class GameMain extends GameApplication {
                 save_reminder.removeFromWorld();
                 initNotification_SaveReminder();
 
-                FXGL.getNotificationService().getBackgroundColor().getBlue();
             }
         });
 
@@ -2625,6 +2823,151 @@ public class GameMain extends GameApplication {
                 }, Duration.seconds(5));
             }
         });
+
+        //PLAYER & DOOR_DIVE_LEVEL_1x3
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_DIVE_LEVEL_1x3) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_dive_level_1x3) {
+
+                if (getGameState().getInt("LvlComplete_Tutorial") >= 1) {
+
+                    canMove = false;
+                    canFly = false;
+
+                    //Airship Arrival
+                    getGameWorld().spawn("Airship", 2810, 180);
+
+                    //Message
+                    initNotification_PrepareForAdventure();
+                    getMasterTimer().runOnceAfter(() -> {
+                        initDiveLevel_1x3();
+                    }, Duration.seconds(5));
+                } else {
+                    getDisplay().showMessageBox("Complete The Tutorial to Unlock");
+                }
+            }
+        });
+
+        //PLAYER & DOOR_DIVE_LEVEL_4x6
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_DIVE_LEVEL_4x6) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_dive_level_4x6) {
+
+                if (getGameState().getInt("LvlComplete_Tutorial") >= 1) {
+
+                    canMove = false;
+                    canFly = false;
+
+                    //Airship Arrival
+                    getGameWorld().spawn("Airship", 3510, 230);
+
+                    //Message
+                    initNotification_PrepareForAdventure();
+                    getMasterTimer().runOnceAfter(() -> {
+                        initDiveLevel_4x6();
+                    }, Duration.seconds(5));
+                } else {
+                    getDisplay().showMessageBox("Complete The Tutorial to Unlock");
+                }
+            }
+        });
+
+        //PLAYER & DOOR_DIVE_LEVEL_7x9
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_DIVE_LEVEL_7x9) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_dive_level_7x9) {
+
+                if (getGameState().getInt("LvlComplete_Tutorial") >= 1) {
+
+                    canMove = false;
+                    canFly = false;
+
+                    //Airship Arrival
+                    getGameWorld().spawn("Airship", 4100, -50);
+
+                    //Message
+                    initNotification_PrepareForAdventure();
+                    getMasterTimer().runOnceAfter(() -> {
+                        initDiveLevel_7x9();
+                    }, Duration.seconds(5));
+                } else {
+                    getDisplay().showMessageBox("Complete The Tutorial to Unlock");
+                }
+            }
+        });
+
+        //PLAYER & DOOR_DIVE_LEVEL_11x13
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_DIVE_LEVEL_11x13) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_dive_level_11x13) {
+
+                if (getGameState().getInt("LvlComplete_Tutorial") >= 1) {
+
+                    canMove = false;
+                    canFly = false;
+
+                    //Airship Arrival
+                    getGameWorld().spawn("Airship", 5690, 90);
+
+                    //Message
+                    initNotification_PrepareForAdventure();
+                    getMasterTimer().runOnceAfter(() -> {
+                        initDiveLevel_11x13();
+                    }, Duration.seconds(5));
+                } else {
+                    getDisplay().showMessageBox("Complete The Tutorial to Unlock");
+                }
+            }
+        });
+
+        //PLAYER & DOOR_DIVE_LEVEL_14x16
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_DIVE_LEVEL_14x16) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_dive_level_14x16) {
+
+                if (getGameState().getInt("LvlComplete_Tutorial") >= 1) {
+
+                    canMove = false;
+                    canFly = false;
+
+                    //Airship Arrival
+                    getGameWorld().spawn("Airship", 6380, 90);
+
+                    //Message
+                    initNotification_PrepareForAdventure();
+                    getMasterTimer().runOnceAfter(() -> {
+                        initDiveLevel_14x16();
+                    }, Duration.seconds(5));
+                } else {
+                    getDisplay().showMessageBox("Complete The Tutorial to Unlock");
+                }
+            }
+        });
+
+        //PLAYER & DOOR_DIVE_LEVEL_17x19
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_DIVE_LEVEL_17x19) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_dive_level_17x19) {
+
+                if (getGameState().getInt("LvlComplete_Tutorial") >= 1) {
+
+                    canMove = false;
+                    canFly = false;
+
+                    //Airship Arrival
+                    getGameWorld().spawn("Airship", 7095, 230);
+
+                    //Message
+                    initNotification_PrepareForAdventure();
+                    getMasterTimer().runOnceAfter(() -> {
+                        initDiveLevel_17x19();
+                    }, Duration.seconds(5));
+                } else {
+                    getDisplay().showMessageBox("Complete The Tutorial to Unlock");
+                }
+            }
+        });
+
 
         //PLAYER & DOOR_DIVE_BOSS1
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_DIVE_BOSS1) {
@@ -2757,6 +3100,45 @@ public class GameMain extends GameApplication {
                 }
             }
         });
+        // ----- MAP COLLISIONS [LEVEL CLEAR] -----
+
+        //PLAYER & DOOR_BASE
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_BASE) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_base) {
+
+                    canMove = false;
+                    canFly = false;
+
+                    //Airship Arrival
+                    getGameWorld().spawn("Airship", 95, -60);
+
+                    //Message
+                    initNotification_ReturnToBase();
+                    getMasterTimer().runOnceAfter(() -> {
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                        }
+                        initGame();
+                    }, Duration.seconds(5));
+            }
+        });
+
+        //PLAYER & LEVEL_CLEAR
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.LEVEL_CLEAR) {
+
+            @Override
+            protected void onCollisionBegin(Entity player, Entity level_clear) {
+
+                level_clear.removeFromWorld();
+                initLevelIndicator_LevelCleared();
+
+            }
+        });
+
+
         // ----- MAP COLLISIONS [DIVE TUTORIAL] -----
         //PLAYER & DOOR_TUTORIAL
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_TUTORIAL) {
@@ -2869,6 +3251,61 @@ public class GameMain extends GameApplication {
                     darkflamemaster_deathball.removeFromWorld();
                 }, Duration.seconds(5));
 
+            }
+        });
+
+        // ----- MAP COLLISIONS [DIVE LEVEL 1-3] -----
+        //PLAYER & DOOR_LEVELCLEAR_JUNGLE
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVELCLEAR_JUNGLE) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_levelclear_jungle) {
+                initLevelClear_Jungle();
+            }
+        });
+
+        // ----- MAP COLLISIONS [DIVE LEVEL 4-6] -----
+        //PLAYER & DOOR_LEVELCLEAR_JUNGLE
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVELCLEAR_JUNGLE) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_levelclear_jungle) {
+                initLevelClear_Jungle();
+            }
+        });
+
+        // ----- MAP COLLISIONS [DIVE LEVEL 7-9] -----
+        //PLAYER & DOOR_LEVELCLEAR_JUNGLE
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVELCLEAR_JUNGLE) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_levelclear_jungle) {
+                initLevelClear_Jungle();
+            }
+        });
+
+        // ----- MAP COLLISIONS [DIVE LEVEL 11-13] -----
+        //PLAYER & DOOR_LEVELCLEAR_JUNGLE
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVELCLEAR_CAVE) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_levelclear_cave) {
+                initLevelClear_Cave();
+            }
+        });
+
+        // ----- MAP COLLISIONS [DIVE LEVEL 14-16] -----
+        //PLAYER & DOOR_LEVELCLEAR_JUNGLE
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVELCLEAR_CAVE) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_levelclear_cave) {
+                initLevelClear_Cave();
+            }
+        });
+
+        // ----- MAP COLLISIONS [DIVE LEVEL 17-19] -----
+
+        //PLAYER & DOOR_LEVELCLEAR_JUNGLE
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVELCLEAR_CAVE) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_levelclear_cave) {
+                initLevelClear_Cave();
             }
         });
 

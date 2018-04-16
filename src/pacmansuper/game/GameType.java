@@ -40,6 +40,13 @@ public enum GameType {
 
     DOOR_DIVE_TUTORIAL,
 
+    DOOR_DIVE_LEVEL_1x3,
+    DOOR_DIVE_LEVEL_4x6,
+    DOOR_DIVE_LEVEL_7x9,
+    DOOR_DIVE_LEVEL_11x13,
+    DOOR_DIVE_LEVEL_14x16,
+    DOOR_DIVE_LEVEL_17x19,
+
     DOOR_DIVE_BOSS1,
     DOOR_BOSS1,
 
@@ -49,6 +56,10 @@ public enum GameType {
     DOOR_DIVE_BOSSFINAL,
     DOOR_BOSSFINAL,
 
+    //Level Clear
+    DOOR_BASE,
+    LEVEL_CLEAR,
+
     //Dive_Tutorial
     DOOR_TUTORIAL,
 
@@ -57,6 +68,16 @@ public enum GameType {
     GUIDE1,
     GUIDE2,
     GUIDE3,
+
+    //Level 1x3 Dive
+    DOOR_LEVELCLEAR_JUNGLE,
+
+    //Level 4x6 Dive
+
+    //Level 7x9 Dive
+
+    //Level 11x13 Dive
+    DOOR_LEVELCLEAR_CAVE,
 
     //Tutorial 2
     DOOR_DIVE_TUTORIAL3,
