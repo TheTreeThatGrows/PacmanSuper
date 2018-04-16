@@ -3857,6 +3857,8 @@ public class GameMain extends GameApplication {
     //Level: Completed
     public void initLevelIndicator_LevelCleared() {
 
+        getAudioPlayer().playSound("LevelClear.wav");
+
         //Enter Level: Tutorial
         Text EnterLevel_Tutorial = new Text("Level Cleared!");
         EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
