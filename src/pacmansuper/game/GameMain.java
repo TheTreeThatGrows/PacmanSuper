@@ -448,12 +448,14 @@ public class GameMain extends GameApplication {
         SupernovaCharge();
 
         //Enemies
+        initDarkFlameMasterHP();
         getGameWorld().spawn("boss_darkflamemaster", 770, 440);
 
         //Camera Settings
         getGameScene().getViewport().setBounds(0, 0, 2100, getHeight());
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
     protected void initDiveBoss1() {
 
         //Initialize Map
@@ -511,6 +513,7 @@ public class GameMain extends GameApplication {
         SupernovaCharge();
 
         //Enemies
+        initRhatbuHP();
         getGameWorld().spawn("boss_rhatbu", 3500, 300);
         getGameWorld().spawn("enemy_blue", 1180, 530);
         getGameWorld().spawn("enemy_blue", 1470, 530);
@@ -577,6 +580,7 @@ public class GameMain extends GameApplication {
         SupernovaCharge();
 
         //Enemies
+        initBedjHP();
         getGameWorld().spawn("boss_bedj", 1880, 370);
 
         //Camera Settings
@@ -642,9 +646,8 @@ public class GameMain extends GameApplication {
         SupernovaCharge();
 
         //Enemies
+        initGrimHP();
         getGameWorld().spawn("boss_grim", 2660, 280);
-        //getGameWorld().spawn("fireballFinal", 1800, 500);
-        //getGameWorld().spawn("fireballFinal", 700, 500);
 
         //Camera Settings
         getGameScene().getViewport().setBounds(0, 0, 3850, 770);
@@ -709,7 +712,7 @@ public class GameMain extends GameApplication {
             protected void onAction() {
 
                 //Cheat Stats
-                getGameState().setValue("Rank", 14);
+                getGameState().setValue("Rank", 15);
                 getGameState().setValue("Points", 15);
                 getGameState().setValue("Gold", 9999);
 
@@ -965,6 +968,7 @@ public class GameMain extends GameApplication {
 
 
                 //Reduce Player Health
+                initDamageIndicator();
                 getGameState().increment("Health", -50);
                 getAudioPlayer().playSound("PlayerHealth.wav");
                 getGameScene().getViewport().shakeRotational(0.6);
@@ -1268,6 +1272,40 @@ public class GameMain extends GameApplication {
                 if (getGameState().getInt("FireblastLevel") == 5) {
                     getGameState().increment("DarkFlameMasterHealth", -270);
                 }
+
+                if (getGameState().getInt("DarkFlameMasterHealth") <= 0) {
+
+                    getAudioPlayer().playSound("enemyDeath.wav");
+                    fireblast.removeFromWorld();
+                    boss_darkflamemaster.removeFromWorld();
+                    getGameState().setValue("DarkFlameMasterHealth", 9000);
+
+                    //Map Complete
+                    getGameState().setValue("LvlComplete_Tutorial", 1);
+
+                    //Message
+                    getDisplay().showMessageBox("Tutorial Complete!");
+                    String messageDarkFlameMasterDefeated1 = "Dark Flame Master Defeated!";
+                    String messageDarkFlameMasterDefeated2 = "Returning back to base in 5 seconds...";
+                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated1);
+                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated2);
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        getAudioPlayer().stopAllMusic();
+                    }, Duration.seconds(8.9));
+
+                    getMasterTimer().runOnceAfter(() -> {
+
+                        if (getGameState().getInt("Rank") < 15) {
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                            getDisplay().showMessageBox("Press 'Esc' to PAUSE and SAVE your progress");
+                            getDisplay().showMessageBox("Rank Increased!");
+                        }
+                        initGame();
+                    }, Duration.seconds(9));
+
+                }
             }
         });
 
@@ -1304,6 +1342,40 @@ public class GameMain extends GameApplication {
                 if (getGameState().getInt("FlamestrikeLevel") == 5) {
                     getGameState().increment("DarkFlameMasterHealth", -270);
                 }
+
+                if (getGameState().getInt("DarkFlameMasterHealth") <= 0) {
+
+                    getAudioPlayer().playSound("enemyDeath.wav");
+                    flamestrike.removeFromWorld();
+                    boss_darkflamemaster.removeFromWorld();
+                    getGameState().setValue("DarkFlameMasterHealth", 9000);
+
+                    //Map Complete
+                    getGameState().setValue("LvlComplete_Tutorial", 1);
+
+                    //Message
+                    getDisplay().showMessageBox("Tutorial Complete!");
+                    String messageDarkFlameMasterDefeated1 = "Dark Flame Master Defeated!";
+                    String messageDarkFlameMasterDefeated2 = "Returning back to base in 5 seconds...";
+                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated1);
+                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated2);
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        getAudioPlayer().stopAllMusic();
+                    }, Duration.seconds(8.9));
+
+                    getMasterTimer().runOnceAfter(() -> {
+
+                        if (getGameState().getInt("Rank") < 15) {
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                            getDisplay().showMessageBox("Press 'Esc' to PAUSE and SAVE your progress");
+                            getDisplay().showMessageBox("Rank Increased!");
+                        }
+                        initGame();
+                    }, Duration.seconds(9));
+
+                }
             }
         });
 
@@ -1339,6 +1411,40 @@ public class GameMain extends GameApplication {
                 //Level 5 Supernova
                 if (getGameState().getInt("SupernovaLevel") == 5) {
                     getGameState().increment("DarkFlameMasterHealth", -170);
+                }
+
+                if (getGameState().getInt("DarkFlameMasterHealth") <= 0) {
+
+                    getAudioPlayer().playSound("enemyDeath.wav");
+                    supernova.removeFromWorld();
+                    boss_darkflamemaster.removeFromWorld();
+                    getGameState().setValue("DarkFlameMasterHealth", 9000);
+
+                    //Map Complete
+                    getGameState().setValue("LvlComplete_Tutorial", 1);
+
+                    //Message
+                    getDisplay().showMessageBox("Tutorial Complete!");
+                    String messageDarkFlameMasterDefeated1 = "Dark Flame Master Defeated!";
+                    String messageDarkFlameMasterDefeated2 = "Returning back to base in 5 seconds...";
+                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated1);
+                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated2);
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        getAudioPlayer().stopAllMusic();
+                    }, Duration.seconds(8.9));
+
+                    getMasterTimer().runOnceAfter(() -> {
+
+                        if (getGameState().getInt("Rank") < 15) {
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                            getDisplay().showMessageBox("Press 'Esc' to PAUSE and SAVE your progress");
+                            getDisplay().showMessageBox("Rank Increased!");
+                        }
+                        initGame();
+                    }, Duration.seconds(9));
+
                 }
             }
         });
@@ -1495,6 +1601,37 @@ public class GameMain extends GameApplication {
                 if (getGameState().getInt("FireblastLevel") == 5) {
                     getGameState().increment("RhatbuHealth", -270);
                 }
+
+                if (getGameState().getInt("RhatbuHealth") <= 0) {
+
+                    getAudioPlayer().playSound("enemyDeath.wav");
+                    fireblast.removeFromWorld();
+                    boss_rhatbu.removeFromWorld();
+                    getGameState().increment("Gold", + 500);
+                    getGameState().setValue("RhatbuHealth", 15000);
+
+                    //Map Level Complete
+                    getGameState().setValue("LvlComplete_Rhatbu", 1);
+
+                    //Message
+                    String messageRhatbuDefeated1 = "Rhatbu Defeated!";
+                    String messageRhatbuDefeated2 = "Returning back to base in 5 seconds...";
+                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated1);
+                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated2);
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        getAudioPlayer().stopAllMusic();
+                    }, Duration.seconds(8.9));
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                        }
+                        initGame();
+                    }, Duration.seconds(9));
+                }
             }
         });
 
@@ -1531,6 +1668,38 @@ public class GameMain extends GameApplication {
                 if (getGameState().getInt("FlamestrikeLevel") == 5) {
                     getGameState().increment("RhatbuHealth", -270);
                 }
+
+                if (getGameState().getInt("RhatbuHealth") <= 0) {
+
+                    getAudioPlayer().playSound("enemyDeath.wav");
+                    flamestrike.removeFromWorld();
+                    boss_rhatbu.removeFromWorld();
+                    getGameState().increment("Gold", + 500);
+                    getGameState().setValue("RhatbuHealth", 15000);
+
+                    //Map Level Complete
+                    getGameState().setValue("LvlComplete_Rhatbu", 1);
+
+                    //Message
+                    String messageRhatbuDefeated1 = "Rhatbu Defeated!";
+                    String messageRhatbuDefeated2 = "Returning back to base in 5 seconds...";
+                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated1);
+                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated2);
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        getAudioPlayer().stopAllMusic();
+                    }, Duration.seconds(8.9));
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                        }
+                        initGame();
+                    }, Duration.seconds(9));
+
+                }
             }
         });
 
@@ -1566,6 +1735,38 @@ public class GameMain extends GameApplication {
                 //Level 5 Supernova
                 if (getGameState().getInt("SupernovaLevel") == 5) {
                     getGameState().increment("RhatbuHealth", -170);
+                }
+
+                if (getGameState().getInt("RhatbuHealth") <= 0) {
+
+                    getAudioPlayer().playSound("enemyDeath.wav");
+                    supernova.removeFromWorld();
+                    boss_rhatbu.removeFromWorld();
+                    getGameState().increment("Gold", + 500);
+                    getGameState().setValue("RhatbuHealth", 15000);
+
+                    //Map Level Complete
+                    getGameState().setValue("LvlComplete_Rhatbu", 1);
+
+                    //Message
+                    String messageRhatbuDefeated1 = "Rhatbu Defeated!";
+                    String messageRhatbuDefeated2 = "Returning back to base in 5 seconds...";
+                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated1);
+                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated2);
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        getAudioPlayer().stopAllMusic();
+                    }, Duration.seconds(8.9));
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                        }
+                        initGame();
+                    }, Duration.seconds(9));
+
                 }
             }
         });
@@ -1715,6 +1916,38 @@ public class GameMain extends GameApplication {
                 if (getGameState().getInt("FireblastLevel") == 5) {
                     getGameState().increment("BedjHealth", -270);
                 }
+
+                if (getGameState().getInt("BedjHealth") <= 0) {
+
+                    getAudioPlayer().playSound("enemyDeath.wav");
+                    fireblast.removeFromWorld();
+                    boss_bedj.removeFromWorld();
+                    getGameState().increment("Gold", + 1500);
+                    getGameState().setValue("BedjHealth", 20000);
+
+                    //Map Level Complete
+                    getGameState().setValue("LvlComplete_Bedj", 1);
+
+                    //Message
+                    String messageBedjDefeated1 = "Bedj Defeated!";
+                    String messageBedjDefeated2 = "Returning back to base in 5 seconds...";
+                    FXGL.getNotificationService().pushNotification(messageBedjDefeated1);
+                    FXGL.getNotificationService().pushNotification(messageBedjDefeated2);
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        getAudioPlayer().stopAllMusic();
+                    }, Duration.seconds(8.9));
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                        }
+                        initGame();
+                    }, Duration.seconds(9));
+
+                }
             }
         });
 
@@ -1750,6 +1983,38 @@ public class GameMain extends GameApplication {
                 //Level 5 Flamestrike
                 if (getGameState().getInt("FlamestrikeLevel") == 5) {
                     getGameState().increment("BedjHealth", -270);
+                }
+
+                if (getGameState().getInt("BedjHealth") <= 0) {
+
+                    getAudioPlayer().playSound("enemyDeath.wav");
+                    flamestrike.removeFromWorld();
+                    boss_bedj.removeFromWorld();
+                    getGameState().increment("Gold", + 1500);
+                    getGameState().setValue("BedjHealth", 20000);
+
+                    //Map Level Complete
+                    getGameState().setValue("LvlComplete_Bedj", 1);
+
+                    //Message
+                    String messageBedjDefeated1 = "Bedj Defeated!";
+                    String messageBedjDefeated2 = "Returning back to base in 5 seconds...";
+                    FXGL.getNotificationService().pushNotification(messageBedjDefeated1);
+                    FXGL.getNotificationService().pushNotification(messageBedjDefeated2);
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        getAudioPlayer().stopAllMusic();
+                    }, Duration.seconds(8.9));
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                        }
+                        initGame();
+                    }, Duration.seconds(9));
+
                 }
             }
         });
@@ -1787,6 +2052,38 @@ public class GameMain extends GameApplication {
                 if (getGameState().getInt("SupernovaLevel") == 5) {
                     getGameState().increment("BedjHealth", -170);
                 }
+
+                if (getGameState().getInt("BedjHealth") <= 0) {
+
+                    getAudioPlayer().playSound("enemyDeath.wav");
+                    supernova.removeFromWorld();
+                    boss_bedj.removeFromWorld();
+                    getGameState().increment("Gold", + 1500);
+                    getGameState().setValue("BedjHealth", 20000);
+
+                    //Map Level Complete
+                    getGameState().setValue("LvlComplete_Bedj", 1);
+
+                    //Message
+                    String messageBedjDefeated1 = "Bedj Defeated!";
+                    String messageBedjDefeated2 = "Returning back to base in 5 seconds...";
+                    FXGL.getNotificationService().pushNotification(messageBedjDefeated1);
+                    FXGL.getNotificationService().pushNotification(messageBedjDefeated2);
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        getAudioPlayer().stopAllMusic();
+                    }, Duration.seconds(8.9));
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                        }
+                        initGame();
+                    }, Duration.seconds(9));
+
+                }
             }
         });
 
@@ -1799,6 +2096,7 @@ public class GameMain extends GameApplication {
                 //Reduce Player Health
                 getGameState().increment("Health", -1);
                 getAudioPlayer().playSound("PlayerHealth.wav");
+
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
@@ -1981,6 +2279,37 @@ public class GameMain extends GameApplication {
                     getGameState().increment("GrimHealth", -270);
                 }
 
+                if (getGameState().getInt("GrimHealth") <= 0) {
+
+                    getAudioPlayer().playSound("enemyDeath.wav");
+                    fireblast.removeFromWorld();
+                    boss_grim.removeFromWorld();
+                    getGameState().increment("Gold", + 2500);
+                    getGameState().setValue("GrimHealth", 25000);
+
+                    //Map Level Complete
+                    getGameState().setValue("LvlComplete_Grim", 1);
+
+                    //Message
+                    String messageGrimDefeated1 = "Grim Defeated!";
+                    String messageGrimDefeated2 = "Returning back to base in 5 seconds...";
+                    FXGL.getNotificationService().pushNotification(messageGrimDefeated1);
+                    FXGL.getNotificationService().pushNotification(messageGrimDefeated2);
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        getAudioPlayer().stopAllMusic();
+                    }, Duration.seconds(8.9));
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                        }
+                        initGame();
+                    }, Duration.seconds(9));
+
+                }
             }
         });
 
@@ -1988,7 +2317,7 @@ public class GameMain extends GameApplication {
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.FLAMESTRIKE, GameType.BOSS_GRIM) {
 
             @Override
-            protected void onCollisionBegin(Entity supernova, Entity boss_grim) {
+            protected void onCollisionBegin(Entity flamestrike, Entity boss_grim) {
 
                 //Kill Grim
                 getAudioPlayer().playSound("Hit_Collide.wav");
@@ -2018,6 +2347,37 @@ public class GameMain extends GameApplication {
                     getGameState().increment("GrimHealth", -270);
                 }
 
+                if (getGameState().getInt("GrimHealth") <= 0) {
+
+                    getAudioPlayer().playSound("enemyDeath.wav");
+                    flamestrike.removeFromWorld();
+                    boss_grim.removeFromWorld();
+                    getGameState().increment("Gold", + 2500);
+                    getGameState().setValue("GrimHealth", 25000);
+
+                    //Map Level Complete
+                    getGameState().setValue("LvlComplete_Grim", 1);
+
+                    //Message
+                    String messageGrimDefeated1 = "Grim Defeated!";
+                    String messageGrimDefeated2 = "Returning back to base in 5 seconds...";
+                    FXGL.getNotificationService().pushNotification(messageGrimDefeated1);
+                    FXGL.getNotificationService().pushNotification(messageGrimDefeated2);
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        getAudioPlayer().stopAllMusic();
+                    }, Duration.seconds(8.9));
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                        }
+                        initGame();
+                    }, Duration.seconds(9));
+
+                }
             }
         });
 
@@ -2054,6 +2414,38 @@ public class GameMain extends GameApplication {
                 if (getGameState().getInt("SupernovaLevel") == 5) {
                     getGameState().increment("GrimHealth", -170);
                 }
+
+                if (getGameState().getInt("GrimHealth") <= 0) {
+
+                    getAudioPlayer().playSound("enemyDeath.wav");
+                    supernova.removeFromWorld();
+                    boss_grim.removeFromWorld();
+                    getGameState().increment("Gold", + 2500);
+                    getGameState().setValue("GrimHealth", 25000);
+
+                    //Map Level Complete
+                    getGameState().setValue("LvlComplete_Grim", 1);
+
+                    //Message
+                    String messageGrimDefeated1 = "Grim Defeated!";
+                    String messageGrimDefeated2 = "Returning back to base in 5 seconds...";
+                    FXGL.getNotificationService().pushNotification(messageGrimDefeated1);
+                    FXGL.getNotificationService().pushNotification(messageGrimDefeated2);
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        getAudioPlayer().stopAllMusic();
+                    }, Duration.seconds(8.9));
+
+                    getMasterTimer().runOnceAfter(() -> {
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                        }
+                        initGame();
+                    }, Duration.seconds(9));
+
+                }
             }
         });
 
@@ -2066,6 +2458,7 @@ public class GameMain extends GameApplication {
                 //Reduce Player Health
                 getGameState().increment("Health", -1);
                 getAudioPlayer().playSound("PlayerHealth.wav");
+
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
@@ -2386,6 +2779,7 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity player, Entity fall_tutorial) {
 
                 //Reduce Player Health
+                initDamageIndicator();
                 getGameState().increment("Health", -30);
                 getGameScene().getViewport().shakeRotational(0.6);
 
@@ -2489,6 +2883,7 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity player, Entity darkflamemaster_deathball) {
 
                 //Reduce Player Health
+                initDamageIndicator();
                 getGameState().increment("Health", -10);
                 getAudioPlayer().playSound("PlayerHealth.wav");
                 getGameScene().getViewport().shakeRotational(0.6);
@@ -2522,6 +2917,7 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity player, Entity rhatbu_rhatbuball) {
 
                 //Reduce Player Health
+                initDamageIndicator();
                 getGameState().increment("Health", -20);
                 getAudioPlayer().playSound("PlayerHealth.wav");
                 getGameScene().getViewport().shakeRotational(0.6);
@@ -2556,6 +2952,7 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity player, Entity bedj_waterwall) {
 
                 //Reduce Player Health
+                initDamageIndicator();
                 getGameState().increment("Health", -10);
                 getAudioPlayer().playSound("PlayerHealth.wav");
                 getGameScene().getViewport().shakeRotational(0.6);
@@ -2588,6 +2985,7 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity player, Entity bedj_waterball) {
 
                 //Reduce Player Health
+                initDamageIndicator();
                 getGameState().increment("Health", -10);
                 getAudioPlayer().playSound("PlayerHealth.wav");
 
@@ -2609,6 +3007,7 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity player, Entity Grim_FireballFinal1) {
 
                 //Reduce Player Health
+                initDamageIndicator();
                 getGameState().increment("Health", -10);
                 getAudioPlayer().playSound("PlayerHealth.wav");
                 getGameScene().getViewport().shakeRotational(0.6);
@@ -2641,6 +3040,7 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity player, Entity Grim_FireballFinal2) {
 
                 //Reduce Player Health
+                initDamageIndicator();
                 getGameState().increment("Health", -10);
                 getAudioPlayer().playSound("PlayerHealth.wav");
                 getGameScene().getViewport().shakeRotational(0.6);
@@ -2672,6 +3072,7 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity player, Entity water_tutorial) {
 
                 //Reduce Player Health
+                initDamageIndicator();
                 getGameState().increment("Health", -30);
                 getGameScene().getViewport().shakeRotational(0.6);
 
@@ -2693,6 +3094,7 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity player, Entity boss_grimfireball) {
 
                 //Reduce Player Health
+                initDamageIndicator();
                 getGameState().increment("Health", -10);
                 getAudioPlayer().playSound("PlayerHealth.wav");
 
@@ -2706,7 +3108,7 @@ public class GameMain extends GameApplication {
         });
     }
 
-    // ------------------------------------- <<< User Interface >>> -------------------------------------
+    // ------------------------------------- <<< Heads Up Display (HUD) >>> -------------------------------------
     @Override
     protected void initUI() {
 
@@ -2763,14 +3165,14 @@ public class GameMain extends GameApplication {
         HealthIcon.setTranslateY(15);
 
         Text Health = new Text();
-        Health.setFont(Font.font ("Berlin Sans FB Demi", 36));
+        Health.setFont(Font.font ("Berlin Sans FB Demi", 32));
         Health.setFill(Color.WHITE);
         Health.setTranslateX(80);
         Health.setTranslateY(50);
 
         Text HealthPercent = new Text();
         HealthPercent.setText("%");
-        HealthPercent.setFont(Font.font ("Berlin Sans FB Demi", 36));
+        HealthPercent.setFont(Font.font ("Berlin Sans FB Demi", 32));
         HealthPercent.setFill(Color.WHITE);
         HealthPercent.setTranslateX(140);
         HealthPercent.setTranslateY(50);
@@ -2782,13 +3184,14 @@ public class GameMain extends GameApplication {
         HealthUI.setTranslateX(70);
         HealthUI.setTranslateY(23);
 
+
         //Gold
         Texture GoldIcon = getAssetLoader().loadTexture("GoldIcon.gif");
         GoldIcon.setTranslateX(17);
         GoldIcon.setTranslateY(70);
 
         Text Gold = new Text();
-        Gold.setFont(Font.font ("Berlin Sans FB Demi", 36));
+        Gold.setFont(Font.font ("Berlin Sans FB Demi", 32));
         Gold.setFill(Color.WHITE);
         Gold.setTranslateX(80);
         Gold.setTranslateY(102);
@@ -2932,66 +3335,6 @@ public class GameMain extends GameApplication {
         EnemyHealth.setTranslateX(600);
         EnemyHealth.setTranslateY(40);
 
-        //Dark Flame Master Health Text
-        Text DarkFlameMasterHealthUI = new Text();
-        DarkFlameMasterHealthUI .setText("Dark Flame Master:");
-        DarkFlameMasterHealthUI .setFont(Font.font ("Berlin Sans FB Demi", 40));
-        DarkFlameMasterHealthUI .setFill(Color.RED);
-        DarkFlameMasterHealthUI .setTranslateX(300);
-        DarkFlameMasterHealthUI .setTranslateY(40);
-
-        //Dark Flame Master Health Number
-        Text DarkFlameMasterHealth = new Text();
-        DarkFlameMasterHealth.setFont(Font.font ("Berlin Sans FB Demi", 40));
-        DarkFlameMasterHealth.setFill(Color.WHITE);
-        DarkFlameMasterHealth.setTranslateX(700);
-        DarkFlameMasterHealth.setTranslateY(40);
-
-        //Rhatbu Health Text
-        Text RhatbuHealthUI = new Text();
-        RhatbuHealthUI .setText("Rhatbu:");
-        RhatbuHealthUI .setFont(Font.font ("Berlin Sans FB Demi", 40));
-        RhatbuHealthUI .setFill(Color.RED);
-        RhatbuHealthUI .setTranslateX(400);
-        RhatbuHealthUI .setTranslateY(40);
-
-        //Rhatbu Health Number
-        Text RhatbuHealth = new Text();
-        RhatbuHealth.setFont(Font.font ("Berlin Sans FB Demi", 40));
-        RhatbuHealth.setFill(Color.WHITE);
-        RhatbuHealth.setTranslateX(700);
-        RhatbuHealth.setTranslateY(40);
-
-        //Bedj Health Text
-        Text BedjHealthUI = new Text();
-        BedjHealthUI.setText("Bedj:");
-        BedjHealthUI.setFont(Font.font ("Berlin Sans FB Demi", 40));
-        BedjHealthUI.setFill(Color.RED);
-        BedjHealthUI.setTranslateX(300);
-        BedjHealthUI.setTranslateY(40);
-
-        //Bedj Health Number
-        Text GrimHealth = new Text();
-        GrimHealth.setFont(Font.font ("Berlin Sans FB Demi", 40));
-        GrimHealth.setFill(Color.WHITE);
-        GrimHealth.setTranslateX(600);
-        GrimHealth.setTranslateY(40);
-
-        //Grim Health Text
-        Text GrimHealthUI = new Text();
-        GrimHealthUI.setText("Grim:");
-        GrimHealthUI.setFont(Font.font ("Berlin Sans FB Demi", 40));
-        GrimHealthUI.setFill(Color.RED);
-        GrimHealthUI.setTranslateX(300);
-        GrimHealthUI.setTranslateY(40);
-
-        //Grim Health Number
-        Text BedjHealth = new Text();
-        BedjHealth.setFont(Font.font ("Berlin Sans FB Demi", 40));
-        BedjHealth.setFill(Color.WHITE);
-        BedjHealth.setTranslateX(600);
-        BedjHealth.setTranslateY(40);
-
         //-- Map Level Completion --
 
         //First time Upgrade
@@ -3079,18 +3422,6 @@ public class GameMain extends GameApplication {
         //--Enemy Health--
         //getGameScene().addUINode(EnemyHealth);
 
-        //-- Boss Health --
-        //getGameScene().addUINode(DarkFlameMasterHealth);
-        //getGameScene().addUINode(DarkFlameMasterHealthUI);
-
-        //getGameScene().addUINode(RhatbuHealth);
-        //getGameScene().addUINode(RhatbuHealthUI);
-
-        //getGameScene().addUINode(BedjHealth);
-        //getGameScene().addUINode(BedjHealthUI);
-
-        //getGameScene().addUINode(GrimHealth);
-        //getGameScene().addUINode(GrimHealthUI);
 
         //-- Map Level Completion --
         //getGameScene().addUINode(first_upgrade);
@@ -3117,12 +3448,6 @@ public class GameMain extends GameApplication {
         //Enemy
         EnemyHealth.textProperty().bind(getGameState().intProperty("EnemyHealth").asString());
 
-        //Boss
-        RhatbuHealth.textProperty().bind(getGameState().intProperty("RhatbuHealth").asString());
-        BedjHealth.textProperty().bind(getGameState().intProperty("BedjHealth").asString());
-        GrimHealth.textProperty().bind(getGameState().intProperty("GrimHealth").asString());
-        DarkFlameMasterHealth.textProperty().bind(getGameState().intProperty("DarkFlameMasterHealth").asString());
-
         //Map Level Completion
         first_upgrade.textProperty().bind(getGameState().intProperty("first_upgrade").asString());
         LvlComplete_Tutorial.textProperty().bind(getGameState().intProperty("LvlComplete_Tutorial").asString());
@@ -3132,7 +3457,158 @@ public class GameMain extends GameApplication {
         LvlComplete_Grim.textProperty().bind(getGameState().intProperty("LvlComplete_Grim").asString());
 
     }
+    // ------------------------------------- <<< Heads Up Display (HUD) >>> -------------------------------------
 
+    //Damage Indicator
+    protected void initDamageIndicator() {
+
+        Rectangle DamageUI = new Rectangle(1280, 770);
+        DamageUI.setFill(Color.rgb(250, 0, 0, 0.3));
+        DamageUI.setTranslateX(0);
+        DamageUI.setTranslateY(0);
+
+        getGameScene().addUINode(DamageUI);
+
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(DamageUI);
+        }, Duration.seconds(0.2));
+    }
+
+    //Show Dark Flame Master HP
+    protected void initDarkFlameMasterHP() {
+
+        //Dark Flame Master Health Text
+        Text DarkFlameMasterHealthUI = new Text();
+        DarkFlameMasterHealthUI .setText("Dark Flame Master:");
+        DarkFlameMasterHealthUI .setFont(Font.font ("Berlin Sans FB Demi", 40));
+        DarkFlameMasterHealthUI .setFill(Color.RED);
+        DarkFlameMasterHealthUI .setTranslateX(300);
+        DarkFlameMasterHealthUI .setTranslateY(40);
+
+        //Dark Flame Master Health Number
+        Text DarkFlameMasterHealth = new Text();
+        DarkFlameMasterHealth.setFont(Font.font ("Berlin Sans FB Demi", 40));
+        DarkFlameMasterHealth.setFill(Color.WHITE);
+        DarkFlameMasterHealth.setTranslateX(700);
+        DarkFlameMasterHealth.setTranslateY(40);
+
+        getMasterTimer().runAtInterval(() -> {
+            if (getGameState().getInt("DarkFlameMasterHealth") < 9000) {
+                getGameScene().removeUINode(DarkFlameMasterHealth);
+                getGameScene().removeUINode(DarkFlameMasterHealthUI);
+                getGameScene().addUINode(DarkFlameMasterHealth);
+                getGameScene().addUINode(DarkFlameMasterHealthUI);
+            } else if (getGameState().getInt("DarkFlameMasterHealth") == 9000) {
+                getGameScene().removeUINode(DarkFlameMasterHealth);
+                getGameScene().removeUINode(DarkFlameMasterHealthUI);
+            }
+        }, Duration.seconds(0));
+
+        DarkFlameMasterHealth.textProperty().bind(getGameState().intProperty("DarkFlameMasterHealth").asString());
+    }
+
+    //Show Rhatbu HP
+    protected void initRhatbuHP() {
+
+        //Rhatbu Health Text
+        Text RhatbuHealthUI = new Text();
+        RhatbuHealthUI .setText("Rhatbu:");
+        RhatbuHealthUI .setFont(Font.font ("Berlin Sans FB Demi", 40));
+        RhatbuHealthUI .setFill(Color.RED);
+        RhatbuHealthUI .setTranslateX(470);
+        RhatbuHealthUI .setTranslateY(40);
+
+        //Rhatbu Health Number
+        Text RhatbuHealth = new Text();
+        RhatbuHealth.setFont(Font.font ("Berlin Sans FB Demi", 40));
+        RhatbuHealth.setFill(Color.WHITE);
+        RhatbuHealth.setTranslateX(650);
+        RhatbuHealth.setTranslateY(40);
+
+
+        getMasterTimer().runAtInterval(() -> {
+            if (getGameState().getInt("RhatbuHealth") < 15000) {
+                getGameScene().removeUINode(RhatbuHealth);
+                getGameScene().removeUINode(RhatbuHealthUI);
+                getGameScene().addUINode(RhatbuHealth);
+                getGameScene().addUINode(RhatbuHealthUI);
+            } else if (getGameState().getInt("RhatbuHealth") == 15000) {
+                getGameScene().removeUINode(RhatbuHealth);
+                getGameScene().removeUINode(RhatbuHealthUI);
+            }
+        }, Duration.seconds(0));
+
+        RhatbuHealth.textProperty().bind(getGameState().intProperty("RhatbuHealth").asString());
+    }
+
+    //Show Bedj HP
+    protected void initBedjHP() {
+
+        //Bedj Health Text
+        Text BedjHealthUI = new Text();
+        BedjHealthUI.setText("Bedj:");
+        BedjHealthUI.setFont(Font.font ("Berlin Sans FB Demi", 40));
+        BedjHealthUI.setFill(Color.RED);
+        BedjHealthUI.setTranslateX(490);
+        BedjHealthUI.setTranslateY(40);
+
+        //Bedj Health Number
+        Text BedjHealth = new Text();
+        BedjHealth.setFont(Font.font ("Berlin Sans FB Demi", 40));
+        BedjHealth.setFill(Color.WHITE);
+        BedjHealth.setTranslateX(600);
+        BedjHealth.setTranslateY(40);
+
+
+        getMasterTimer().runAtInterval(() -> {
+            if (getGameState().getInt("BedjHealth") < 20000) {
+                getGameScene().removeUINode(BedjHealth);
+                getGameScene().removeUINode(BedjHealthUI);
+                getGameScene().addUINode(BedjHealth);
+                getGameScene().addUINode(BedjHealthUI);
+            } else if (getGameState().getInt("BedjHealth") == 20000) {
+                getGameScene().removeUINode(BedjHealth);
+                getGameScene().removeUINode(BedjHealthUI);
+            }
+        }, Duration.seconds(0));
+
+        BedjHealth.textProperty().bind(getGameState().intProperty("BedjHealth").asString());
+    }
+
+    //Show Grim HP
+    protected void initGrimHP() {
+
+        //Grim Health Text
+        Text GrimHealthUI = new Text();
+        GrimHealthUI.setText("Grim:");
+        GrimHealthUI.setFont(Font.font ("Berlin Sans FB Demi", 40));
+        GrimHealthUI.setFill(Color.RED);
+        GrimHealthUI.setTranslateX(480);
+        GrimHealthUI.setTranslateY(40);
+
+        //Grim Health Number
+        Text GrimHealth = new Text();
+        GrimHealth.setFont(Font.font ("Berlin Sans FB Demi", 40));
+        GrimHealth.setFill(Color.WHITE);
+        GrimHealth.setTranslateX(600);
+        GrimHealth.setTranslateY(40);
+
+        getMasterTimer().runAtInterval(() -> {
+            if (getGameState().getInt("GrimHealth") < 25000) {
+                getGameScene().removeUINode(GrimHealth);
+                getGameScene().removeUINode(GrimHealthUI);
+                getGameScene().addUINode(GrimHealth);
+                getGameScene().addUINode(GrimHealthUI);
+            } else if (getGameState().getInt("GrimHealth") == 25000) {
+                getGameScene().removeUINode(GrimHealth);
+                getGameScene().removeUINode(GrimHealthUI);
+            }
+        }, Duration.seconds(0));
+
+        GrimHealth.textProperty().bind(getGameState().intProperty("GrimHealth").asString());
+    }
+
+    // ------------------------------------- <<< Add in Game >>> -------------------------------------
     @Override
     protected void initGameVars(Map<String, Object> vars) {
 
