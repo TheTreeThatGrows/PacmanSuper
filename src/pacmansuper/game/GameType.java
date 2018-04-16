@@ -30,6 +30,8 @@ public enum GameType {
     FALL_BASE,
     PORTAL,
     AIRSHIP,
+    LEVEL_COMPLETE,
+    SAVE_REMINDER,
 
     FIRST_UPGRADE,
     SUPERNOVA_UPGRADE,

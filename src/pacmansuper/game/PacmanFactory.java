@@ -387,6 +387,24 @@ public class PacmanFactory implements EntityFactory {
                 .with(new Airship())
                 .build();
     }
+    @Spawns("LevelComplete")
+    public Entity newLevelComplete(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.LEVEL_COMPLETE)
+                .from(data)
+                .viewFromTexture("LevelComplete.png")
+                .bbox(new HitBox(BoundingShape.box(162, 98)))
+                .build();
+    }
+    @Spawns("save_reminder")
+    public Entity newSaveReminder(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.SAVE_REMINDER)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
 
     //Upgrade Skill Shop
     @Spawns("first_upgrade")

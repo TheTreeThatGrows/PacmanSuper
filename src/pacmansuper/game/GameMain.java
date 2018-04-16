@@ -75,6 +75,10 @@ public class GameMain extends GameApplication {
     private int first_upgrade;
     private int LvlComplete_Tutorial;
 
+    private int LvlComplete_Rhatbu;
+    private int LvlComplete_Bedj;
+    private int LvlComplete_Grim;
+
     //Other
     private LocalTimer returnTimer;
     private LocalTimer finalBossTimer;
@@ -84,7 +88,7 @@ public class GameMain extends GameApplication {
     protected void initSettings(GameSettings settings) {
 
         settings.setTitle("Pacman Super");
-        settings.setVersion("0.4.0");
+        settings.setVersion("0.5.0");
         settings.setWidth(1280);
         settings.setHeight(770); //770
         settings.setProfilingEnabled(false); //Profile
@@ -113,7 +117,11 @@ public class GameMain extends GameApplication {
 
         //Map Level Completion
         Serializable first_upgrade = getGameState().getInt("first_upgrade") ;
-        Serializable LvlComplete_Tutorial = getGameState().getInt("LvlComplete_Tutorial") ;
+        Serializable LvlComplete_Tutorial = getGameState().getInt("LvlComplete_Tutorial");
+
+        Serializable LvlComplete_Rhatbu = getGameState().getInt("LvlComplete_Rhatbu");
+        Serializable LvlComplete_Bedj = getGameState().getInt("LvlComplete_Bedj");
+        Serializable LvlComplete_Grim = getGameState().getInt("LvlComplete_Grim");
 
         //-- Pack to Bundle --
 
@@ -130,6 +138,11 @@ public class GameMain extends GameApplication {
         //Map Level Completion
         bundleRoot.put("first_upgrade", first_upgrade);
         bundleRoot.put("LvlComplete_Tutorial", LvlComplete_Tutorial);
+
+        bundleRoot.put("LvlComplete_Rhatbu", LvlComplete_Rhatbu);
+        bundleRoot.put("LvlComplete_Bedj", LvlComplete_Bedj);
+        bundleRoot.put("LvlComplete_Grim", LvlComplete_Grim);
+
 
         //return the Data
         return new DataFile(bundleRoot);
@@ -154,6 +167,10 @@ public class GameMain extends GameApplication {
         int first_upgrade = bundleRoot.get("first_upgrade");
         int LvlComplete_Tutorial = bundleRoot.get("LvlComplete_Tutorial");
 
+        int LvlComplete_Rhatbu = bundleRoot.get("LvlComplete_Rhatbu");
+        int LvlComplete_Bedj = bundleRoot.get("LvlComplete_Bedj");
+        int LvlComplete_Grim = bundleRoot.get("LvlComplete_Grim");
+
         //-- Implement Load Data --
 
         //Player stats
@@ -168,6 +185,10 @@ public class GameMain extends GameApplication {
         //Map Level Completion
         getGameState().setValue("first_upgrade", first_upgrade);
         getGameState().setValue("LvlComplete_Tutorial", LvlComplete_Tutorial);
+
+        getGameState().setValue("LvlComplete_Rhatbu", LvlComplete_Rhatbu);
+        getGameState().setValue("LvlComplete_Bedj", LvlComplete_Bedj);
+        getGameState().setValue("LvlComplete_Grim", LvlComplete_Grim);
 
         //Init Game
         initGame();
@@ -243,6 +264,28 @@ public class GameMain extends GameApplication {
         getGameWorld().spawn("cloud", 2630, 100);
         getGameWorld().spawn("cloud", 5600, 100);
         getGameWorld().spawn("cloud", 4150, 100);
+
+        //-- Level Complete --
+
+        //Level: Tutorial
+        if (getGameState().getInt("LvlComplete_Tutorial") == 1) {
+            getGameWorld().spawn("LevelComplete", 3600, 450);
+        }
+
+        //Level: Rhatbu
+        if (getGameState().getInt("LvlComplete_Rhatbu") == 1) {
+            getGameWorld().spawn("LevelComplete", 6640, 405);
+        }
+
+        //Level: Bedj
+        if (getGameState().getInt("LvlComplete_Bedj") == 1) {
+            getGameWorld().spawn("LevelComplete", 9720, 335);
+        }
+
+        //Level: Grim
+        if (getGameState().getInt("LvlComplete_Grim") == 1) {
+            getGameWorld().spawn("LevelComplete", 11475, 280);
+        }
 
         //Camera Settings
         getGameScene().getViewport().setBounds(0, 0, 11900, 770);
@@ -664,13 +707,25 @@ public class GameMain extends GameApplication {
         getInput().addAction(new UserAction("Cheat") {
             @Override
             protected void onAction() {
-                getGameState().setValue("Rank", 15);
+
+                //Cheat Stats
+                getGameState().setValue("Rank", 14);
                 getGameState().setValue("Points", 15);
                 getGameState().setValue("Gold", 9999);
 
-                getGameState().increment("FireblastLevel", 1);
-                getGameState().increment("FlamestrikeLevel", 1);
-                getGameState().increment("SupernovaLevel", 1);
+                //Cheat Skills
+                getGameState().setValue("FireblastLevel", 1);
+                getGameState().setValue("FlamestrikeLevel", 1);
+                getGameState().setValue("SupernovaLevel", 1);
+
+                //Cheat Map Level Completion
+                getGameState().setValue("LvlComplete_Tutorial", 1);
+                getGameState().setValue("first_upgrade", 1);
+
+                //getGameState().setValue("LvlComplete_Rhatbu", 1);
+                //getGameState().setValue("LvlComplete_Bedj", 1);
+                //getGameState().setValue("LvlComplete_Grim", 1);
+
                 getDisplay().showMessageBox("Cheats Activated!");
             }
         }, KeyCode.BACK_SPACE);
@@ -1167,11 +1222,10 @@ public class GameMain extends GameApplication {
 
                     getMasterTimer().runOnceAfter(() -> {
 
-                        getGameState().increment("Rank", +1);
-                        getGameState().increment("Points", +1);
-                        getDisplay().showMessageBox("Press 'Esc' to PAUSE and SAVE your progress");
-
                         if (getGameState().getInt("Rank") < 15) {
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                            getDisplay().showMessageBox("Press 'Esc' to PAUSE and SAVE your progress");
                             getDisplay().showMessageBox("Rank Increased!");
                         }
                         initGame();
@@ -1382,6 +1436,9 @@ public class GameMain extends GameApplication {
                     getGameState().increment("Gold", + 500);
                     getGameState().setValue("RhatbuHealth", 15000);
 
+                    //Map Level Complete
+                    getGameState().setValue("LvlComplete_Rhatbu", 1);
+
                     //Message
                     String messageRhatbuDefeated1 = "Rhatbu Defeated!";
                     String messageRhatbuDefeated2 = "Returning back to base in 5 seconds...";
@@ -1393,9 +1450,11 @@ public class GameMain extends GameApplication {
                     }, Duration.seconds(8.9));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getGameState().increment("Rank", +1);
-                        getGameState().increment("Points", +1);
-                        getDisplay().showMessageBox("Rank Increased!");
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                        }
                         initGame();
                     }, Duration.seconds(9));
 
@@ -1597,6 +1656,9 @@ public class GameMain extends GameApplication {
                     getGameState().increment("Gold", + 1500);
                     getGameState().setValue("BedjHealth", 20000);
 
+                    //Map Level Complete
+                    getGameState().setValue("LvlComplete_Bedj", 1);
+
                     //Message
                     String messageBedjDefeated1 = "Bedj Defeated!";
                     String messageBedjDefeated2 = "Returning back to base in 5 seconds...";
@@ -1608,9 +1670,11 @@ public class GameMain extends GameApplication {
                     }, Duration.seconds(8.9));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getGameState().increment("Rank", +1);
-                        getGameState().increment("Points", +1);
-                        getDisplay().showMessageBox("Rank Increased!");
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                        }
                         initGame();
                     }, Duration.seconds(9));
 
@@ -1857,6 +1921,9 @@ public class GameMain extends GameApplication {
                     getGameState().increment("Gold", + 2500);
                     getGameState().setValue("GrimHealth", 25000);
 
+                    //Map Level Complete
+                    getGameState().setValue("LvlComplete_Grim", 1);
+
                     //Message
                     String messageGrimDefeated1 = "Grim Defeated!";
                     String messageGrimDefeated2 = "Returning back to base in 5 seconds...";
@@ -1868,9 +1935,11 @@ public class GameMain extends GameApplication {
                     }, Duration.seconds(8.9));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getGameState().increment("Rank", +1);
-                        getGameState().increment("Points", +1);
-                        getDisplay().showMessageBox("Rank Increased!");
+                        if (getGameState().getInt("Rank") < 15) {
+                            getDisplay().showMessageBox("Rank Increased!");
+                            getGameState().increment("Rank", +1);
+                            getGameState().increment("Points", +1);
+                        }
                         initGame();
                     }, Duration.seconds(9));
 
@@ -2057,6 +2126,17 @@ public class GameMain extends GameApplication {
                     getDisplay().showMessageBox("Use your POINTS to UGPRADE your SKILLS");
                     getGameState().setValue("first_upgrade", 1);
                 }
+            }
+        });
+
+        //PLAYER & SAVE_REMINDER
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.SAVE_REMINDER) {
+
+            @Override
+            protected void onCollisionBegin(Entity player, Entity save_reminder) {
+
+                save_reminder.removeFromWorld();
+                getDisplay().showMessageBox("Remember to SAVE your progress!");
             }
         });
 
@@ -2312,6 +2392,7 @@ public class GameMain extends GameApplication {
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
                     getDisplay().showMessageBox("Game Over", () -> {
+                        exit();
                     });
                 } else {
                     getAudioPlayer().playSound("drown.wav");
@@ -2344,8 +2425,10 @@ public class GameMain extends GameApplication {
 
                 guide.removeFromWorld();
 
-                //Message
-                getDisplay().showMessageBox("Hold down 'UP' to Fly, or 'DOWN' to Descend.");
+                if (getGameState().getInt("LvlComplete_Tutorial") == 0) {
+                    //Message
+                    getDisplay().showMessageBox("Hold down 'UP' to Fly, or 'DOWN' to Descend.");
+                }
             }
         });
 
@@ -2356,8 +2439,10 @@ public class GameMain extends GameApplication {
 
                 guide2.removeFromWorld();
 
-                //Message
-                getDisplay().showMessageBox("Press 'SPACE' to Shoot Fireballs.");
+                if (getGameState().getInt("LvlComplete_Tutorial") == 0) {
+                    //Message
+                    getDisplay().showMessageBox("Press 'SPACE' to Shoot Fireballs.");
+                }
             }
         });
 
@@ -2368,8 +2453,10 @@ public class GameMain extends GameApplication {
 
                 guide3.removeFromWorld();
 
-                //Message
-                getDisplay().showMessageBox("Press 'A', 'S', or 'D' to Use Your Skills.");
+                if (getGameState().getInt("LvlComplete_Tutorial") == 0) {
+                    //Message
+                    getDisplay().showMessageBox("Press 'A', 'S', or 'D' to Use Your Skills.");
+                }
             }
         });
 
@@ -2637,7 +2724,7 @@ public class GameMain extends GameApplication {
         Rank.setTranslateX(1215);
         Rank.setTranslateY(50);
 
-        Rectangle RankUI = new Rectangle(160, 35);
+        Rectangle RankUI = new Rectangle(150, 35);
         RankUI.setFill(Color.rgb(0, 0, 0, 0.7));
         RankUI.setArcHeight(15);
         RankUI.setArcWidth(15);
@@ -2658,7 +2745,7 @@ public class GameMain extends GameApplication {
         Points.setTranslateX(1215);
         Points.setTranslateY(102);
 
-        Rectangle PointsUI = new Rectangle(160, 35);
+        Rectangle PointsUI = new Rectangle(150, 35);
         PointsUI.setFill(Color.rgb(0, 0, 0, 0.7));
         PointsUI.setArcHeight(15);
         PointsUI.setArcWidth(15);
@@ -2921,6 +3008,27 @@ public class GameMain extends GameApplication {
         LvlComplete_Tutorial.setTranslateX(600);
         LvlComplete_Tutorial.setTranslateY(40);
 
+        //Rhatbu
+        Text LvlComplete_Rhatbu = new Text();
+        LvlComplete_Rhatbu.setFont(Font.font ("Berlin Sans FB Demi", 20));
+        LvlComplete_Rhatbu.setFill(Color.WHITE);
+        LvlComplete_Rhatbu.setTranslateX(600);
+        LvlComplete_Rhatbu.setTranslateY(40);
+
+        //Bedj
+        Text LvlComplete_Bedj = new Text();
+        LvlComplete_Bedj.setFont(Font.font ("Berlin Sans FB Demi", 20));
+        LvlComplete_Bedj.setFill(Color.WHITE);
+        LvlComplete_Bedj.setTranslateX(600);
+        LvlComplete_Bedj.setTranslateY(35);
+
+        //Grim
+        Text LvlComplete_Grim = new Text();
+        LvlComplete_Grim.setFont(Font.font ("Berlin Sans FB Demi", 20));
+        LvlComplete_Grim.setFill(Color.WHITE);
+        LvlComplete_Grim.setTranslateX(600);
+        LvlComplete_Grim.setTranslateY(40);
+
         //Add UI to scene
         getGameScene().addUINode(HealthUI);
         getGameScene().addUINode(Health);
@@ -2987,6 +3095,9 @@ public class GameMain extends GameApplication {
         //-- Map Level Completion --
         //getGameScene().addUINode(first_upgrade);
         //getGameScene().addUINode(LvlComplete_Tutorial);
+        //getGameScene().addUINode(LvlComplete_Rhatbu);
+        //getGameScene().addUINode(LvlComplete_Bedj);
+        //getGameScene().addUINode(LvlComplete_Grim);
 
         //Player
         Health.textProperty().bind(getGameState().intProperty("Health").asString());
@@ -3015,6 +3126,10 @@ public class GameMain extends GameApplication {
         //Map Level Completion
         first_upgrade.textProperty().bind(getGameState().intProperty("first_upgrade").asString());
         LvlComplete_Tutorial.textProperty().bind(getGameState().intProperty("LvlComplete_Tutorial").asString());
+
+        LvlComplete_Rhatbu.textProperty().bind(getGameState().intProperty("LvlComplete_Rhatbu").asString());
+        LvlComplete_Bedj.textProperty().bind(getGameState().intProperty("LvlComplete_Bedj").asString());
+        LvlComplete_Grim.textProperty().bind(getGameState().intProperty("LvlComplete_Grim").asString());
 
     }
 
@@ -3050,6 +3165,10 @@ public class GameMain extends GameApplication {
         //Map Level Completion
         vars.put("first_upgrade", 0);
         vars.put("LvlComplete_Tutorial", 0);
+
+        vars.put("LvlComplete_Rhatbu", 0);
+        vars.put("LvlComplete_Bedj", 0);
+        vars.put("LvlComplete_Grim", 0);
 
     }
 

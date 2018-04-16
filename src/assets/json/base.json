@@ -193,15 +193,15 @@
                  "y":350.333333333334
                 }, 
                 {
-                 "height":33.3333333333333,
+                 "height":8,
                  "id":17,
                  "name":"",
                  "rotation":0,
                  "type":"door_dive_tutorial",
                  "visible":true,
-                 "width":17.333333333333,
-                 "x":3667,
-                 "y":597.333333333333
+                 "width":8,
+                 "x":3671.33333333333,
+                 "y":620.833333333333
                 }, 
                 {
                  "height":702.666666666667,
@@ -281,15 +281,15 @@
                  "y":631
                 }, 
                 {
-                 "height":32.6666666666667,
+                 "height":8,
                  "id":34,
                  "name":"",
                  "rotation":0,
                  "type":"door_dive_boss1",
                  "visible":true,
-                 "width":22.6666333333333,
-                 "x":6708.66668333334,
-                 "y":596.666666666667
+                 "width":8,
+                 "x":6716.33335000001,
+                 "y":620.333333333334
                 }, 
                 {
                  "height":31.3333333333334,
@@ -754,26 +754,26 @@
                  "y":231.833333333333
                 }, 
                 {
-                 "height":31.3333,
+                 "height":8,
                  "id":99,
                  "name":"",
                  "rotation":0,
                  "type":"door_dive_boss2",
                  "visible":true,
-                 "width":22.6666,
-                 "x":9790.00003333333,
-                 "y":526.33335
+                 "width":8,
+                 "x":9796.00003333333,
+                 "y":550.83335
                 }, 
                 {
-                 "height":34,
+                 "height":8,
                  "id":100,
                  "name":"",
                  "rotation":0,
                  "type":"door_dive_bossfinal",
                  "visible":true,
-                 "width":19.8333000000002,
-                 "x":11541.1666833333,
-                 "y":455.666666666667
+                 "width":8,
+                 "x":11545.83335,
+                 "y":480.666666666667
                 }, 
                 {
                  "height":30,
@@ -1181,6 +1181,17 @@
                  "width":16.6666666666667,
                  "x":1266.33333333333,
                  "y":270.333333333333
+                }, 
+                {
+                 "height":474.000333333333,
+                 "id":141,
+                 "name":"",
+                 "rotation":0,
+                 "type":"save_reminder",
+                 "visible":true,
+                 "width":16.6667,
+                 "x":2295.66665,
+                 "y":9.66649999999998
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1188,7 +1199,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":141,
+ "nextobjectid":142,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.4",
