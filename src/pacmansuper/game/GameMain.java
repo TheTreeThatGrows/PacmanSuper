@@ -1,5 +1,6 @@
 package pacmansuper.game;
 
+import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entity;
@@ -14,8 +15,7 @@ import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.texture.Texture;
 import com.almasb.fxgl.io.serialization.Bundle;
 import com.almasb.fxgl.saving.DataFile;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -24,11 +24,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.jetbrains.annotations.NotNull;
-import pacmansuper.game.CollectableObjects.HealthBoost;
 
 import java.io.Serializable;
 import java.util.EnumSet;
 import java.util.Map;
+import java.util.logging.Level;
 
 import static com.almasb.fxgl.app.DSLKt.*;
 
@@ -230,8 +230,7 @@ public class GameMain extends GameApplication {
 
         if (getGameState().getInt("LvlComplete_Tutorial") > 0) {
             //Message
-            String message = "Welcome Back!";
-            FXGL.getNotificationService().pushNotification(message);
+            initNotification_WelcomeBack();
         } else {
             getMasterTimer().runOnceAfter(() -> {
                 getDisplay().showMessageBox("Use the 'ARROW KEYS' To Move Around");
@@ -322,8 +321,8 @@ public class GameMain extends GameApplication {
         //Initialize Map
         getMasterTimer().clear();
         getGameWorld().setLevelFromMap("tutorial.json");
-        getGameState().increment("Health", +500);
-        getGameState().increment("Energy", +500);
+
+        initLevelIndicator_Tutorial();
 
         //Initialize Player
         player = getGameWorld().spawn("player", 200, 0);
@@ -427,11 +426,7 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(0.1));
 
         getGameWorld().setLevelFromMap("tutorial3.json");
-
-        getMasterTimer().runOnceAfter(() -> {
-            String message4 = "Defeat The Dark Flame Master!";
-            FXGL.getNotificationService().pushNotification(message4);
-        }, Duration.seconds(1));
+        initLevelIndicator_BOSSFIGHT();
 
         //Initialize Player
         player = getGameWorld().spawn("player", 1890, 0);
@@ -493,10 +488,7 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(0.1));
 
         getGameWorld().setLevelFromMap("boss_1.json");
-
-        //Message
-        String message = "Defeat Rhatbu!";
-        FXGL.getNotificationService().pushNotification(message);
+        initLevelIndicator_BOSSFIGHT();
 
         //Initialize Player
         player = getGameWorld().spawn("player", 200, 0);
@@ -560,10 +552,7 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(0.1));
 
         getGameWorld().setLevelFromMap("boss_2.json");
-
-        //Message
-        String message = "Defeat Bedj!";
-        FXGL.getNotificationService().pushNotification(message);
+        initLevelIndicator_BOSSFIGHT();
 
         //Initialize Player
         player = getGameWorld().spawn("player", 190, 0);
@@ -626,10 +615,8 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(0.1));
 
         getGameWorld().setLevelFromMap("boss_final.json");
+        initLevelIndicator_BOSSFIGHT();
 
-        //Message
-        String message = "Defeat Grim!";
-        FXGL.getNotificationService().pushNotification(message);
 
         //Initialize Player
         player = getGameWorld().spawn("player", 540, 0);
@@ -1214,15 +1201,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Tutorial", 1);
 
                     //Message
-                    getDisplay().showMessageBox("Tutorial Complete!");
-                    String messageDarkFlameMasterDefeated1 = "Dark Flame Master Defeated!";
-                    String messageDarkFlameMasterDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
 
@@ -1284,15 +1269,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Tutorial", 1);
 
                     //Message
-                    getDisplay().showMessageBox("Tutorial Complete!");
-                    String messageDarkFlameMasterDefeated1 = "Dark Flame Master Defeated!";
-                    String messageDarkFlameMasterDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
 
@@ -1354,15 +1337,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Tutorial", 1);
 
                     //Message
-                    getDisplay().showMessageBox("Tutorial Complete!");
-                    String messageDarkFlameMasterDefeated1 = "Dark Flame Master Defeated!";
-                    String messageDarkFlameMasterDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
 
@@ -1424,15 +1405,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Tutorial", 1);
 
                     //Message
-                    getDisplay().showMessageBox("Tutorial Complete!");
-                    String messageDarkFlameMasterDefeated1 = "Dark Flame Master Defeated!";
-                    String messageDarkFlameMasterDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageDarkFlameMasterDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
 
@@ -1546,14 +1525,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Rhatbu", 1);
 
                     //Message
-                    String messageRhatbuDefeated1 = "Rhatbu Defeated!";
-                    String messageRhatbuDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
                         if (getGameState().getInt("Rank") < 15) {
@@ -1614,14 +1592,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Rhatbu", 1);
 
                     //Message
-                    String messageRhatbuDefeated1 = "Rhatbu Defeated!";
-                    String messageRhatbuDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
                         if (getGameState().getInt("Rank") < 15) {
@@ -1681,14 +1658,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Rhatbu", 1);
 
                     //Message
-                    String messageRhatbuDefeated1 = "Rhatbu Defeated!";
-                    String messageRhatbuDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
                         if (getGameState().getInt("Rank") < 15) {
@@ -1749,14 +1725,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Rhatbu", 1);
 
                     //Message
-                    String messageRhatbuDefeated1 = "Rhatbu Defeated!";
-                    String messageRhatbuDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageRhatbuDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
                         if (getGameState().getInt("Rank") < 15) {
@@ -1861,14 +1836,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Bedj", 1);
 
                     //Message
-                    String messageBedjDefeated1 = "Bedj Defeated!";
-                    String messageBedjDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageBedjDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageBedjDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
                         if (getGameState().getInt("Rank") < 15) {
@@ -1929,14 +1903,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Bedj", 1);
 
                     //Message
-                    String messageBedjDefeated1 = "Bedj Defeated!";
-                    String messageBedjDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageBedjDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageBedjDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
                         if (getGameState().getInt("Rank") < 15) {
@@ -1997,14 +1970,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Bedj", 1);
 
                     //Message
-                    String messageBedjDefeated1 = "Bedj Defeated!";
-                    String messageBedjDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageBedjDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageBedjDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
                         if (getGameState().getInt("Rank") < 15) {
@@ -2065,14 +2037,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Bedj", 1);
 
                     //Message
-                    String messageBedjDefeated1 = "Bedj Defeated!";
-                    String messageBedjDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageBedjDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageBedjDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
                         if (getGameState().getInt("Rank") < 15) {
@@ -2223,14 +2194,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Grim", 1);
 
                     //Message
-                    String messageGrimDefeated1 = "Grim Defeated!";
-                    String messageGrimDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageGrimDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageGrimDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
                         if (getGameState().getInt("Rank") < 15) {
@@ -2291,14 +2261,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Grim", 1);
 
                     //Message
-                    String messageGrimDefeated1 = "Grim Defeated!";
-                    String messageGrimDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageGrimDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageGrimDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
                         if (getGameState().getInt("Rank") < 15) {
@@ -2359,14 +2328,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Grim", 1);
 
                     //Message
-                    String messageGrimDefeated1 = "Grim Defeated!";
-                    String messageGrimDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageGrimDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageGrimDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
                         if (getGameState().getInt("Rank") < 15) {
@@ -2427,14 +2395,13 @@ public class GameMain extends GameApplication {
                     getGameState().setValue("LvlComplete_Grim", 1);
 
                     //Message
-                    String messageGrimDefeated1 = "Grim Defeated!";
-                    String messageGrimDefeated2 = "Returning back to base in 5 seconds...";
-                    FXGL.getNotificationService().pushNotification(messageGrimDefeated1);
-                    FXGL.getNotificationService().pushNotification(messageGrimDefeated2);
+                    getMasterTimer().runOnceAfter(() -> {
+                        initLevelIndicator_LevelCleared();
+                    }, Duration.seconds(0.5));
 
                     getMasterTimer().runOnceAfter(() -> {
-                        getAudioPlayer().stopAllMusic();
-                    }, Duration.seconds(8.9));
+                        initNotification_ReturnToBase();
+                    }, Duration.seconds(4.5));
 
                     getMasterTimer().runOnceAfter(() -> {
                         if (getGameState().getInt("Rank") < 15) {
@@ -2529,7 +2496,9 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity player, Entity save_reminder) {
 
                 save_reminder.removeFromWorld();
-                getDisplay().showMessageBox("Remember to SAVE your progress!");
+                initNotification_SaveReminder();
+
+                FXGL.getNotificationService().getBackgroundColor().getBlue();
             }
         });
 
@@ -2650,8 +2619,7 @@ public class GameMain extends GameApplication {
                 getGameWorld().spawn("Airship", 1810, 250);
 
                 //Message
-                String dive_tutorial = "Preparing for Adventure...";
-                FXGL.getNotificationService().pushNotification(dive_tutorial);
+                initNotification_PrepareForAdventure();
                 getMasterTimer().runOnceAfter(() -> {
                     initDiveTutorial();
                 }, Duration.seconds(5));
@@ -2672,8 +2640,7 @@ public class GameMain extends GameApplication {
                     getGameWorld().spawn("Airship", 4850, 250);
 
                     //Message
-                    String dive_boss1 = "Preparing for Adventure...";
-                    FXGL.getNotificationService().pushNotification(dive_boss1);
+                    initNotification_PrepareForAdventure();
                     getMasterTimer().runOnceAfter(() -> {
                         initDiveBoss1();
                     }, Duration.seconds(5));
@@ -2688,7 +2655,6 @@ public class GameMain extends GameApplication {
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_BOSS1) {
             @Override
             protected void onCollisionBegin(Entity player, Entity door_boss1) {
-
                 initBoss1();
             }
         });
@@ -2707,8 +2673,7 @@ public class GameMain extends GameApplication {
                     getGameWorld().spawn("Airship", 7940, 180);
 
                     //Message
-                    String dive_boss1 = "Preparing for Adventure...";
-                    FXGL.getNotificationService().pushNotification(dive_boss1);
+                    initNotification_PrepareForAdventure();
                     getMasterTimer().runOnceAfter(() -> {
                         initDiveBoss2();
                     }, Duration.seconds(5));
@@ -2741,8 +2706,7 @@ public class GameMain extends GameApplication {
                     getGameWorld().spawn("Airship", 9680, 90);
 
                     //Message
-                    String dive_boss1 = "Preparing for Adventure...";
-                    FXGL.getNotificationService().pushNotification(dive_boss1);
+                    initNotification_PrepareForAdventure();
                     getMasterTimer().runOnceAfter(() -> {
                         initDiveBossFinal();
                     }, Duration.seconds(5));
@@ -3608,6 +3572,495 @@ public class GameMain extends GameApplication {
         GrimHealth.textProperty().bind(getGameState().intProperty("GrimHealth").asString());
     }
 
+    //---- Map Level Indicator ----
+    private Animation<?> animationBorderEnter;
+    private Animation<?> animationTextEnter;
+    private Animation<?> animationBorderExit;
+    private Animation<?> animationTextExit;
+
+    //Notification: Welcome Back
+    public void initNotification_WelcomeBack() {
+        getAudioPlayer().playSound("Notification.wav");
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Welcome Back!");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 24));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(540);
+        EnterLevel_Tutorial.setTranslateY(-60);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("Notification.png");
+        EnterLevelNotification.setTranslateX(0);
+        EnterLevelNotification.setTranslateY(-100);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Welcome Back!");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 24));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(540);
+        ExitLevel_Tutorial.setTranslateY(60);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("Notification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(0);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 0), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(540, 60), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(0, -100), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(540, -60), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Notification: Save Reminder
+    public void initNotification_SaveReminder() {
+        getAudioPlayer().playSound("Notification.wav");
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Remember to SAVE your Progress!");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 24));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(450);
+        EnterLevel_Tutorial.setTranslateY(-60);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("Notification.png");
+        EnterLevelNotification.setTranslateX(0);
+        EnterLevelNotification.setTranslateY(-100);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Remember to SAVE your Progress!");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 24));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(450);
+        ExitLevel_Tutorial.setTranslateY(60);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("Notification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(0);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 0), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(450, 60), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(0, -100), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(450, -60), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Notification: Preparing for Adventure...
+    public void initNotification_PrepareForAdventure() {
+        getAudioPlayer().playSound("Notification.wav");
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text(" Preparing for Adventure...");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 24));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(470);
+        EnterLevel_Tutorial.setTranslateY(-60);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("Notification.png");
+        EnterLevelNotification.setTranslateX(0);
+        EnterLevelNotification.setTranslateY(-100);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text(" Preparing for Adventure...");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 24));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(470);
+        ExitLevel_Tutorial.setTranslateY(60);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("Notification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(0);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 0), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(470, 60), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(0, -100), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(470, -60), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Notification: Returning to Base...
+    public void initNotification_ReturnToBase() {
+        getAudioPlayer().playSound("Notification.wav");
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Returning to Base...");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 24));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(510);
+        EnterLevel_Tutorial.setTranslateY(-60);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("Notification.png");
+        EnterLevelNotification.setTranslateX(0);
+        EnterLevelNotification.setTranslateY(-100);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Returning to Base...");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 24));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(510);
+        ExitLevel_Tutorial.setTranslateY(60);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("Notification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(0);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 0), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(510, 60), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(0, -100), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(510, -60), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: Completed
+    public void initLevelIndicator_LevelCleared() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level Cleared!");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-490);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level Cleared!");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(490);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(490, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1770, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: Tutorial
+    public void initLevelIndicator_Tutorial() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level: Tutorial");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-490);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level: Tutorial");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(490);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(490, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1770, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: Boss Fight
+    public void initLevelIndicator_BOSSFIGHT() {
+
+        //Enter Level: Boss Fight
+        Text EnterLevel_Tutorial = new Text("BOSS FIGHT!");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-490);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("BOSS FIGHT!");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(490);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(490, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1770, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+
+
+
     // ------------------------------------- <<< Add in Game >>> -------------------------------------
     @Override
     protected void initGameVars(Map<String, Object> vars) {
@@ -3617,8 +4070,6 @@ public class GameMain extends GameApplication {
         vars.put("Gold", 0);
         vars.put("Rank", 0);
         vars.put("Points", 0);
-
-        vars.put("Energy", 100);
 
         //Skill
         vars.put("Fireball", 100);
