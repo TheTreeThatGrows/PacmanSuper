@@ -9,6 +9,7 @@ import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import pacmansuper.game.Bosses.*;
 import pacmansuper.game.CollectableObjects.*;
 import pacmansuper.game.Enemies.Enemy_BLUE;
+import pacmansuper.game.Enemies.Enemy_GREEN;
 import pacmansuper.game.Enemies.Enemy_RED;
 import pacmansuper.game.Skills.*;
 import pacmansuper.game.Skills.FireballLeft;
@@ -185,6 +186,22 @@ public class PacmanFactory implements EntityFactory {
                 .bbox(new HitBox(BoundingShape.box(52, 52)))
                 .with(physics)
                 .with(new Enemy_BLUE())
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    @Spawns("enemy_green")
+    public Entity newEnemy_GREEN(SpawnData data) {
+        PhysicsComponent physics = new PhysicsComponent();
+        physics.setBodyType(BodyType.DYNAMIC);
+
+        return Entities.builder()
+                .type(GameType.ENEMY)
+                .from(data)
+                .viewFromTexture("enemy_green.png")
+                .bbox(new HitBox(BoundingShape.box(52, 52)))
+                .with(physics)
+                .with(new Enemy_GREEN())
                 .with(new CollidableComponent(true))
                 .build();
     }
@@ -800,6 +817,45 @@ public class PacmanFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .build();
     }
+
+    // ------------------------------------- <<< LEVEL: 4 >>> -------------------------------------
+
+    @Spawns("door_level_5")
+    public Entity newDoor_Level_5(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_5)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+
+    // ------------------------------------- <<< LEVEL: 5 >>> -------------------------------------
+
+    @Spawns("door_level_6")
+    public Entity newDoor_Level_6(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_6)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+
+    // ------------------------------------- <<< LEVEL: 6 >>> -------------------------------------
+    @Spawns("levelcomplete_4x6")
+    public Entity newLevelComplete_4x6(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.LEVELCOMPLETE_4x6)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+
     // ------------------------------------- <<< BOSS 1 >>> -------------------------------------
     @Spawns("rhatbuball")
     public Entity newRhatbu(SpawnData data) {
