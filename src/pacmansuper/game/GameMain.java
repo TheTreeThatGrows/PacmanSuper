@@ -898,7 +898,7 @@ public class GameMain extends GameApplication {
             protected void onAction() {
 
                 //Cheat Stats
-                getGameState().setValue("Rank", 14);
+                getGameState().setValue("Rank", 15);
                 getGameState().setValue("Points", 15);
                 getGameState().setValue("Gold", 9999);
 
@@ -2003,7 +2003,7 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity fireblast, Entity BossPattern_Bedj3) {
 
                 //Boss Attack Pattern
-                if (getGameState().getInt("BedjHealth") <= 9000) {
+                if (getGameState().getInt("BedjHealth") <= 10000) {
 
                     getMasterTimer().runOnceAfter(() -> {
                         getGameWorld().spawn("waterwall", 2740, 415);
@@ -2336,7 +2336,7 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity fireblast, Entity BossPattern_Grim5) {
 
                 //Boss Attack Pattern
-                if (getGameState().getInt("GrimHealth") <= 8000) {
+                if (getGameState().getInt("GrimHealth") <= 7000) {
                     getMasterTimer().runOnceAfter(() -> {
                         getGameWorld().spawn("fireballfinal2", 3850, 40);
                     }, Duration.seconds(0));
@@ -2349,7 +2349,7 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity fireblast, Entity BossPattern_Grim6) {
 
                 //Boss Attack Pattern
-                if (getGameState().getInt("GrimHealth") <= 8000) {
+                if (getGameState().getInt("GrimHealth") <= 7000) {
                     getMasterTimer().runOnceAfter(() -> {
                         getGameWorld().spawn("fireballfinal2", 3850, 250);
                     }, Duration.seconds(0));
