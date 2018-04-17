@@ -70,15 +70,22 @@ public enum GameType {
     GUIDE2,
     GUIDE3,
 
-    //Level 1x3 Dive
+    // LEVEL CLEAR: JUNGLE
     DOOR_LEVELCLEAR_JUNGLE,
 
+    // LEVEL CLEAR: CAVE
+    DOOR_LEVELCLEAR_CAVE,
+
+
+    //Level 1x3 Dive
+    DOOR_LEVEL_1,
+
     //Level 4x6 Dive
+    DOOR_LEVEL_4,
 
     //Level 7x9 Dive
 
     //Level 11x13 Dive
-    DOOR_LEVELCLEAR_CAVE,
 
     //Tutorial 2
     DOOR_DIVE_TUTORIAL3,
@@ -89,6 +96,15 @@ public enum GameType {
     //Tutorial 3
     BOSSPATTERN_DARKFLAMEMASTER,
     DARKFLAMEMASTER_DEATHBALL,
+
+    //Level 1
+    DOOR_LEVEL_2,
+
+    //Level 2
+    DOOR_LEVEL_3,
+
+    //Level 3
+    LEVELCOMPLETE_1x3,
 
     //BOSS 1
     RHATBU_RHATBUBALL,

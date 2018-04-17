@@ -705,8 +705,8 @@ public class PacmanFactory implements EntityFactory {
                 .with(new DarkFlameMaster_Deathball())
                 .build();
     }
-    // ------------------------------------- <<< DIVE LEVEL: 1 - 3 >>> -------------------------------------
 
+    // ------------------------------------- <<< LEVEL CLEAR: JUNGLE >>> -------------------------------------
     @Spawns("door_levelclear_jungle")
     public Entity newDoor_LevelClear_Jungle(SpawnData data) {
         return Entities.builder()
@@ -717,11 +717,7 @@ public class PacmanFactory implements EntityFactory {
                 .build();
     }
 
-    // ------------------------------------- <<< DIVE LEVEL: 4 - 6 >>> -------------------------------------
-
-    // ------------------------------------- <<< DIVE LEVEL: 7 - 9 >>> -------------------------------------
-
-    // ------------------------------------- <<< DIVE LEVEL: 11 - 13 >>> -------------------------------------
+    // ------------------------------------- <<< LEVEL CLEAR: CAVE  >>> -------------------------------------
 
     @Spawns("door_levelclear_cave")
     public Entity newDoor_LevelClear_Cave(SpawnData data) {
@@ -732,10 +728,78 @@ public class PacmanFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .build();
     }
+
+    // ------------------------------------- <<< DIVE LEVEL: 1 - 3 >>> -------------------------------------
+
+    @Spawns("door_level_1")
+    public Entity newDoor_Level_1(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_1)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    // ------------------------------------- <<< DIVE LEVEL: 4 - 6 >>> -------------------------------------
+
+    @Spawns("door_level_4")
+    public Entity newDoor_Level_4(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_4)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+
+    // ------------------------------------- <<< DIVE LEVEL: 7 - 9 >>> -------------------------------------
+
+    // ------------------------------------- <<< DIVE LEVEL: 11 - 13 >>> -------------------------------------
+
     // ------------------------------------- <<< DIVE LEVEL: 14 - 16 >>> -------------------------------------
 
     // ------------------------------------- <<< DIVE LEVEL: 17 - 19 >>> -------------------------------------
 
+
+
+    // ------------------------------------- <<< LEVEL: 1 >>> -------------------------------------
+
+    @Spawns("door_level_2")
+    public Entity newDoor_Level_2(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_2)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    // ------------------------------------- <<< LEVEL: 2 >>> -------------------------------------
+
+    @Spawns("door_level_3")
+    public Entity newDoor_Level_3(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_3)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+
+    // ------------------------------------- <<< LEVEL: 3 >>> -------------------------------------
+
+    @Spawns("levelcomplete_1x3")
+    public Entity newLevelComplete_1x3(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.LEVELCOMPLETE_1x3)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
     // ------------------------------------- <<< BOSS 1 >>> -------------------------------------
     @Spawns("rhatbuball")
     public Entity newRhatbu(SpawnData data) {

@@ -76,6 +76,13 @@ public class GameMain extends GameApplication {
     private int first_upgrade;
     private int LvlComplete_Tutorial;
 
+    private int LvlComplete_Level_1x3;
+    private int LvlComplete_Level_4x6;
+    private int LvlCOmplete_Level_7x9;
+    private int LvlComplete_Level_11x13;
+    private int LvlComplete_Level_14x16;
+    private int LvlComplete_Level_17x19;
+
     private int LvlComplete_Rhatbu;
     private int LvlComplete_Bedj;
     private int LvlComplete_Grim;
@@ -120,6 +127,14 @@ public class GameMain extends GameApplication {
         Serializable first_upgrade = getGameState().getInt("first_upgrade") ;
         Serializable LvlComplete_Tutorial = getGameState().getInt("LvlComplete_Tutorial");
 
+        Serializable LvlComplete_Level_1x3 = getGameState().getInt("LvlComplete_Level_1x3");
+        Serializable LvlComplete_Level_4x6 = getGameState().getInt("LvlComplete_Level_4x6");
+        Serializable LvlComplete_Level_7x9 = getGameState().getInt("LvlComplete_Level_7x9");
+        Serializable LvlComplete_Level_11x13 = getGameState().getInt("LvlComplete_Level_11x13");
+        Serializable LvlComplete_Level_14x16 = getGameState().getInt("LvlComplete_Level_14x16");
+        Serializable LvlComplete_Level_17x19 = getGameState().getInt("LvlComplete_Level_17x19");
+
+
         Serializable LvlComplete_Rhatbu = getGameState().getInt("LvlComplete_Rhatbu");
         Serializable LvlComplete_Bedj = getGameState().getInt("LvlComplete_Bedj");
         Serializable LvlComplete_Grim = getGameState().getInt("LvlComplete_Grim");
@@ -139,6 +154,13 @@ public class GameMain extends GameApplication {
         //Map Level Completion
         bundleRoot.put("first_upgrade", first_upgrade);
         bundleRoot.put("LvlComplete_Tutorial", LvlComplete_Tutorial);
+
+        bundleRoot.put("LvlComplete_Level_1x3", LvlComplete_Level_1x3);
+        bundleRoot.put("LvlComplete_Level_4x6", LvlComplete_Level_4x6);
+        bundleRoot.put("LvlComplete_Level_7x9", LvlComplete_Level_7x9);
+        bundleRoot.put("LvlComplete_Level_11x13", LvlComplete_Level_11x13);
+        bundleRoot.put("LvlComplete_Level_14x16", LvlComplete_Level_14x16);
+        bundleRoot.put("LvlComplete_Level_17x19", LvlComplete_Level_17x19);
 
         bundleRoot.put("LvlComplete_Rhatbu", LvlComplete_Rhatbu);
         bundleRoot.put("LvlComplete_Bedj", LvlComplete_Bedj);
@@ -168,6 +190,14 @@ public class GameMain extends GameApplication {
         int first_upgrade = bundleRoot.get("first_upgrade");
         int LvlComplete_Tutorial = bundleRoot.get("LvlComplete_Tutorial");
 
+        int LvlComplete_Level_1x3 = bundleRoot.get("LvlComplete_Level_1x3");
+        int LvlComplete_Level_4x6 = bundleRoot.get("LvlComplete_Level_4x6");
+        int LvlComplete_Level_7x9 = bundleRoot.get("LvlComplete_Level_7x9");
+        int LvlComplete_Level_11x13 = bundleRoot.get("LvlComplete_Level_11x13");
+        int LvlComplete_Level_14x16 = bundleRoot.get("LvlComplete_Level_14x16");
+        int LvlComplete_Level_17x19 = bundleRoot.get("LvlComplete_Level_17x19");
+
+
         int LvlComplete_Rhatbu = bundleRoot.get("LvlComplete_Rhatbu");
         int LvlComplete_Bedj = bundleRoot.get("LvlComplete_Bedj");
         int LvlComplete_Grim = bundleRoot.get("LvlComplete_Grim");
@@ -186,6 +216,13 @@ public class GameMain extends GameApplication {
         //Map Level Completion
         getGameState().setValue("first_upgrade", first_upgrade);
         getGameState().setValue("LvlComplete_Tutorial", LvlComplete_Tutorial);
+
+        getGameState().setValue("LvlComplete_Level_1x3", LvlComplete_Level_1x3);
+        getGameState().setValue("LvlComplete_Level_4x6", LvlComplete_Level_4x6);
+        getGameState().setValue("LvlComplete_Level_7x9", LvlComplete_Level_7x9);
+        getGameState().setValue("LvlComplete_Level_11x13", LvlComplete_Level_11x13);
+        getGameState().setValue("LvlComplete_Level_14x16", LvlComplete_Level_14x16);
+        getGameState().setValue("LvlComplete_Level_17x19", LvlComplete_Level_17x19);
 
         getGameState().setValue("LvlComplete_Rhatbu", LvlComplete_Rhatbu);
         getGameState().setValue("LvlComplete_Bedj", LvlComplete_Bedj);
@@ -270,6 +307,11 @@ public class GameMain extends GameApplication {
         //Level: Tutorial
         if (getGameState().getInt("LvlComplete_Tutorial") == 1) {
             getGameWorld().spawn("LevelComplete", 3600, 450);
+        }
+
+        //Level: 1x3
+        if (getGameState().getInt("LvlComplete_Level_1x3") == 1) {
+            getGameWorld().spawn("LevelComplete", 4645, 250);
         }
 
         //Level: Rhatbu
@@ -648,6 +690,154 @@ public class GameMain extends GameApplication {
 
         //Camera Settings
         getGameScene().getViewport().setBounds(0, 0, 2800, 4900);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevel_1() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_1.json");
+
+        initLevelIndicator_1();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 200, 0);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 900, 460);
+        getGameWorld().spawn("enemy_red", 1900, 300);
+
+        getGameWorld().spawn("enemy_blue", 3545, 545);
+        getGameWorld().spawn("enemy_blue", 3960, 545);
+        getGameWorld().spawn("enemy_blue", 4375, 545);
+
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 5600, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevel_2() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_2.json");
+
+        initLevelIndicator_2();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 180, 120);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 140, 500);
+        getGameWorld().spawn("enemy_red", 1130, 500);
+        getGameWorld().spawn("enemy_red", 2757, 130);
+
+        getGameWorld().spawn("enemy_blue", 2660, 545);
+        getGameWorld().spawn("enemy_blue", 3080, 545);
+        getGameWorld().spawn("enemy_blue", 4445, 545);
+
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 4900, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevel_3() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_3.json");
+
+        initLevelIndicator_3();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 140, 480);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 1600, 480);
+        getGameWorld().spawn("enemy_red", 2500, 550);
+        getGameWorld().spawn("enemy_red", 3320, 170);
+
+        getGameWorld().spawn("enemy_blue", 3210, 520);
+        getGameWorld().spawn("enemy_blue", 3440, 520);
+        getGameWorld().spawn("enemy_blue", 4030, 520);
+
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 4900, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+
+    protected void initLevel_4() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_4.json");
+
+        initLevelIndicator_4();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 200, 0);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 550, 490);
+        getGameWorld().spawn("enemy_red", 1900, 300);
+
+        getGameWorld().spawn("enemy_blue", 1750, 500);
+        getGameWorld().spawn("enemy_blue", 3690, 520);
+        getGameWorld().spawn("enemy_blue", 4100, 520);
+        getGameWorld().spawn("enemy_blue", 4520, 520);
+
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 4900, 770);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
@@ -3120,7 +3310,7 @@ public class GameMain extends GameApplication {
                 }
             }
         });
-        // ----- MAP COLLISIONS [LEVEL CLEAR] -----
+        // ----- MAP COLLISIONS [LEVEL RETURN TO BASE] -----
 
         //PLAYER & DOOR_BASE
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_BASE) {
@@ -3274,60 +3464,88 @@ public class GameMain extends GameApplication {
             }
         });
 
-        // ----- MAP COLLISIONS [DIVE LEVEL 1-3] -----
-        //PLAYER & DOOR_LEVELCLEAR_JUNGLE
+        // ----- MAP COLLISIONS [LEVEL CLEAR: JUNGLE -----
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVELCLEAR_JUNGLE) {
             @Override
             protected void onCollisionBegin(Entity player, Entity door_levelclear_jungle) {
                 initLevelClear_Jungle();
+            }
+        });
+
+
+        // ----- MAP COLLISIONS [LEVEL CLEAR: CAVE] -----
+        //PLAYER & DOOR_LEVELCLEAR_JUNGLE
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVELCLEAR_CAVE) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_levelclear_cave) {
+                initLevelClear_Cave();
+            }
+        });
+
+
+
+        // ----- MAP COLLISIONS [DIVE LEVEL 1-3] -----
+
+        //PLAYER & DOOR_LEVEL_1
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_1) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_1) {
+                initLevel_1();
+            }
+        });
+
+        // ----- MAP COLLISIONS [LEVEL 1-3] -----
+
+        //LEVEL: 1
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_2) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_2) {
+                initLevel_2();
+            }
+        });
+
+        //LEVEL: 2
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_3) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_3) {
+                initLevel_3();
+            }
+        });
+
+        //LEVEL: 3
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.LEVELCOMPLETE_1x3) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity levelcomplete_1x3) {
+
+                getGameState().setValue("LvlComplete_Level_1x3", 1);
+                levelcomplete_1x3.removeFromWorld();
             }
         });
 
         // ----- MAP COLLISIONS [DIVE LEVEL 4-6] -----
-        //PLAYER & DOOR_LEVELCLEAR_JUNGLE
-        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVELCLEAR_JUNGLE) {
+
+        //PLAYER & DOOR_LEVEL_4
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_4) {
             @Override
-            protected void onCollisionBegin(Entity player, Entity door_levelclear_jungle) {
-                initLevelClear_Jungle();
+            protected void onCollisionBegin(Entity player, Entity door_level_4) {
+                initLevel_4();
             }
         });
+
+
 
         // ----- MAP COLLISIONS [DIVE LEVEL 7-9] -----
-        //PLAYER & DOOR_LEVELCLEAR_JUNGLE
-        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVELCLEAR_JUNGLE) {
-            @Override
-            protected void onCollisionBegin(Entity player, Entity door_levelclear_jungle) {
-                initLevelClear_Jungle();
-            }
-        });
+
 
         // ----- MAP COLLISIONS [DIVE LEVEL 11-13] -----
-        //PLAYER & DOOR_LEVELCLEAR_JUNGLE
-        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVELCLEAR_CAVE) {
-            @Override
-            protected void onCollisionBegin(Entity player, Entity door_levelclear_cave) {
-                initLevelClear_Cave();
-            }
-        });
+
 
         // ----- MAP COLLISIONS [DIVE LEVEL 14-16] -----
-        //PLAYER & DOOR_LEVELCLEAR_JUNGLE
-        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVELCLEAR_CAVE) {
-            @Override
-            protected void onCollisionBegin(Entity player, Entity door_levelclear_cave) {
-                initLevelClear_Cave();
-            }
-        });
+
 
         // ----- MAP COLLISIONS [DIVE LEVEL 17-19] -----
 
-        //PLAYER & DOOR_LEVELCLEAR_JUNGLE
-        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVELCLEAR_CAVE) {
-            @Override
-            protected void onCollisionBegin(Entity player, Entity door_levelclear_cave) {
-                initLevelClear_Cave();
-            }
-        });
+
 
         // ----- MAP COLLISIONS [BOSS 1] -----
 
@@ -3772,6 +3990,48 @@ public class GameMain extends GameApplication {
         LvlComplete_Tutorial.setTranslateX(600);
         LvlComplete_Tutorial.setTranslateY(40);
 
+        //Level: 1-3
+        Text LvlComplete_Level_1x3 = new Text();
+        LvlComplete_Level_1x3.setFont(Font.font ("Berlin Sans FB Demi", 20));
+        LvlComplete_Level_1x3.setFill(Color.WHITE);
+        LvlComplete_Level_1x3.setTranslateX(600);
+        LvlComplete_Level_1x3.setTranslateY(40);
+
+        //Level: 4-6
+        Text LvlComplete_Level_4x6 = new Text();
+        LvlComplete_Level_4x6.setFont(Font.font ("Berlin Sans FB Demi", 20));
+        LvlComplete_Level_4x6.setFill(Color.WHITE);
+        LvlComplete_Level_4x6.setTranslateX(600);
+        LvlComplete_Level_4x6.setTranslateY(40);
+
+        //Level: 7-9
+        Text LvlComplete_Level_7x9 = new Text();
+        LvlComplete_Level_7x9.setFont(Font.font ("Berlin Sans FB Demi", 20));
+        LvlComplete_Level_7x9.setFill(Color.WHITE);
+        LvlComplete_Level_7x9.setTranslateX(600);
+        LvlComplete_Level_7x9.setTranslateY(40);
+
+        //Level: 11-13
+        Text LvlComplete_Level_11x13 = new Text();
+        LvlComplete_Level_11x13.setFont(Font.font ("Berlin Sans FB Demi", 20));
+        LvlComplete_Level_11x13.setFill(Color.WHITE);
+        LvlComplete_Level_11x13.setTranslateX(600);
+        LvlComplete_Level_11x13.setTranslateY(40);
+
+        //Level: 14-16
+        Text LvlComplete_Level_14x16 = new Text();
+        LvlComplete_Level_14x16.setFont(Font.font ("Berlin Sans FB Demi", 20));
+        LvlComplete_Level_14x16.setFill(Color.WHITE);
+        LvlComplete_Level_14x16.setTranslateX(600);
+        LvlComplete_Level_14x16.setTranslateY(40);
+
+        //Level: 17-19
+        Text LvlComplete_Level_17x19 = new Text();
+        LvlComplete_Level_17x19.setFont(Font.font ("Berlin Sans FB Demi", 20));
+        LvlComplete_Level_17x19.setFill(Color.WHITE);
+        LvlComplete_Level_17x19.setTranslateX(600);
+        LvlComplete_Level_17x19.setTranslateY(40);
+
         //Rhatbu
         Text LvlComplete_Rhatbu = new Text();
         LvlComplete_Rhatbu.setFont(Font.font ("Berlin Sans FB Demi", 20));
@@ -3847,6 +4107,14 @@ public class GameMain extends GameApplication {
         //-- Map Level Completion --
         //getGameScene().addUINode(first_upgrade);
         //getGameScene().addUINode(LvlComplete_Tutorial);
+
+        //getGameScene().addUINode(LvlComplete_1x3);
+        //getGameScene().addUINode(LvlComplete_4x6);
+        //getGameScene().addUINode(LvlComplete_7x9);
+        //getGameScene().addUINode(LvlComplete_11x13);
+        //getGameScene().addUINode(LvlComplete_14x16);
+        //getGameScene().addUINode(LvlComplete_17x19);
+
         //getGameScene().addUINode(LvlComplete_Rhatbu);
         //getGameScene().addUINode(LvlComplete_Bedj);
         //getGameScene().addUINode(LvlComplete_Grim);
@@ -3872,6 +4140,14 @@ public class GameMain extends GameApplication {
         //Map Level Completion
         first_upgrade.textProperty().bind(getGameState().intProperty("first_upgrade").asString());
         LvlComplete_Tutorial.textProperty().bind(getGameState().intProperty("LvlComplete_Tutorial").asString());
+
+        LvlComplete_Level_1x3.textProperty().bind(getGameState().intProperty("LvlComplete_Level_1x3").asString());
+        LvlComplete_Level_4x6.textProperty().bind(getGameState().intProperty("LvlComplete_Level_4x6").asString());
+        LvlComplete_Level_7x9.textProperty().bind(getGameState().intProperty("LvlComplete_Level_7x9").asString());
+        LvlComplete_Level_11x13.textProperty().bind(getGameState().intProperty("LvlComplete_Level_11x13").asString());
+        LvlComplete_Level_14x16.textProperty().bind(getGameState().intProperty("LvlComplete_Level_14x16").asString());
+        LvlComplete_Level_17x19.textProperty().bind(getGameState().intProperty("LvlComplete_Level_17x19").asString());
+
 
         LvlComplete_Rhatbu.textProperty().bind(getGameState().intProperty("LvlComplete_Rhatbu").asString());
         LvlComplete_Bedj.textProperty().bind(getGameState().intProperty("LvlComplete_Bedj").asString());
@@ -4518,6 +4794,278 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    //Level: 1
+    public void initLevelIndicator_1() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level: 1");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-520);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level: 1");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(520);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(520, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1800, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: 2
+    public void initLevelIndicator_2() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level: 2");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-520);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level: 2");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(520);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(520, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1800, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: 3
+    public void initLevelIndicator_3() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level: 3");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-520);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level: 3");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(520);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(520, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1800, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: 1
+    public void initLevelIndicator_4() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level: 4");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-520);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level: 4");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(520);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(520, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1800, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
     //Level: Boss Fight
     public void initLevelIndicator_BOSSFIGHT() {
 
@@ -4620,6 +5168,13 @@ public class GameMain extends GameApplication {
         //Map Level Completion
         vars.put("first_upgrade", 0);
         vars.put("LvlComplete_Tutorial", 0);
+
+        vars.put("LvlComplete_Level_1x3", 0);
+        vars.put("LvlComplete_Level_4x6", 0);
+        vars.put("LvlComplete_Level_7x9", 0);
+        vars.put("LvlComplete_Level_11x13", 0);
+        vars.put("LvlComplete_Level_14x16", 0);
+        vars.put("LvlComplete_Level_17x19", 0);
 
         vars.put("LvlComplete_Rhatbu", 0);
         vars.put("LvlComplete_Bedj", 0);
