@@ -13,7 +13,6 @@
       <change beforePath="$PROJECT_DIR$/logs/FXGL-12-Apr-2018-16.11.24.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/FXGL-12-Apr-2018-17.12.01.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/FXGL-12-apr.-2018-16.35.17.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pacmansuper/game/GameMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pacmansuper/game/GameMain.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,24 +49,10 @@
       <file leaf-file-name="GameMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/GameMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-663">
-              <caret line="1479" lean-forward="true" selection-start-line="1479" selection-end-line="1479" />
+            <state relative-caret-position="-857">
+              <caret line="4008" lean-forward="true" selection-start-line="4008" selection-end-line="4008" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Menu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="154" column="29" lean-forward="true" selection-start-line="154" selection-start-column="29" selection-end-line="154" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6431#6432#0" expanded="true" />
-                <element signature="e#6488#6489#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,8 +61,8 @@
       <file leaf-file-name="PacmanFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/PacmanFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="508" column="52" selection-start-line="508" selection-start-column="52" selection-end-line="508" selection-end-column="52" />
+            <state relative-caret-position="-9245">
+              <caret line="416" column="29" selection-start-line="416" selection-start-column="29" selection-end-line="416" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -88,8 +73,8 @@
       <file leaf-file-name="GameType.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/GameType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+            <state relative-caret-position="68">
+              <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -113,11 +98,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pacmansuper/game/GameType.java" />
-        <option value="$PROJECT_DIR$/src/pacmansuper/game/PacmanFactory.java" />
         <option value="$PROJECT_DIR$/src/pacmansuper/game/Bosses/Grim.java" />
         <option value="$PROJECT_DIR$/src/pacmansuper/game/Menu.java" />
+        <option value="$PROJECT_DIR$/src/pacmansuper/game/GameType.java" />
         <option value="$PROJECT_DIR$/src/pacmansuper/game/GameMain.java" />
+        <option value="$PROJECT_DIR$/src/pacmansuper/game/PacmanFactory.java" />
       </list>
     </option>
   </component>
@@ -137,11 +122,11 @@
     <packageJsonPaths />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="135" />
-    <option name="y" value="32" />
-    <option name="width" value="1690" />
-    <option name="height" value="964" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="78" />
+    <option name="y" value="28" />
+    <option name="width" value="1793" />
+    <option name="height" value="990" />
   </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
@@ -315,7 +300,7 @@
       <workItem from="1523825703928" duration="14914000" />
       <workItem from="1523887919906" duration="25156000" />
       <workItem from="1523960623853" duration="1272000" />
-      <workItem from="1523961930942" duration="1619000" />
+      <workItem from="1523961930942" duration="5819000" />
     </task>
     <task id="LOCAL-00001" summary="Removed shop">
       <created>1523547699175</created>
@@ -415,14 +400,28 @@
       <option name="project" value="LOCAL" />
       <updated>1523962661798</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="New Version">
+      <created>1523963636954</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1523963636954</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added Barier on Base">
+      <created>1523967443704</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1523967443705</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63200000" />
+    <option name="totallyTimeSpent" value="67400000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3" y="-3" width="1542" height="830" extended-state="6" />
+    <frame x="63" y="23" width="1434" height="792" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -431,15 +430,15 @@
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5019246" side_tool="true" weight="0.23723723" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50289434" side_tool="true" weight="0.1880597" />
       <window_info anchor="right" id="Maven Projects" order="9" weight="0.32923076" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32882884" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49807546" visible="true" weight="0.17937852" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49710566" visible="true" weight="0.1880597" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21562952" />
       <window_info anchor="right" id="Database" order="7" weight="0.3298717" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -477,7 +476,9 @@
     <MESSAGE value="Added &quot;Level Complete&quot; Sound" />
     <MESSAGE value="Added Entry for ALL LEVELS" />
     <MESSAGE value="Boss Fight Balancing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Boss Fight Balancing" />
+    <MESSAGE value="New Version" />
+    <MESSAGE value="Added Barier on Base" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Barier on Base" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -674,13 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/CollectableObjects/Cloud.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="63" column="34" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Skills/SupernovaDown.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -731,13 +725,6 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Readfile2.java" />
-    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/GameType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Bosses/Grim_Fireballfinal1.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="411">
@@ -765,20 +752,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/PacmanFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/CollectableObjects/Cloud.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="508" column="52" selection-start-line="508" selection-start-column="52" selection-end-line="508" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="785">
+          <caret line="63" column="34" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="154" column="29" lean-forward="true" selection-start-line="154" selection-start-column="29" selection-end-line="154" selection-end-column="29" />
+        <state relative-caret-position="-1561">
+          <caret line="154" column="29" selection-start-line="154" selection-start-column="29" selection-end-line="154" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#6431#6432#0" expanded="true" />
@@ -787,10 +771,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/GameType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/PacmanFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9245">
+          <caret line="416" column="29" selection-start-line="416" selection-start-column="29" selection-end-line="416" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/GameMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-663">
-          <caret line="1479" lean-forward="true" selection-start-line="1479" selection-end-line="1479" />
+        <state relative-caret-position="-857">
+          <caret line="4008" lean-forward="true" selection-start-line="4008" selection-end-line="4008" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
