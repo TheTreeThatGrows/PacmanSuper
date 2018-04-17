@@ -1168,7 +1168,7 @@ public class GameMain extends GameApplication {
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
                     getDisplay().showMessageBox("Game Over", () -> {
-                        Death();
+                        exit();
                     });
                 }
             }
