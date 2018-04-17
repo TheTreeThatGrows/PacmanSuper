@@ -8,6 +8,7 @@ import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.*;
 import com.almasb.fxgl.scene.FXGLMenu;
 import com.almasb.fxgl.scene.SceneFactory;
+import com.almasb.fxgl.scene.menu.MenuEventListener;
 import com.almasb.fxgl.scene.menu.MenuType;
 import com.almasb.fxgl.settings.MenuItem;
 import com.almasb.fxgl.time.LocalTimer;
@@ -88,7 +89,7 @@ public class GameMain extends GameApplication {
     protected void initSettings(GameSettings settings) {
 
         settings.setTitle("Pacman Super");
-        settings.setVersion("0.5.0");
+        settings.setVersion("0.5.4");
         settings.setWidth(1280);
         settings.setHeight(770); //770
         settings.setProfilingEnabled(false); //Profile
@@ -1021,6 +1022,11 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(0));
     }
 
+    //Player Death
+    private void Death() {
+
+    }
+
     //Fireball
     private void canShoot() {
         if(getGameState().getInt("Fireball") != 100) {
@@ -1162,7 +1168,7 @@ public class GameMain extends GameApplication {
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
                     getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
+                        Death();
                     });
                 }
             }

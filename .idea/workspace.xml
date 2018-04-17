@@ -3,8 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="d617f5f1-d0fd-4db5-86ee-437005a9a020" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-12-Apr-2018-02.21.44.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-12-Apr-2018-02.23.20.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-12-Apr-2018-02.37.01.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-12-Apr-2018-02.39.34.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-12-Apr-2018-04.02.19.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-12-Apr-2018-14.26.58.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-12-Apr-2018-14.32.38.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-12-Apr-2018-14.54.44.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-12-Apr-2018-15.25.40.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-12-Apr-2018-16.11.24.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-12-Apr-2018-17.12.01.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-12-apr.-2018-16.35.17.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pacmansuper/game/GameMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pacmansuper/game/GameMain.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -14,6 +22,11 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/PacmanSuper$GameMain.ic" NAME="GameMain Coverage Results" MODIFIED="1523914761763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>pacmansuper.game.*</FILTER>
+    </SUITE>
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -37,13 +50,57 @@
       <file leaf-file-name="GameMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/GameMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="960" column="32" selection-start-line="960" selection-start-column="32" selection-end-line="960" selection-end-column="32" />
+            <state relative-caret-position="-663">
+              <caret line="1479" lean-forward="true" selection-start-line="1479" selection-end-line="1479" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Menu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="154" column="29" lean-forward="true" selection-start-line="154" selection-start-column="29" selection-end-line="154" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#6431#6432#0" expanded="true" />
+                <element signature="e#6488#6489#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PacmanFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/PacmanFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="508" column="52" selection-start-line="508" selection-start-column="52" selection-end-line="508" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/GameType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="799">
+              <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>grim</find>
+      <find>bedj</find>
+    </findStrings>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -56,6 +113,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/pacmansuper/game/GameType.java" />
+        <option value="$PROJECT_DIR$/src/pacmansuper/game/PacmanFactory.java" />
+        <option value="$PROJECT_DIR$/src/pacmansuper/game/Bosses/Grim.java" />
+        <option value="$PROJECT_DIR$/src/pacmansuper/game/Menu.java" />
         <option value="$PROJECT_DIR$/src/pacmansuper/game/GameMain.java" />
       </list>
     </option>
@@ -66,15 +127,21 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="87" />
-    <option name="y" value="27" />
-    <option name="width" value="1685" />
-    <option name="height" value="984" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="135" />
+    <option name="y" value="32" />
+    <option name="width" value="1690" />
+    <option name="height" value="964" />
   </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
@@ -84,6 +151,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -134,8 +203,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -150,12 +217,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaFXGL" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../fxgl-0.4.3-uber.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -240,39 +307,147 @@
       <updated>1523542130711</updated>
       <workItem from="1523542131928" duration="2283000" />
       <workItem from="1523545091269" duration="608000" />
-      <workItem from="1523545860990" duration="1806000" />
+      <workItem from="1523545860990" duration="5280000" />
+      <workItem from="1523552456976" duration="1466000" />
+      <workItem from="1523614748928" duration="4738000" />
+      <workItem from="1523745260633" duration="3960000" />
+      <workItem from="1523749554777" duration="1904000" />
+      <workItem from="1523825703928" duration="14914000" />
+      <workItem from="1523887919906" duration="25156000" />
+      <workItem from="1523960623853" duration="1272000" />
+      <workItem from="1523961930942" duration="1619000" />
     </task>
+    <task id="LOCAL-00001" summary="Removed shop">
+      <created>1523547699175</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1523547699238</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Changed Save/Load System">
+      <created>1523614967831</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1523614967831</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Edited Base COllision">
+      <created>1523615865875</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1523615865875</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Improved Profile Management">
+      <created>1523616303107</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1523616303107</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added Ranks And Points">
+      <created>1523749175430</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1523749175430</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Redesigned Base">
+      <created>1523750924727</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1523750924727</updated>
+    </task>
+    <task id="LOCAL-00007" summary="FXGL">
+      <created>1523751358882</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1523751358882</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added Skill Upgrade System&#10;Added Level Completion Data">
+      <created>1523834394008</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1523834394008</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added &quot;Level Complete&quot; Stamp">
+      <created>1523840479601</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1523840479601</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Improved Combat and Boss Fight">
+      <created>1523895380949</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1523895380949</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Reworked UI">
+      <created>1523904541769</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1523904541769</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added &quot;Level Complete&quot; Sound">
+      <created>1523908639740</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1523908639740</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added Entry for ALL LEVELS">
+      <created>1523915683418</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1523915683418</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Boss Fight Balancing">
+      <created>1523962661798</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1523962661798</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4697000" />
+    <option name="totallyTimeSpent" value="63200000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="70" y="22" width="1348" height="787" extended-state="0" />
+    <frame x="-3" y="-3" width="1542" height="830" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3298969" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3293556" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.5007716" side_tool="true" visible="true" weight="0.23759398" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5019246" side_tool="true" weight="0.23723723" />
+      <window_info anchor="right" id="Maven Projects" order="9" weight="0.32923076" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4992284" visible="true" weight="0.23759398" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32882884" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49807546" visible="true" weight="0.17937852" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17438272" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2" />
+      <window_info anchor="right" id="Database" order="7" weight="0.3298717" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.28520286" />
+      <window_info anchor="right" id="Coverage" order="8" side_tool="true" weight="0.3298717" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -287,9 +462,26 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Removed shop" />
+    <MESSAGE value="Changed Save/Load System" />
+    <MESSAGE value="Edited Base COllision" />
+    <MESSAGE value="Improved Profile Management" />
+    <MESSAGE value="Added Ranks And Points" />
+    <MESSAGE value="Redesigned Base" />
+    <MESSAGE value="FXGL" />
+    <MESSAGE value="Added Skill Upgrade System&#10;Added Level Completion Data" />
+    <MESSAGE value="Added &quot;Level Complete&quot; Stamp" />
+    <MESSAGE value="Improved Combat and Boss Fight" />
+    <MESSAGE value="Reworked UI" />
+    <MESSAGE value="Added &quot;Level Complete&quot; Sound" />
+    <MESSAGE value="Added Entry for ALL LEVELS" />
+    <MESSAGE value="Boss Fight Balancing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Boss Fight Balancing" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -445,13 +637,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2358">
-          <caret line="154" column="56" selection-start-line="154" selection-start-column="56" selection-end-line="154" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/CollectableObjects/EnergyBoost.java" />
     <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Skills/FireballLeft.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -524,31 +709,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Bosses/Grim.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="63" column="30" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Bosses/Bedj_Waterwall.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="436">
           <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Bosses/Grim_Fireballfinal1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="86" column="34" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -569,25 +733,67 @@
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Readfile2.java" />
     <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/GameType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        <state relative-caret-position="799">
+          <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/PacmanFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Bosses/Grim_Fireballfinal1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        <state relative-caret-position="411">
+          <caret line="37" column="34" lean-forward="true" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="86" column="34" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Bosses/Grim.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="62" column="25" lean-forward="true" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/PacmanFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="508" column="52" selection-start-line="508" selection-start-column="52" selection-end-line="508" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="154" column="29" lean-forward="true" selection-start-line="154" selection-start-column="29" selection-end-line="154" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6431#6432#0" expanded="true" />
+            <element signature="e#6488#6489#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pacmansuper/game/GameMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="960" column="32" selection-start-line="960" selection-start-column="32" selection-end-line="960" selection-end-column="32" />
+        <state relative-caret-position="-663">
+          <caret line="1479" lean-forward="true" selection-start-line="1479" selection-end-line="1479" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
