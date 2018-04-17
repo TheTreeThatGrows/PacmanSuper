@@ -2706,6 +2706,20 @@ public class GameMain extends GameApplication {
             }
         });
 
+        //PLAYER & COMPLETE_TUTORIAL
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.COMPLETE_TUTORIAL) {
+
+            @Override
+            protected void onCollisionBegin(Entity player, Entity complete_tutorial) {
+
+                if (getGameState().getInt("LvlComplete_Tutorial") < 1) {
+                    initNotification_CompleteTutorial();
+                } else {
+                   complete_tutorial.removeFromWorld();
+                }
+            }
+        });
+
         //PLAYER & SUPERNOVA_UPGRADE
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.SUPERNOVA_UPGRADE) {
             @Override
@@ -4145,6 +4159,75 @@ public class GameMain extends GameApplication {
         //Exit Animation
         animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(0, -100), Duration.seconds(1));
         animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(450, -60), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Notification: Complete_Tutorial
+    public void initNotification_CompleteTutorial() {
+        getAudioPlayer().playSound("Notification.wav");
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("You must complete the TUTORIAL first");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 24));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(420);
+        EnterLevel_Tutorial.setTranslateY(-60);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("Notification.png");
+        EnterLevelNotification.setTranslateX(0);
+        EnterLevelNotification.setTranslateY(-100);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("You must complete the TUTORIAL first");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 24));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(420);
+        ExitLevel_Tutorial.setTranslateY(60);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("Notification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(0);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 0), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(420, 60), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(0, -100), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(420, -60), Duration.seconds(1));
 
         //Play Animation EXIT
         getMasterTimer().runOnceAfter(() -> {

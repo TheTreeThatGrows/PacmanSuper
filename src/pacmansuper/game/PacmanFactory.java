@@ -405,6 +405,18 @@ public class PacmanFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .build();
     }
+    @Spawns("complete_tutorial")
+    public Entity newCompleteTutorial(SpawnData data) {
+        PhysicsComponent physics = new PhysicsComponent();
+        physics.setBodyType(BodyType.STATIC);
+        return Entities.builder()
+                .type(GameType.COMPLETE_TUTORIAL)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .with(physics)
+                .build();
+    }
 
     //Upgrade Skill Shop
     @Spawns("first_upgrade")

@@ -1258,6 +1258,17 @@
                  "width":8,
                  "x":8983,
                  "y":622.5
+                }, 
+                {
+                 "height":498.666995559941,
+                 "id":148,
+                 "name":"",
+                 "rotation":0,
+                 "type":"complete_tutorial",
+                 "visible":true,
+                 "width":16.6667,
+                 "x":2731.34762352409,
+                 "y":-3.48577536589379
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1265,7 +1276,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":148,
+ "nextobjectid":149,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.4",
