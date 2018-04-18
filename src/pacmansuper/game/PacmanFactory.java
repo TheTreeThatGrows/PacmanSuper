@@ -773,6 +773,16 @@ public class PacmanFactory implements EntityFactory {
 
     // ------------------------------------- <<< DIVE LEVEL: 7 - 9 >>> -------------------------------------
 
+    @Spawns("door_level_7")
+    public Entity newDoor_Level_7(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_7)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
     // ------------------------------------- <<< DIVE LEVEL: 11 - 13 >>> -------------------------------------
 
     // ------------------------------------- <<< DIVE LEVEL: 14 - 16 >>> -------------------------------------

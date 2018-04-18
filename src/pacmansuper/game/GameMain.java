@@ -337,6 +337,7 @@ public class GameMain extends GameApplication {
         //Camera Settings
         getGameScene().getViewport().setBounds(0, 0, 11900, 770);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+
     }
 
     protected void initLevelClear_Jungle() {
@@ -920,6 +921,46 @@ public class GameMain extends GameApplication {
 
         //Camera Settings
         getGameScene().getViewport().setBounds(0, 0, 4900, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevel_7() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_7.json");
+
+        initLevelIndicator_7();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 200, 1);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 1400, 490);
+        getGameWorld().spawn("enemy_red", 2490, 350);
+        getGameWorld().spawn("enemy_red", 3550, 450);
+        getGameWorld().spawn("enemy_red", 3750, 450);
+
+        getGameWorld().spawn("enemy_blue", 1420, 525);
+
+        getGameWorld().spawn("enemy_green", 490, 560);
+        getGameWorld().spawn("enemy_green", 2660, 560);
+        getGameWorld().spawn("enemy_green", 5100, 560);
+
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 5600, 770);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
@@ -3644,6 +3685,14 @@ public class GameMain extends GameApplication {
 
 
         // ----- MAP COLLISIONS [DIVE LEVEL 7-9] -----
+
+        //PLAYER & DOOR_LEVEL_7
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_7) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_7) {
+                initLevel_7();
+            }
+        });
 
 
         // ----- MAP COLLISIONS [DIVE LEVEL 11-13] -----

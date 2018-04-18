@@ -84,6 +84,7 @@ public enum GameType {
     DOOR_LEVEL_4,
 
     //Level 7x9 Dive
+    DOOR_LEVEL_7,
 
     //Level 11x13 Dive
 
