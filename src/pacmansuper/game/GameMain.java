@@ -319,6 +319,12 @@ public class GameMain extends GameApplication {
             getGameWorld().spawn("LevelComplete", 5360, 320);
         }
 
+        //Level: 7x9
+        if (getGameState().getInt("LvlComplete_Level_7x9") == 1) {
+            getGameWorld().spawn("LevelComplete", 5920, 40);
+        }
+
+
         //Level: Rhatbu
         if (getGameState().getInt("LvlComplete_Rhatbu") == 1) {
             getGameWorld().spawn("LevelComplete", 6640, 405);
@@ -964,6 +970,84 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    protected void initLevel_8() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_8.json");
+
+        initLevelIndicator_8();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 10, 200);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 10, 490);
+        getGameWorld().spawn("enemy_red", 975, 465);
+        getGameWorld().spawn("enemy_red", 3260, 140);
+        getGameWorld().spawn("enemy_red", 3175, 520);
+
+        getGameWorld().spawn("enemy_blue", 1580, 610);
+        getGameWorld().spawn("enemy_blue", 1820, 610);
+        getGameWorld().spawn("enemy_blue", 4325, 420);
+
+
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 4900, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevel_9() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_9.json");
+
+        initLevelIndicator_9();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 80, 490);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 820, 420);
+        getGameWorld().spawn("enemy_red", 2900, 480);
+
+
+        getGameWorld().spawn("enemy_green", 2025, 420);
+        getGameWorld().spawn("enemy_green", 3850, 420);
+        getGameWorld().spawn("enemy_green", 4175, 180);
+
+
+
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 4900, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
     protected void initDiveBoss1() {
 
         //Initialize Map
@@ -1148,6 +1232,7 @@ public class GameMain extends GameApplication {
         //Enemies
         initGrimHP();
         getGameWorld().spawn("boss_grim", 2660, 280);
+        getGameWorld().spawn("fireballFinal", 2960, 280);
 
         //Camera Settings
         getGameScene().getViewport().setBounds(0, 0, 3850, 770);
@@ -1160,6 +1245,7 @@ public class GameMain extends GameApplication {
 
         //Player Movement Input
         getInput().addAction(new UserAction("Right") {
+            
             @Override
             protected void onAction() {
                 if (canMove) {
@@ -3694,6 +3780,31 @@ public class GameMain extends GameApplication {
             }
         });
 
+        //LEVEL: 7
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_8) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_8) {
+                initLevel_8();
+            }
+        });
+
+        //LEVEL: 8
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_9) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_9) {
+                initLevel_9();
+            }
+        });
+
+        //LEVEL: 9
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.LEVELCOMPLETE_7x9) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity levelcomplete_7x9) {
+
+                getGameState().setValue("LvlComplete_Level_7x9", 1);
+                levelcomplete_7x9.removeFromWorld();
+            }
+        });
 
         // ----- MAP COLLISIONS [DIVE LEVEL 11-13] -----
 

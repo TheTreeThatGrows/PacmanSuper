@@ -865,6 +865,36 @@ public class PacmanFactory implements EntityFactory {
                 .build();
     }
 
+    // ------------------------------------- <<< LEVEL: 7 >>> -------------------------------------
+    @Spawns("door_level_8")
+    public Entity newDoor_Level_8(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_8)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+    // ------------------------------------- <<< LEVEL: 8 >>> -------------------------------------
+    @Spawns("door_level_9")
+    public Entity newDoor_Level_9(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_9)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+    // ------------------------------------- <<< LEVEL: 9 >>> -------------------------------------
+    @Spawns("levelcomplete_7x9")
+    public Entity newLevelComplete_7x9(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.LEVELCOMPLETE_7x9)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
 
     // ------------------------------------- <<< BOSS 1 >>> -------------------------------------
     @Spawns("rhatbuball")

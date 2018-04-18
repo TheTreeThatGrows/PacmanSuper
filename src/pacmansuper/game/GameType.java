@@ -116,6 +116,18 @@ public enum GameType {
     //Level 6
     LEVELCOMPLETE_4x6,
 
+    //Level 7
+    DOOR_LEVEL_8,
+
+    //Level 8
+    DOOR_LEVEL_9,
+
+    //Level 9
+    LEVELCOMPLETE_7x9,
+
+
+
+
     //BOSS 1
     RHATBU_RHATBUBALL,
     BOSSPATTERN_RHATBU1,
