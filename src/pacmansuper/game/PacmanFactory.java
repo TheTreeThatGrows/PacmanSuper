@@ -785,11 +785,39 @@ public class PacmanFactory implements EntityFactory {
 
     // ------------------------------------- <<< DIVE LEVEL: 11 - 13 >>> -------------------------------------
 
+    @Spawns("door_level_11")
+    public Entity newDoor_Level_11(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_11)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
     // ------------------------------------- <<< DIVE LEVEL: 14 - 16 >>> -------------------------------------
+
+    @Spawns("door_level_14")
+    public Entity newDoor_Level_14(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_14)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
 
     // ------------------------------------- <<< DIVE LEVEL: 17 - 19 >>> -------------------------------------
 
-
+    @Spawns("door_level_17")
+    public Entity newDoor_Level_17(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_17)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
 
     // ------------------------------------- <<< LEVEL: 1 >>> -------------------------------------
 
@@ -895,6 +923,51 @@ public class PacmanFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .build();
     }
+
+    // ------------------------------------- <<< LEVEL: 11 >>> -------------------------------------
+    @Spawns("door_level_12")
+    public Entity newDoor_Level_12(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_12)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    // ------------------------------------- <<< LEVEL: 12 >>> -------------------------------------
+    @Spawns("door_level_13")
+    public Entity newDoor_Level_13(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.DOOR_LEVEL_13)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    // ------------------------------------- <<< LEVEL: 13 >>> -------------------------------------
+    @Spawns("levelcomplete_11x13")
+    public Entity newLevelComplete_11x13(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.LEVELCOMPLETE_11x13)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
+    // ------------------------------------- <<< LEVEL: 14 >>> -------------------------------------
+
+    // ------------------------------------- <<< LEVEL: 15 >>> -------------------------------------
+
+    // ------------------------------------- <<< LEVEL: 16 >>> -------------------------------------
+
+    // ------------------------------------- <<< LEVEL: 17 >>> -------------------------------------
+
+    // ------------------------------------- <<< LEVEL: 18 >>> -------------------------------------
+
+    // ------------------------------------- <<< LEVEL: 19 >>> -------------------------------------
 
     // ------------------------------------- <<< BOSS 1 >>> -------------------------------------
     @Spawns("rhatbuball")

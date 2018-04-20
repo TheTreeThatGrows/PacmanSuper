@@ -87,6 +87,13 @@ public enum GameType {
     DOOR_LEVEL_7,
 
     //Level 11x13 Dive
+    DOOR_LEVEL_11,
+
+    //Level 14x16 Dive
+    DOOR_LEVEL_14,
+
+    //Level 17x19 Dive
+    DOOR_LEVEL_17,
 
     //Tutorial 2
     DOOR_DIVE_TUTORIAL3,
@@ -125,7 +132,32 @@ public enum GameType {
     //Level 9
     LEVELCOMPLETE_7x9,
 
+    //Level 11
+    DOOR_LEVEL_12,
 
+    //Level 12
+    DOOR_LEVEL_13,
+
+    //Level 13
+    LEVELCOMPLETE_11x13,
+
+    //Level 14
+    DOOR_LEVEL_15,
+
+    //Level 15
+    DOOR_LEVEL_16,
+
+    //Level 16
+    LEVELCOMPLETE_14x16,
+
+    //Level 17
+    DOOR_LEVEL_18,
+
+    //Level 18
+    DOOR_LEVEL_19,
+
+    //Level 19
+    LEVELCOMPLETE_17x19,
 
 
     //BOSS 1

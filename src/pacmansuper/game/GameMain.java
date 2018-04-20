@@ -325,6 +325,11 @@ public class GameMain extends GameApplication {
             getGameWorld().spawn("LevelComplete", 5920, 40);
         }
 
+        //Level: 11x13
+        if (getGameState().getInt("LvlComplete_Level_11x13") == 1) {
+            getGameWorld().spawn("LevelComplete", 7520, 170);
+        }
+
 
         //Level: Rhatbu
         if (getGameState().getInt("LvlComplete_Rhatbu") == 1) {
@@ -1046,6 +1051,137 @@ public class GameMain extends GameApplication {
 
         //Camera Settings
         getGameScene().getViewport().setBounds(0, 0, 4900, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevel_11() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_11.json");
+
+        initLevelIndicator_11();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 140, 15);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 420, 550);
+        getGameWorld().spawn("enemy_red", 1100, 550);
+        getGameWorld().spawn("enemy_red", 2200, 230);
+        getGameWorld().spawn("enemy_red", 2500, 590);
+        getGameWorld().spawn("enemy_red", 4000, 590);
+        getGameWorld().spawn("enemy_red", 4840, 60);
+        getGameWorld().spawn("enemy_red", 5320, 200);
+        getGameWorld().spawn("enemy_red", 6750, 500);
+
+        getGameWorld().spawn("enemy_green", 5600, 560);
+        getGameWorld().spawn("enemy_green", 3980, 420);
+        getGameWorld().spawn("enemy_green", 4835, 280);
+
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 7000, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevel_12() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_12.json");
+
+        initLevelIndicator_12();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 20, 330);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 460, 490);
+        getGameWorld().spawn("enemy_red", 530, 70);
+        getGameWorld().spawn("enemy_red", 1370, 370);
+        getGameWorld().spawn("enemy_red", 4060, 350);
+        getGameWorld().spawn("enemy_red", 5880, 550);
+        getGameWorld().spawn("enemy_red", 6580, 550);
+
+        getGameWorld().spawn("enemy_blue", 1300, 430);
+        getGameWorld().spawn("enemy_blue", 3150, 445);
+        getGameWorld().spawn("enemy_blue", 3290, 445);
+        getGameWorld().spawn("enemy_blue", 3435, 445);
+
+        getGameWorld().spawn("enemy_green", 6160, 140);
+
+
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 7000, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevel_13() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_13.json");
+
+        initLevelIndicator_13();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 70, 130);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 840, 390);
+        getGameWorld().spawn("enemy_red", 2070, 230);
+        getGameWorld().spawn("enemy_red", 1650, 480);
+        getGameWorld().spawn("enemy_red", 2570, 400);
+        getGameWorld().spawn("enemy_red", 3940, 510);
+        getGameWorld().spawn("enemy_red", 5380, 200);
+        getGameWorld().spawn("enemy_red", 6500, 130);
+
+        getGameWorld().spawn("enemy_blue", 400, 530);
+        getGameWorld().spawn("enemy_blue", 1400, 200);
+        getGameWorld().spawn("enemy_blue", 3710, 210);
+        getGameWorld().spawn("enemy_blue", 5180, 2150);
+
+        getGameWorld().spawn("enemy_green", 4900, 560);
+        getGameWorld().spawn("enemy_green", 1335, 560);
+        getGameWorld().spawn("enemy_green", 3950, 280);
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 7000, 770);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
@@ -3753,6 +3889,8 @@ public class GameMain extends GameApplication {
             }
         });
 
+        // ----- MAP COLLISIONS [LEVEL 4-6] -----
+
         //LEVEL: 4
 
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_5) {
@@ -3792,6 +3930,8 @@ public class GameMain extends GameApplication {
             }
         });
 
+        // ----- MAP COLLISIONS [LEVEL 7-9] -----
+
         //LEVEL: 7
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_8) {
             @Override
@@ -3819,6 +3959,43 @@ public class GameMain extends GameApplication {
         });
 
         // ----- MAP COLLISIONS [DIVE LEVEL 11-13] -----
+
+        //PLAYER & DOOR_LEVEL_11
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_11) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_11) {
+                initLevel_11();
+            }
+        });
+
+        // ----- MAP COLLISIONS [LEVEL 11-13] -----
+
+        //LEVEL: 11
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_12) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_12) {
+                initLevel_12();
+            }
+        });
+
+        //LEVEL: 12
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_13) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_13) {
+                initLevel_13();
+            }
+        });
+
+        //LEVEL: 13
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.LEVELCOMPLETE_11x13) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity levelcomplete_11x13) {
+
+                getGameState().setValue("LvlComplete_Level_11x13", 1);
+                levelcomplete_11x13.removeFromWorld();
+            }
+        });
+
 
 
         // ----- MAP COLLISIONS [DIVE LEVEL 14-16] -----
@@ -5636,6 +5813,618 @@ public class GameMain extends GameApplication {
 
         //Exit Level: Tutorial
         Text ExitLevel_Tutorial = new Text("Level 9");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(520);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(520, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1800, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: 11
+    public void initLevelIndicator_11() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level 11");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-520);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level 11");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(520);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(520, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1800, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: 12
+    public void initLevelIndicator_12() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level 12");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-520);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level 12");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(520);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(520, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1800, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: 13
+    public void initLevelIndicator_13() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level 13");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-520);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level 13");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(520);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(520, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1800, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: 14
+    public void initLevelIndicator_14() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level 14");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-520);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level 14");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(520);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(520, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1800, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: 15
+    public void initLevelIndicator_15() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level 15");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-520);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level 15");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(520);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(520, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1800, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: 16
+    public void initLevelIndicator_16() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level 16");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-520);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level 16");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(520);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(520, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1800, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: 17
+    public void initLevelIndicator_17() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level 17");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-520);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level 17");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(520);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(520, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1800, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: 18
+    public void initLevelIndicator_18() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level 18");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-520);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level 18");
+        ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        ExitLevel_Tutorial.setFill(Color.WHITE);
+        ExitLevel_Tutorial.setTranslateX(520);
+        ExitLevel_Tutorial.setTranslateY(260);
+
+        //Exit Border
+        Texture ExitLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        ExitLevelNotification.setTranslateX(0);
+        ExitLevelNotification.setTranslateY(200);
+
+        //Add to Scene ENTER
+        getGameScene().addUINode(EnterLevelNotification);
+        getGameScene().addUINode(EnterLevel_Tutorial);
+
+        //Enter Animation
+        animationBorderEnter = getUIFactory().translate(EnterLevelNotification, new Point2D(0, 200), Duration.seconds(1));
+        animationTextEnter = getUIFactory().translate(EnterLevel_Tutorial, new Point2D(520, 260), Duration.seconds(1));
+
+        //Play Animation ENTER
+        animationBorderEnter.startInPlayState();
+        animationTextEnter.startInPlayState();
+
+        //Remove Animation ENTER
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(EnterLevelNotification);
+            getGameScene().removeUINode(EnterLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Add Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().addUINode(ExitLevelNotification);
+            getGameScene().addUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(3));
+
+        //Exit Animation
+        animationBorderExit = getUIFactory().translate(ExitLevelNotification, new Point2D(1280, 200), Duration.seconds(1));
+        animationTextExit = getUIFactory().translate(ExitLevel_Tutorial, new Point2D(1800, 260), Duration.seconds(1));
+
+        //Play Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            animationBorderExit.startInPlayState();
+            animationTextExit.startInPlayState();
+        }, Duration.seconds(3));
+
+        //Remove Animation EXIT
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(ExitLevelNotification);
+            getGameScene().removeUINode(ExitLevel_Tutorial);
+        }, Duration.seconds(4));
+    }
+
+    //Level: 19
+    public void initLevelIndicator_19() {
+
+        //Enter Level: Tutorial
+        Text EnterLevel_Tutorial = new Text("Level 19");
+        EnterLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
+        EnterLevel_Tutorial.setFill(Color.WHITE);
+        EnterLevel_Tutorial.setTranslateX(-520);
+        EnterLevel_Tutorial.setTranslateY(260);
+
+        //Enter Border
+        Texture EnterLevelNotification = getAssetLoader().loadTexture("LevelNotification.png");
+        EnterLevelNotification.setTranslateX(-1280);
+        EnterLevelNotification.setTranslateY(200);
+
+        //Exit Level: Tutorial
+        Text ExitLevel_Tutorial = new Text("Level 19");
         ExitLevel_Tutorial.setFont(Font.font ("Berlin Sans FB Demi", 52));
         ExitLevel_Tutorial.setFill(Color.WHITE);
         ExitLevel_Tutorial.setTranslateX(520);
