@@ -70,6 +70,7 @@ public class GameMain extends GameApplication {
     private boolean canFireblastValue = true;
     private boolean canFlamestrikeValue = true;
     private boolean canSupernovaValue = true;
+    private boolean godmode = false;
 
     //-- Level Map Completion --
     //Base
@@ -1306,6 +1307,7 @@ public class GameMain extends GameApplication {
                 getGameState().setValue("FireblastLevel", 1);
                 getGameState().setValue("FlamestrikeLevel", 1);
                 getGameState().setValue("SupernovaLevel", 1);
+                godmode = true;
 
                 //Cheat Map Level Completion
                 getGameState().setValue("LvlComplete_Tutorial", 1);
@@ -1379,12 +1381,22 @@ public class GameMain extends GameApplication {
 
     //Player Health
     private void HealthCharge() {
-        getMasterTimer().runAtInterval(() -> {
-            getGameState().increment("Health", +1);
-            if(getGameState().getInt("Health") > 100) {
-                getGameState().setValue("Health", 100);
-            }
-        }, Duration.seconds(0.3));
+
+        if (godmode) {
+            getMasterTimer().runAtInterval(() -> {
+                getGameState().increment("Health", +50);
+                if (getGameState().getInt("Health") > 100) {
+                    getGameState().setValue("Health", 100);
+                }
+            }, Duration.seconds(0.1));
+        } else {
+            getMasterTimer().runAtInterval(() -> {
+                getGameState().increment("Health", +1);
+                if (getGameState().getInt("Health") > 100) {
+                    getGameState().setValue("Health", 100);
+                }
+            }, Duration.seconds(0.3));
+        }
     }
 
     //Player Max Rank & Points Cap
