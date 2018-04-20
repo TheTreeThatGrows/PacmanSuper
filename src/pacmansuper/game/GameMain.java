@@ -330,6 +330,11 @@ public class GameMain extends GameApplication {
             getGameWorld().spawn("LevelComplete", 7520, 170);
         }
 
+        //Level: 14x16
+        if (getGameState().getInt("LvlComplete_Level_14x16") == 1) {
+            getGameWorld().spawn("LevelComplete", 8230, 170);
+        }
+
 
         //Level: Rhatbu
         if (getGameState().getInt("LvlComplete_Rhatbu") == 1) {
@@ -1179,6 +1184,154 @@ public class GameMain extends GameApplication {
         getGameWorld().spawn("enemy_green", 4900, 560);
         getGameWorld().spawn("enemy_green", 1335, 560);
         getGameWorld().spawn("enemy_green", 3950, 280);
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 7000, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevel_14() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_14.json");
+
+        initLevelIndicator_14();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 2310, 5);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 2075, 255);
+        getGameWorld().spawn("enemy_red", 1400, 130);
+        getGameWorld().spawn("enemy_red", 560, 590);
+        getGameWorld().spawn("enemy_red", 1960, 590);
+        getGameWorld().spawn("enemy_red", 2930, 225);
+        getGameWorld().spawn("enemy_red", 3500, 230);
+        getGameWorld().spawn("enemy_red", 4160, 100);
+        getGameWorld().spawn("enemy_red", 4575, 100);
+        getGameWorld().spawn("enemy_red", 4450, 560);
+        getGameWorld().spawn("enemy_red", 5600, 150);
+        getGameWorld().spawn("enemy_red", 5600, 380);
+        getGameWorld().spawn("enemy_red", 6500, 580);
+
+        getGameWorld().spawn("enemy_blue", 5320, 350);
+        getGameWorld().spawn("enemy_blue", 6090, 350);
+
+        getGameWorld().spawn("enemy_green", 1355, 420);
+        getGameWorld().spawn("enemy_green", 2870, 420);
+        getGameWorld().spawn("enemy_green", 3850, 560);
+        getGameWorld().spawn("enemy_green", 4655, 420);
+        getGameWorld().spawn("enemy_green", 5600, 560);
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 7000, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevel_15() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_15.json");
+
+        initLevelIndicator_15();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 2, 180);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 490, 490);
+        getGameWorld().spawn("enemy_red", 2520, 420);
+        getGameWorld().spawn("enemy_red", 3320, 515);
+        getGameWorld().spawn("enemy_red", 3750, 515);
+        getGameWorld().spawn("enemy_red", 4300, 500);
+        getGameWorld().spawn("enemy_red", 4865, 380);
+        getGameWorld().spawn("enemy_red", 5385, 380);
+        getGameWorld().spawn("enemy_red", 5985, 380);
+        getGameWorld().spawn("enemy_red", 6535, 310);
+
+        getGameWorld().spawn("enemy_blue", 140, 350);
+        getGameWorld().spawn("enemy_blue", 1100, 350);
+        getGameWorld().spawn("enemy_blue", 2100, 350);
+        getGameWorld().spawn("enemy_blue", 4020, 300);
+
+        getGameWorld().spawn("enemy_green", 200, 560);
+        getGameWorld().spawn("enemy_green", 980, 560);
+
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 7000, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevel_16() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_16.json");
+
+        initLevelIndicator_16();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 5, 275);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 1000, 300);
+        getGameWorld().spawn("enemy_red", 1260, 600);
+        getGameWorld().spawn("enemy_red", 2245, 230);
+        getGameWorld().spawn("enemy_red", 3230, 210);
+        getGameWorld().spawn("enemy_red", 3800, 120);
+        getGameWorld().spawn("enemy_red", 4359, 120);
+        getGameWorld().spawn("enemy_red", 5920, 430);
+        getGameWorld().spawn("enemy_red", 6100, 430);
+
+        getGameWorld().spawn("enemy_blue", 280, 470);
+        getGameWorld().spawn("enemy_blue", 630, 350);
+        getGameWorld().spawn("enemy_blue", 770, 350);
+        getGameWorld().spawn("enemy_blue", 1890, 420);
+        getGameWorld().spawn("enemy_blue", 3570, 350);
+
+        getGameWorld().spawn("enemy_green", 500, 560);
+        getGameWorld().spawn("enemy_green", 1370, 420);
+        getGameWorld().spawn("enemy_green", 2740, 420);
+        getGameWorld().spawn("enemy_green", 2040, 560);
+        getGameWorld().spawn("enemy_green", 2640, 560);
+        getGameWorld().spawn("enemy_green", 3600, 560);
+        getGameWorld().spawn("enemy_green", 4500, 560);
 
         //Camera Settings
         getGameScene().getViewport().setBounds(0, 0, 7000, 770);
@@ -3654,7 +3807,7 @@ public class GameMain extends GameApplication {
 
                 //Reduce Player Health
                 initDamageIndicator();
-                getGameState().increment("Health", -30);
+                getGameState().increment("Health", -20);
                 getGameScene().getViewport().shakeRotational(0.6);
 
                 //Check Player Health
@@ -3996,9 +4149,44 @@ public class GameMain extends GameApplication {
             }
         });
 
-
-
         // ----- MAP COLLISIONS [DIVE LEVEL 14-16] -----
+
+        //PLAYER & DOOR_LEVEL_14
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_14) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_14) {
+                initLevel_14();
+            }
+        });
+
+        // ----- MAP COLLISIONS [LEVEL 14-16] -----
+
+        //LEVEL: 14
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_15) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_15) {
+                initLevel_15();
+            }
+        });
+
+        //LEVEL: 15
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_16) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_16) {
+                initLevel_16();
+            }
+        });
+
+        //LEVEL: 16
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.LEVELCOMPLETE_14x16) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity levelcomplete_14x16) {
+
+                getGameState().setValue("LvlComplete_Level_14x16", 1);
+                levelcomplete_14x16.removeFromWorld();
+            }
+        });
+
 
 
         // ----- MAP COLLISIONS [DIVE LEVEL 17-19] -----
