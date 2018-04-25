@@ -41,6 +41,8 @@ public class GameMain extends GameApplication {
     private Entity player;
     private int Health;
     private int Gold;
+    private int Potion;
+    private int PotionCharge;
     private int Rank;
     private int Points;
 
@@ -67,6 +69,7 @@ public class GameMain extends GameApplication {
     private boolean directionRight = true;
     private boolean directionLeft = false;
     private boolean canShootValue = true;
+    private boolean canPotion = true;
     private boolean canFireblastValue = true;
     private boolean canFlamestrikeValue = true;
     private boolean canSupernovaValue = true;
@@ -116,9 +119,10 @@ public class GameMain extends GameApplication {
         //-- Save to Serializable Data --
 
         //Player Stats
-        Serializable rank = getGameState().getInt("Rank") ;
-        Serializable points = getGameState().getInt("Points") ;
-        Serializable gold = getGameState().getInt("Gold") ;
+        Serializable rank = getGameState().getInt("Rank");
+        Serializable points = getGameState().getInt("Points");
+        Serializable gold = getGameState().getInt("Gold");
+        Serializable Potion = getGameState().getInt("Potion");
 
         Serializable fireblastLevel = getGameState().getInt("FireblastLevel");
         Serializable flamestrikeLevel = getGameState().getInt("FlamestrikeLevel");
@@ -147,6 +151,7 @@ public class GameMain extends GameApplication {
         bundleRoot.put("Rank", rank);
         bundleRoot.put("Points", points);
         bundleRoot.put("gold", gold);
+        bundleRoot.put("Potion", Potion);
 
         bundleRoot.put("FireblastLevel", fireblastLevel);
         bundleRoot.put("FlamestrikeLevel", flamestrikeLevel);
@@ -182,6 +187,7 @@ public class GameMain extends GameApplication {
         int rank = bundleRoot.get("Rank");
         int pts = bundleRoot.get("Points");
         int gp = bundleRoot.get("gold");
+        int pot = bundleRoot.get("Potion");
 
         int fireblastLvl = bundleRoot.get("FireblastLevel");
         int flamestrikeLvl = bundleRoot.get("FlamestrikeLevel");
@@ -209,6 +215,7 @@ public class GameMain extends GameApplication {
         getGameState().setValue("Rank", rank);
         getGameState().setValue("Points", pts);
         getGameState().setValue("Gold", gp);
+        getGameState().setValue("Potion", pot);
 
         getGameState().setValue("FireblastLevel", fireblastLvl);
         getGameState().setValue("FlamestrikeLevel", flamestrikeLvl);
@@ -281,7 +288,7 @@ public class GameMain extends GameApplication {
         //Initialize Player
         getGameState().setValue("Health", 100);
         if (getGameState().getInt("LvlComplete_Tutorial") > 0) {
-            player = getGameWorld().spawn("player", 850, 410);
+            player = getGameWorld().spawn("player", 650, 410);
         } else {
             player = getGameWorld().spawn("player", 2880, 420);
         }
@@ -290,6 +297,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -400,6 +408,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -425,6 +434,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -452,6 +462,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -486,6 +497,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -523,6 +535,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -556,6 +569,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -585,6 +599,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -610,6 +625,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -635,6 +651,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -660,6 +677,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -685,6 +703,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -709,6 +728,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -736,6 +756,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -772,6 +793,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -809,6 +831,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -847,6 +870,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -884,6 +908,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -920,6 +945,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -961,6 +987,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1001,6 +1028,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1040,6 +1068,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1079,6 +1108,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1121,6 +1151,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1165,6 +1196,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1210,6 +1242,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1260,6 +1293,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1307,6 +1341,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1358,6 +1393,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1398,6 +1434,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1438,6 +1475,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1483,6 +1521,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1516,6 +1555,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1547,6 +1587,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1580,6 +1621,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1609,6 +1651,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1644,6 +1687,7 @@ public class GameMain extends GameApplication {
         canMove = true;
         canFly = true;
         HealthCharge();
+        PotionDrinkCharge();
         RankPointsCap();
         SkillUpgradeCap();
         FireballCharge();
@@ -1723,6 +1767,7 @@ public class GameMain extends GameApplication {
                 getGameState().setValue("Rank", 15);
                 getGameState().setValue("Points", 15);
                 getGameState().setValue("Gold", 9999);
+                getGameState().setValue("Potion", 5);
 
                 //Cheat Skills
                 getGameState().setValue("FireblastLevel", 1);
@@ -1734,9 +1779,16 @@ public class GameMain extends GameApplication {
                 getGameState().setValue("LvlComplete_Tutorial", 1);
                 getGameState().setValue("first_upgrade", 1);
 
-                //getGameState().setValue("LvlComplete_Rhatbu", 1);
-                //getGameState().setValue("LvlComplete_Bedj", 1);
-                //getGameState().setValue("LvlComplete_Grim", 1);
+                getGameState().setValue("LvlComplete_Level_1x3", 1);
+                getGameState().setValue("LvlComplete_Level_4x6", 1);
+                getGameState().setValue("LvlComplete_Level_7x9", 1);
+                getGameState().setValue("LvlComplete_Level_11x13", 1);
+                getGameState().setValue("LvlComplete_Level_14x16", 1);
+                getGameState().setValue("LvlComplete_Level_17x19", 1);
+
+                getGameState().setValue("LvlComplete_Rhatbu", 1);
+                getGameState().setValue("LvlComplete_Bedj", 1);
+                getGameState().setValue("LvlComplete_Grim", 1);
 
                 getDisplay().showMessageBox("Cheats Activated!");
             }
@@ -1756,6 +1808,17 @@ public class GameMain extends GameApplication {
                 }
             }
         }, KeyCode.SPACE);
+
+        getInput().addAction(new UserAction("HealthPotion") {
+            @Override
+            protected void onAction() {
+                canDrinkPotion();
+                if(getGameState().getInt("PotionCharge") == 100) {
+                    Potion();
+                    getGameState().setValue("PotionCharge", 0);
+                }
+            }
+        }, KeyCode.F);
 
         getInput().addAction(new UserAction("Fireblast") {
             @Override
@@ -1816,7 +1879,7 @@ public class GameMain extends GameApplication {
                 if (getGameState().getInt("Health") > 100) {
                     getGameState().setValue("Health", 100);
                 }
-            }, Duration.seconds(0.3));
+            }, Duration.seconds(0.8));
         }
     }
 
@@ -1830,7 +1893,9 @@ public class GameMain extends GameApplication {
             if (getGameState().getInt("Points") > 15) {
                 getGameState().setValue("Points", 15);
             }
-
+            if(getGameState().getInt("Potion") > 5) {
+                getGameState().setValue("Potion", 5);
+            }
         }, Duration.seconds(0));
     }
 
@@ -1854,9 +1919,31 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(0));
     }
 
-    //Player Death
-    private void Death() {
+    //Potion
+    private void Potion() {
+        if(canPotion) {
+            getGameState().increment("Potion", -1);
+            getAudioPlayer().playSound("EnergyBoostGet.wav");
+            getGameState().setValue("Health", 100);
+        }
+    }
 
+    private void canDrinkPotion() {
+        if(getGameState().getInt("PotionCharge") != 100 || getGameState().getInt("Potion") <= 0) {
+            canPotion = false;
+            getAudioPlayer().playSound("NoSound.wav");
+        } else {
+            canPotion = true;
+        }
+    }
+
+    private void PotionDrinkCharge() {
+        getMasterTimer().runAtInterval(() -> {
+            getGameState().increment("PotionCharge", +40);
+            if(getGameState().getInt("PotionCharge") > 100) {
+                getGameState().setValue("PotionCharge", 100);
+            }
+        }, Duration.seconds(0.2));
     }
 
     //Fireball
@@ -3661,6 +3748,39 @@ public class GameMain extends GameApplication {
             }
         });
 
+        //PLAYER & POTION_UPGRADE
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.POTION_UPGRADE) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity potion_upgrade) {
+
+                //Upgrade Fireblast
+                if (getGameState().getInt("Gold") < 100) {
+                    getGameState().increment("Potion", +0);
+
+                    //Message
+                    getDisplay().showMessageBox("Not Enough Gold!");
+                    getAudioPlayer().playSound("notenough.wav");
+                } else {
+                    getGameState().increment("Gold", -100);
+
+                    if (getGameState().getInt("Gold") < 0) {
+                        getGameState().setValue("Gold", 0);
+                    }
+                    getGameState().increment("Potion", +1);
+                    getAudioPlayer().playSound("EnergyBoostGet.wav");
+                }
+
+                if (getGameState().getInt("Potion") > 5) {
+
+                    getGameState().increment("Gold", + 100);
+
+                    //Message
+                    getDisplay().showMessageBox("Already at Max Capacity");
+                    getAudioPlayer().playSound("notenough.wav");
+                }
+            }
+        });
+
         //PLAYER & DOOR_DIVE_TUTORIAL
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_DIVE_TUTORIAL) {
             @Override
@@ -4683,9 +4803,26 @@ public class GameMain extends GameApplication {
         fireballUI.setTranslateY(625);
 
         //Potion UI
+        Text PotionCharge = new Text();
+        PotionCharge.setFont(Font.font ("Berlin Sans FB Demi", 30));
+        PotionCharge.setFill(Color.WHITE);
+        PotionCharge.setTranslateX(951);
+        PotionCharge.setTranslateY(458);
+
         Texture PotionUI = getAssetLoader().loadTexture("PotionUI.png");
         PotionUI.setTranslateX(880);
         PotionUI.setTranslateY(670);
+
+        Text Potion = new Text();
+        Potion.setFont(Font.font ("Berlin Sans FB Demi", 30));
+        Potion.setFill(Color.WHITE);
+        Potion.setTranslateX(951);
+        Potion.setTranslateY(658);
+
+        Circle PotionAmountUI = new Circle(18);
+        PotionAmountUI.setFill(Color.rgb(0,0,0, 0.6));
+        PotionAmountUI.setTranslateX(960);
+        PotionAmountUI.setTranslateY(650);
 
         //Firepower Number
         Text Fireball = new Text();
@@ -4902,6 +5039,9 @@ public class GameMain extends GameApplication {
 
         getGameScene().addUINode(fireballUI);
         getGameScene().addUINode(PotionUI);
+        getGameScene().addUINode(PotionAmountUI);
+        getGameScene().addUINode(Potion);
+        //getGameScene().addUINode(PotionCharge);
         //getGameScene().addUINode(Fireball);
 
         getGameScene().addUINode(FlamestrikeNumberUI);
@@ -4946,6 +5086,8 @@ public class GameMain extends GameApplication {
         //Player
         Health.textProperty().bind(getGameState().intProperty("Health").asString());
         Gold.textProperty().bind(getGameState().intProperty("Gold").asString());
+        Potion.textProperty().bind(getGameState().intProperty("Potion").asString());
+        PotionCharge.textProperty().bind(getGameState().intProperty("PotionCharge").asString());
         Rank.textProperty().bind(getGameState().intProperty("Rank").asString());
         Points.textProperty().bind(getGameState().intProperty("Points").asString());
 
@@ -4971,7 +5113,6 @@ public class GameMain extends GameApplication {
         LvlComplete_Level_11x13.textProperty().bind(getGameState().intProperty("LvlComplete_Level_11x13").asString());
         LvlComplete_Level_14x16.textProperty().bind(getGameState().intProperty("LvlComplete_Level_14x16").asString());
         LvlComplete_Level_17x19.textProperty().bind(getGameState().intProperty("LvlComplete_Level_17x19").asString());
-
 
         LvlComplete_Rhatbu.textProperty().bind(getGameState().intProperty("LvlComplete_Rhatbu").asString());
         LvlComplete_Bedj.textProperty().bind(getGameState().intProperty("LvlComplete_Bedj").asString());
@@ -6920,6 +7061,8 @@ public class GameMain extends GameApplication {
         //View in-game
         vars.put("Health", 100);
         vars.put("Gold", 0);
+        vars.put("Potion", 1);
+        vars.put("PotionCharge", 0);
         vars.put("Rank", 0);
         vars.put("Points", 0);
 

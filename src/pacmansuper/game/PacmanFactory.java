@@ -476,6 +476,16 @@ public class PacmanFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .build();
     }
+    @Spawns("potion_upgrade")
+    public Entity newPotionUpgrade(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.POTION_UPGRADE)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .build();
+    }
 
     //Map Level Doors
     @Spawns("door_dive_tutorial")
