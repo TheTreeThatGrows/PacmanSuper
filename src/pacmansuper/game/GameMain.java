@@ -4682,6 +4682,11 @@ public class GameMain extends GameApplication {
         fireballUI.setTranslateX(480);
         fireballUI.setTranslateY(625);
 
+        //Potion UI
+        Texture PotionUI = getAssetLoader().loadTexture("PotionUI.png");
+        PotionUI.setTranslateX(880);
+        PotionUI.setTranslateY(670);
+
         //Firepower Number
         Text Fireball = new Text();
         Fireball.setFont(Font.font ("Berlin Sans FB Demi", 30));
@@ -4896,6 +4901,7 @@ public class GameMain extends GameApplication {
         getGameScene().addUINode(fireblastIcon);
 
         getGameScene().addUINode(fireballUI);
+        getGameScene().addUINode(PotionUI);
         //getGameScene().addUINode(Fireball);
 
         getGameScene().addUINode(FlamestrikeNumberUI);
