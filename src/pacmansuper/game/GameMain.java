@@ -100,7 +100,7 @@ public class GameMain extends GameApplication {
     protected void initSettings(GameSettings settings) {
 
         settings.setTitle("Pacman Super");
-        settings.setVersion("0.5.6");
+        settings.setVersion("0.8.0");
         settings.setWidth(1280);
         settings.setHeight(770); //770
         settings.setProfilingEnabled(false); //Profile
