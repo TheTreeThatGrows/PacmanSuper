@@ -71,6 +71,17 @@ public enum GameType {
     GUIDE2,
     GUIDE3,
 
+    //Tutorial 2
+    GUIDE4,
+    DOOR_DIVE_TUTORIAL3,
+
+    //Dive_Tutorial3
+    DOOR_TUTORIAL3,
+
+    //Tutorial 3
+    BOSSPATTERN_DARKFLAMEMASTER,
+    DARKFLAMEMASTER_DEATHBALL,
+
     // LEVEL CLEAR: JUNGLE
     DOOR_LEVELCLEAR_JUNGLE,
 
@@ -96,15 +107,6 @@ public enum GameType {
     //Level 17x19 Dive
     DOOR_LEVEL_17,
 
-    //Tutorial 2
-    DOOR_DIVE_TUTORIAL3,
-
-    //Dive_Tutorial3
-    DOOR_TUTORIAL3,
-
-    //Tutorial 3
-    BOSSPATTERN_DARKFLAMEMASTER,
-    DARKFLAMEMASTER_DEATHBALL,
 
     //Level 1
     DOOR_LEVEL_2,

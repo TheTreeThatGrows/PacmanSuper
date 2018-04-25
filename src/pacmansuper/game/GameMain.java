@@ -100,7 +100,7 @@ public class GameMain extends GameApplication {
     protected void initSettings(GameSettings settings) {
 
         settings.setTitle("Pacman Super");
-        settings.setVersion("0.8.0");
+        settings.setVersion("0.9.5");
         settings.setWidth(1280);
         settings.setHeight(770); //770
         settings.setProfilingEnabled(false); //Profile
@@ -311,6 +311,10 @@ public class GameMain extends GameApplication {
         getGameWorld().spawn("cloud", 2630, 100);
         getGameWorld().spawn("cloud", 5600, 100);
         getGameWorld().spawn("cloud", 4150, 100);
+
+        //Reset Boss HP
+
+
 
         //-- Level Complete --
 
@@ -1548,6 +1552,7 @@ public class GameMain extends GameApplication {
         getGameWorld().setLevelFromMap("boss_1.json");
         initLevelIndicator_BOSSFIGHT();
 
+
         //Initialize Player
         player = getGameWorld().spawn("player", 200, 0);
 
@@ -1565,6 +1570,7 @@ public class GameMain extends GameApplication {
 
         //Enemies
         initRhatbuHP();
+
         getGameWorld().spawn("boss_rhatbu", 3500, 300);
         getGameWorld().spawn("enemy_blue", 1180, 530);
         getGameWorld().spawn("enemy_blue", 1470, 530);
@@ -2569,9 +2575,15 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    getGameState().setValue("Health", 100);
+                    getMasterTimer().runOnceAfter(() -> {
+                        getGameState().setValue("DarkFlameMasterHealth", 9000);
+                        getDisplay().showMessageBox("Returning Back to Base...");
+                        getDisplay().showMessageBox("Mission Failed");
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 }
             }
         });
@@ -2886,9 +2898,15 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    getGameState().setValue("Health", 100);
+                    getMasterTimer().runOnceAfter(() -> {
+                        getGameState().setValue("RhatbuHealth", 15000);
+                        getDisplay().showMessageBox("Returning Back to Base...");
+                        getDisplay().showMessageBox("Mission Failed");
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 }
             }
         });
@@ -3199,9 +3217,15 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    getGameState().setValue("Health", 100);
+                    getMasterTimer().runOnceAfter(() -> {
+                        getGameState().setValue("BedjHealth", 20000);
+                        getDisplay().showMessageBox("Returning Back to Base...");
+                        getDisplay().showMessageBox("Mission Failed");
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 }
             }
         });
@@ -3557,9 +3581,15 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    getGameState().setValue("Health", 100);
+                    getMasterTimer().runOnceAfter(() -> {
+                        getGameState().setValue("GrimHealth", 25000);
+                        getDisplay().showMessageBox("Returning Back to Base...");
+                        getDisplay().showMessageBox("Mission Failed");
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 }
             }
         });
@@ -4068,9 +4098,14 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    getMasterTimer().runOnceAfter(() -> {
+                        getDisplay().showMessageBox("Returning Back to Base...");
+                        getDisplay().showMessageBox("Mission Failed");
+
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 } else {
                     getAudioPlayer().playSound("drown.wav");
                 }
@@ -4177,6 +4212,22 @@ public class GameMain extends GameApplication {
         });
 
         // ----- MAP COLLISIONS [TUTORIAL 2] -----
+        //PLAYER & GUIDE4
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.GUIDE4) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity guide4) {
+
+                guide4.removeFromWorld();
+
+                if (getGameState().getInt("LvlComplete_Tutorial") == 0) {
+
+                    //Message
+                    getDisplay().showMessageBox("You can Buy more Health Potion Back at Base");
+                    getDisplay().showMessageBox("This will Heal you back to Full Health");
+                    getDisplay().showMessageBox("Press 'F' to consume a Health Potion");
+                }
+            }
+        });
 
         //PLAYER & DOOR_DIVE_TUTORIAL3
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_DIVE_TUTORIAL3) {
@@ -4212,9 +4263,14 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    getMasterTimer().runOnceAfter(() -> {
+                        getDisplay().showMessageBox("Returning Back to Base...");
+                        getDisplay().showMessageBox("Mission Failed");
+                        getGameState().setValue("DarkFlameMasterHealth", 9000);
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 }
             }
         });
@@ -4501,9 +4557,14 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    getMasterTimer().runOnceAfter(() -> {
+                        getDisplay().showMessageBox("Returning Back to Base...");
+                        getDisplay().showMessageBox("Mission Failed");
+                        getGameState().setValue("RhatbuHealth", 15000);
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 }
             }
         });
@@ -4536,9 +4597,14 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    getMasterTimer().runOnceAfter(() -> {
+                        getDisplay().showMessageBox("Returning Back to Base...");
+                        getDisplay().showMessageBox("Mission Failed");
+                        getGameState().setValue("BedjHealth", 20000);
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 }
             }
         });
@@ -4568,9 +4634,14 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    getMasterTimer().runOnceAfter(() -> {
+                        getDisplay().showMessageBox("Returning Back to Base...");
+                        getDisplay().showMessageBox("Mission Failed");
+                        getGameState().setValue("BedjHealth", 20000);
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 }
             }
         });
@@ -4591,9 +4662,14 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    getMasterTimer().runOnceAfter(() -> {
+                        getDisplay().showMessageBox("Returning Back to Base...");
+                        getDisplay().showMessageBox("Mission Failed");
+                        getGameState().setValue("GrimHealth", 25000);
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 }
             }
         });
@@ -4624,9 +4700,14 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    getMasterTimer().runOnceAfter(() -> {
+                        getDisplay().showMessageBox("Returning Back to Base...");
+                        getDisplay().showMessageBox("Mission Failed");
+                        getGameState().setValue("GrimHealth", 25000);
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 }
             }
         });
@@ -4655,9 +4736,15 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    //Check Player Health
+                    getMasterTimer().runOnceAfter(() -> {
+                        getDisplay().showMessageBox("Returning Back to Base...");
+                        getDisplay().showMessageBox("Mission Failed");
+                        getGameState().setValue("GrimHealth", 25000);
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 } else {
                     getAudioPlayer().playSound("drown.wav");
                 }
@@ -4677,9 +4764,14 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    getMasterTimer().runOnceAfter(() -> {
+                        getDisplay().showMessageBox("Returning Back to Base...");
+                        getDisplay().showMessageBox("Mission Failed");
+                        getGameState().setValue("GrimHealth", 25000);
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 }
             }
         });
@@ -7061,7 +7153,7 @@ public class GameMain extends GameApplication {
         //View in-game
         vars.put("Health", 100);
         vars.put("Gold", 0);
-        vars.put("Potion", 1);
+        vars.put("Potion", 3);
         vars.put("PotionCharge", 0);
         vars.put("Rank", 0);
         vars.put("Points", 0);

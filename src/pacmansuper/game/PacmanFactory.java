@@ -336,6 +336,7 @@ public class PacmanFactory implements EntityFactory {
                 .with(new Supernova1())
                 .build();
     }
+
     @Spawns("supernova2")
     public Entity newsupernova2(SpawnData data) {
         return Entities.builder()
@@ -690,6 +691,16 @@ public class PacmanFactory implements EntityFactory {
                 .build();
     }
     // ------------------------------------- <<< Tutorial 2 >>> -------------------------------------
+    @Spawns("guide4")
+    public Entity newGuide4(SpawnData data) {
+        return Entities.builder()
+                .type(GameType.GUIDE4)
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
     @Spawns("door_tutorial3")
     public Entity newDoor_Tutorial3(SpawnData data) {
         return Entities.builder()
