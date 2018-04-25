@@ -279,6 +279,7 @@ public class GameMain extends GameApplication {
         }
 
         //Initialize Player
+        getGameState().setValue("Health", 100);
         if (getGameState().getInt("LvlComplete_Tutorial") > 0) {
             player = getGameWorld().spawn("player", 850, 410);
         } else {
@@ -335,6 +336,10 @@ public class GameMain extends GameApplication {
             getGameWorld().spawn("LevelComplete", 8230, 170);
         }
 
+        //Level: 17x19
+        if (getGameState().getInt("LvlComplete_Level_17x19") == 1) {
+            getGameWorld().spawn("LevelComplete", 8930, 300);
+        }
 
         //Level: Rhatbu
         if (getGameState().getInt("LvlComplete_Rhatbu") == 1) {
@@ -695,7 +700,7 @@ public class GameMain extends GameApplication {
 
         //Initialize Map
         getMasterTimer().clear();
-        getGameWorld().setLevelFromMap("dive_level_14x16.json");
+        getGameWorld().setLevelFromMap("dive_level_17x19.json");
 
         //Initialize Player
         player = getGameWorld().spawn("player", 700, 300);
@@ -1338,6 +1343,133 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    protected void initLevel_17() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_17.json");
+
+        initLevelIndicator_17();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 150, 5);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 340, 530);
+        getGameWorld().spawn("enemy_red", 560, 530);
+        getGameWorld().spawn("enemy_red", 1100, 530);
+        getGameWorld().spawn("enemy_red", 1500, 530);
+        getGameWorld().spawn("enemy_red", 2010, 310);
+        getGameWorld().spawn("enemy_red", 2010, 540);
+        getGameWorld().spawn("enemy_red", 3600, 540);
+        getGameWorld().spawn("enemy_red", 3800, 540);
+        getGameWorld().spawn("enemy_red", 4700, 540);
+        getGameWorld().spawn("enemy_red", 5100, 540);
+        getGameWorld().spawn("enemy_red", 5400, 140);
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 7000, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevel_18() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_18.json");
+
+        initLevelIndicator_18();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 15, 340);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 400, 450);
+        getGameWorld().spawn("enemy_red", 900, 450);
+        getGameWorld().spawn("enemy_red", 1300, 450);
+        getGameWorld().spawn("enemy_red", 1700, 450);
+        getGameWorld().spawn("enemy_red", 2100, 450);
+        getGameWorld().spawn("enemy_red", 2700, 450);
+        getGameWorld().spawn("enemy_red", 3500, 450);
+        getGameWorld().spawn("enemy_red", 3900, 450);
+        getGameWorld().spawn("enemy_red", 4700, 145);
+        getGameWorld().spawn("enemy_red", 6000, 340);
+        getGameWorld().spawn("enemy_red", 6400, 340);
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 7000, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+    protected void initLevel_19() {
+
+        //Initialize Map
+        getMasterTimer().clear();
+        getGameWorld().setLevelFromMap("level_19.json");
+
+        initLevelIndicator_19();
+
+        //Initialize Player
+        player = getGameWorld().spawn("player", 80, 60);
+
+        //Skill Charge
+        canMove = true;
+        canFly = true;
+        HealthCharge();
+        RankPointsCap();
+        SkillUpgradeCap();
+        FireballCharge();
+        FireblastCharge();
+        FlamestrikeCharge();
+        SupernovaCharge();
+
+        //Enemies
+        getGameWorld().spawn("enemy_red", 300, 500);
+        getGameWorld().spawn("enemy_red", 600, 500);
+        getGameWorld().spawn("enemy_red", 900, 500);
+        getGameWorld().spawn("enemy_red", 2300, 500);
+        getGameWorld().spawn("enemy_red", 2600, 500);
+        getGameWorld().spawn("enemy_red", 2900, 500);
+        getGameWorld().spawn("enemy_red", 4400, 500);
+        getGameWorld().spawn("enemy_red", 5100, 500);
+        getGameWorld().spawn("enemy_red", 6160, 560);
+        getGameWorld().spawn("enemy_red", 5775, 370);
+        getGameWorld().spawn("enemy_red", 6585, 370);
+        getGameWorld().spawn("enemy_red", 5900, 140);
+        getGameWorld().spawn("enemy_red", 6220, 140);
+
+        getGameWorld().spawn("enemy_green", 500, 60);
+        getGameWorld().spawn("enemy_green", 2400, 60);
+        getGameWorld().spawn("enemy_green", 4500, 60);
+
+        //Camera Settings
+        getGameScene().getViewport().setBounds(0, 0, 7000, 770);
+        getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
+    }
+
+
     protected void initDiveBoss1() {
 
         //Initialize Map
@@ -1867,9 +1999,13 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
-                    getDisplay().showMessageBox("Game Over", () -> {
-                        exit();
-                    });
+                    getMasterTimer().runOnceAfter(() -> {
+                       getDisplay().showMessageBox("Returning Back to Base...");
+                       getDisplay().showMessageBox("Mission Failed");
+                    }, Duration.seconds(0.21));
+                    getMasterTimer().runOnceAfter(() -> {
+                        initGame();
+                    }, Duration.seconds(0.22));
                 }
             }
         });
@@ -1887,7 +2023,7 @@ public class GameMain extends GameApplication {
 
                 if (getGameState().getInt("EnemyHealth") <= 0) {
                     getAudioPlayer().playSound("enemyDeath.wav");
-                    getGameState().increment("Gold", +20);
+                    getGameState().increment("Gold", +10);
                     getGameState().setValue("EnemyHealth", 300);
                     fireball.removeFromWorld();
                     enemy.removeFromWorld();
@@ -1974,7 +2110,7 @@ public class GameMain extends GameApplication {
 
                 if (getGameState().getInt("EnemyHealth") <= 0) {
                     getAudioPlayer().playSound("enemyDeath.wav");
-                    getGameState().increment("Gold", +25);
+                    getGameState().increment("Gold", +10);
                     getGameState().setValue("EnemyHealth", 300);
                     enemy.removeFromWorld();
                 }
@@ -2017,7 +2153,7 @@ public class GameMain extends GameApplication {
 
                 if (getGameState().getInt("EnemyHealth") <= 0) {
                     getAudioPlayer().playSound("enemyDeath.wav");
-                    getGameState().increment("Gold", +25);
+                    getGameState().increment("Gold", +10);
                     getGameState().setValue("EnemyHealth", 300);
                     enemy.removeFromWorld();
                 }
@@ -2060,7 +2196,7 @@ public class GameMain extends GameApplication {
 
                 if (getGameState().getInt("EnemyHealth") <= 0) {
                     getAudioPlayer().playSound("enemyDeath.wav");
-                    getGameState().increment("Gold", +25);
+                    getGameState().increment("Gold", +10);
                     getGameState().setValue("EnemyHealth", 300);
                     enemy.removeFromWorld();
                 }
@@ -3573,7 +3709,7 @@ public class GameMain extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity player, Entity door_dive_level_4x6) {
 
-                if (getGameState().getInt("LvlComplete_Tutorial") >= 1) {
+                if (getGameState().getInt("LvlComplete_Level_1x3") >= 1) {
 
                     canMove = false;
                     canFly = false;
@@ -3587,7 +3723,7 @@ public class GameMain extends GameApplication {
                         initDiveLevel_4x6();
                     }, Duration.seconds(5));
                 } else {
-                    getDisplay().showMessageBox("Complete The Tutorial to Unlock");
+                    getDisplay().showMessageBox("Complete The Previous Level to Unlock");
                 }
             }
         });
@@ -3597,7 +3733,7 @@ public class GameMain extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity player, Entity door_dive_level_7x9) {
 
-                if (getGameState().getInt("LvlComplete_Tutorial") >= 1) {
+                if (getGameState().getInt("LvlComplete_Level_4x6") >= 1) {
 
                     canMove = false;
                     canFly = false;
@@ -3611,7 +3747,7 @@ public class GameMain extends GameApplication {
                         initDiveLevel_7x9();
                     }, Duration.seconds(5));
                 } else {
-                    getDisplay().showMessageBox("Complete The Tutorial to Unlock");
+                    getDisplay().showMessageBox("Complete The Previous Level to Unlock");
                 }
             }
         });
@@ -3621,7 +3757,7 @@ public class GameMain extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity player, Entity door_dive_level_11x13) {
 
-                if (getGameState().getInt("LvlComplete_Tutorial") >= 1) {
+                if (getGameState().getInt("LvlComplete_Rhatbu") >= 1) {
 
                     canMove = false;
                     canFly = false;
@@ -3635,7 +3771,7 @@ public class GameMain extends GameApplication {
                         initDiveLevel_11x13();
                     }, Duration.seconds(5));
                 } else {
-                    getDisplay().showMessageBox("Complete The Tutorial to Unlock");
+                    getDisplay().showMessageBox("Defeat The Previous Boss to Unlock");
                 }
             }
         });
@@ -3645,7 +3781,7 @@ public class GameMain extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity player, Entity door_dive_level_14x16) {
 
-                if (getGameState().getInt("LvlComplete_Tutorial") >= 1) {
+                if (getGameState().getInt("LvlComplete_Level_11x13") >= 1) {
 
                     canMove = false;
                     canFly = false;
@@ -3659,7 +3795,7 @@ public class GameMain extends GameApplication {
                         initDiveLevel_14x16();
                     }, Duration.seconds(5));
                 } else {
-                    getDisplay().showMessageBox("Complete The Tutorial to Unlock");
+                    getDisplay().showMessageBox("Complete The Previous Level to Unlock");
                 }
             }
         });
@@ -3669,7 +3805,7 @@ public class GameMain extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity player, Entity door_dive_level_17x19) {
 
-                if (getGameState().getInt("LvlComplete_Tutorial") >= 1) {
+                if (getGameState().getInt("LvlComplete_Level_14x16") >= 1) {
 
                     canMove = false;
                     canFly = false;
@@ -3683,7 +3819,7 @@ public class GameMain extends GameApplication {
                         initDiveLevel_17x19();
                     }, Duration.seconds(5));
                 } else {
-                    getDisplay().showMessageBox("Complete The Tutorial to Unlock");
+                    getDisplay().showMessageBox("Complete The Previous Level to Unlock");
                 }
             }
         });
@@ -4190,6 +4326,42 @@ public class GameMain extends GameApplication {
 
 
         // ----- MAP COLLISIONS [DIVE LEVEL 17-19] -----
+
+        //PLAYER & DOOR_LEVEL_17
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_17) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_17) {
+                initLevel_17();
+            }
+        });
+
+        // ----- MAP COLLISIONS [LEVEL 17-19] -----
+
+        //LEVEL: 17
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_18) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_18) {
+                initLevel_18();
+            }
+        });
+
+        //LEVEL: 18
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.DOOR_LEVEL_19) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door_level_19) {
+                initLevel_19();
+            }
+        });
+
+        //LEVEL: 19
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.LEVELCOMPLETE_17x19) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity levelcomplete_17x19) {
+
+                getGameState().setValue("LvlComplete_Level_17x19", 1);
+                levelcomplete_17x19.removeFromWorld();
+            }
+        });
 
 
 
@@ -6735,7 +6907,7 @@ public class GameMain extends GameApplication {
 
 
 
-    // ------------------------------------- <<< Add in Game >>> -------------------------------------
+    // ------------------------------------- <<< Integer values in Game >>> -------------------------------------
     @Override
     protected void initGameVars(Map<String, Object> vars) {
 
