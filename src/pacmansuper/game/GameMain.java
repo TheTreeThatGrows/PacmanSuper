@@ -104,7 +104,7 @@ public class GameMain extends GameApplication {
         settings.setWidth(1280);
         settings.setHeight(770); //770
         settings.setProfilingEnabled(false); //Profile
-        settings.setIntroEnabled(false);
+        settings.setIntroEnabled(true);
         settings.setCloseConfirmation(false);
         settings.setMenuEnabled(true); //Menu
 
@@ -1798,7 +1798,7 @@ public class GameMain extends GameApplication {
 
                 getDisplay().showMessageBox("Cheats Activated!");
             }
-        }, KeyCode.BACK_SPACE);
+        }, KeyCode.F6);
 
         // ---- Skill Input ----
         getInput().addAction(new UserAction("Fireball") {
