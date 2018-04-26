@@ -1406,7 +1406,6 @@ public class GameMain extends GameApplication {
         SupernovaCharge();
 
         //Enemies
-        getGameWorld().spawn("enemy_red", 340, 530);
         getGameWorld().spawn("enemy_red", 560, 530);
         getGameWorld().spawn("enemy_red", 1100, 530);
         getGameWorld().spawn("enemy_red", 1500, 530);
@@ -1414,7 +1413,6 @@ public class GameMain extends GameApplication {
         getGameWorld().spawn("enemy_red", 2010, 540);
         getGameWorld().spawn("enemy_red", 3600, 540);
         getGameWorld().spawn("enemy_red", 3800, 540);
-        getGameWorld().spawn("enemy_red", 4700, 540);
         getGameWorld().spawn("enemy_red", 5100, 540);
         getGameWorld().spawn("enemy_red", 5400, 140);
 
@@ -5234,7 +5232,7 @@ public class GameMain extends GameApplication {
 
         getMasterTimer().runOnceAfter(() -> {
             getGameScene().removeUINode(DamageUI);
-        }, Duration.seconds(0.18));
+        }, Duration.seconds(0.15));
     }
 
     //Show Dark Flame Master HP
