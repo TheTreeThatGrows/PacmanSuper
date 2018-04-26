@@ -366,7 +366,6 @@ public class GameMain extends GameApplication {
         //Level: Grim
         if (getGameState().getInt("LvlComplete_Grim") == 1) {
             getGameWorld().spawn("LevelComplete", 11475, 280);
-            getDisplay().showMessageBox("Congratulations! You have Completed the Game!");
         }
 
         //Camera Settings
@@ -1884,7 +1883,7 @@ public class GameMain extends GameApplication {
                 if (getGameState().getInt("Health") > 100) {
                     getGameState().setValue("Health", 100);
                 }
-            }, Duration.seconds(0.8));
+            }, Duration.seconds(1.2));
         }
     }
 
@@ -2081,7 +2080,6 @@ public class GameMain extends GameApplication {
 
             @Override
             protected void onCollisionBegin(Entity player, Entity enemy) {
-
 
                 //Reduce Player Health
                 initDamageIndicator();
@@ -4090,24 +4088,23 @@ public class GameMain extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity player, Entity fall_tutorial) {
 
-                //Reduce Player Health
-                initDamageIndicator();
-                getGameState().increment("Health", -20);
-                getGameScene().getViewport().shakeRotational(0.6);
-
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
                     getGameState().setValue("Health", 100);
                     getMasterTimer().runOnceAfter(() -> {
                         getDisplay().showMessageBox("Returning Back to Base...");
                         getDisplay().showMessageBox("Mission Failed");
-
                     }, Duration.seconds(0.21));
                     getMasterTimer().runOnceAfter(() -> {
                         initGame();
                     }, Duration.seconds(0.22));
                 } else {
                     getAudioPlayer().playSound("drown.wav");
+
+                    //Reduce Player Health
+                    initDamageIndicator();
+                    getGameState().increment("Health", -35);
+                    getGameScene().getViewport().shakeRotational(0.6);
                 }
             }
         });
@@ -5233,7 +5230,7 @@ public class GameMain extends GameApplication {
 
         getMasterTimer().runOnceAfter(() -> {
             getGameScene().removeUINode(DamageUI);
-        }, Duration.seconds(0.15));
+        }, Duration.seconds(0.20));
     }
 
     //Show Dark Flame Master HP
