@@ -100,7 +100,7 @@ public class GameMain extends GameApplication {
     protected void initSettings(GameSettings settings) {
 
         settings.setTitle("Pacman Super");
-        settings.setVersion("0.9.5");
+        settings.setVersion("0.9.6");
         settings.setWidth(1280);
         settings.setHeight(770); //770
         settings.setProfilingEnabled(false); //Profile
@@ -3980,7 +3980,7 @@ public class GameMain extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity player, Entity door_dive_boss1) {
 
-                if (getGameState().getInt("Rank") >= 5) {
+                if (getGameState().getInt("LvlComplete_Level_7x9") >= 1) {
 
                     canMove = false;
                     canFly = false;
@@ -3994,9 +3994,8 @@ public class GameMain extends GameApplication {
                         initDiveBoss1();
                     }, Duration.seconds(5));
                 } else {
-                    getDisplay().showMessageBox("Required Rank: 5");
+                    getDisplay().showMessageBox("Complete The Previous Level to Unlock");
                 }
-
             }
         });
 
@@ -4013,7 +4012,7 @@ public class GameMain extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity player, Entity door_dive_boss2) {
 
-                if (getGameState().getInt("Rank") >= 10) {
+                if (getGameState().getInt("LvlComplete_Level_17x19") >= 1) {
 
                     canMove = false;
                     canFly = false;
@@ -4027,7 +4026,7 @@ public class GameMain extends GameApplication {
                         initDiveBoss2();
                     }, Duration.seconds(5));
                 } else {
-                    getDisplay().showMessageBox("Required Rank: 10");
+                    getDisplay().showMessageBox("Complete The Previous Level to Unlock");
                 }
             }
         });
@@ -4046,7 +4045,7 @@ public class GameMain extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity player, Entity door_dive_bossfinal) {
 
-                if (getGameState().getInt("Rank") >= 15) {
+                if (getGameState().getInt("LvlComplete_Bedj") >= 1) {
 
                     canMove = false;
                     canFly = false;
@@ -4060,7 +4059,7 @@ public class GameMain extends GameApplication {
                         initDiveBossFinal();
                     }, Duration.seconds(5));
                 } else {
-                    getDisplay().showMessageBox("Required Rank: 15");
+                    getDisplay().showMessageBox("Complete ALL previous levels to Unlock");
                 }
             }
         });
