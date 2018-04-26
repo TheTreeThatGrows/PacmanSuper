@@ -100,7 +100,7 @@ public class GameMain extends GameApplication {
     protected void initSettings(GameSettings settings) {
 
         settings.setTitle("Pacman Super");
-        settings.setVersion("0.9.6");
+        settings.setVersion("1.0.0");
         settings.setWidth(1280);
         settings.setHeight(770); //770
         settings.setProfilingEnabled(false); //Profile
@@ -366,6 +366,7 @@ public class GameMain extends GameApplication {
         //Level: Grim
         if (getGameState().getInt("LvlComplete_Grim") == 1) {
             getGameWorld().spawn("LevelComplete", 11475, 280);
+            getDisplay().showMessageBox("Congratulations! You have Completed the Game!");
         }
 
         //Camera Settings
