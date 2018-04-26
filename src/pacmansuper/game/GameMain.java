@@ -2082,10 +2082,7 @@ public class GameMain extends GameApplication {
             protected void onCollisionBegin(Entity player, Entity enemy) {
 
                 //Reduce Player Health
-                initDamageIndicator();
                 getGameState().increment("Health", -50);
-                getAudioPlayer().playSound("PlayerHealth.wav");
-                getGameScene().getViewport().shakeRotational(0.6);
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
@@ -2097,6 +2094,10 @@ public class GameMain extends GameApplication {
                     getMasterTimer().runOnceAfter(() -> {
                         initGame();
                     }, Duration.seconds(0.22));
+                } else {
+                    initDamageIndicator();
+                    getAudioPlayer().playSound("PlayerHealth.wav");
+                    getGameScene().getViewport().shakeRotational(0.6);
                 }
             }
         });
@@ -4088,6 +4089,9 @@ public class GameMain extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity player, Entity fall_tutorial) {
 
+                getGameState().increment("Health", -35);
+                getAudioPlayer().playSound("drown.wav");
+
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
                     getGameState().setValue("Health", 100);
@@ -4099,11 +4103,9 @@ public class GameMain extends GameApplication {
                         initGame();
                     }, Duration.seconds(0.22));
                 } else {
-                    getAudioPlayer().playSound("drown.wav");
 
                     //Reduce Player Health
                     initDamageIndicator();
-                    getGameState().increment("Health", -35);
                     getGameScene().getViewport().shakeRotational(0.6);
                 }
             }
@@ -5230,7 +5232,7 @@ public class GameMain extends GameApplication {
 
         getMasterTimer().runOnceAfter(() -> {
             getGameScene().removeUINode(DamageUI);
-        }, Duration.seconds(0.20));
+        }, Duration.seconds(0.15));
     }
 
     //Show Dark Flame Master HP
