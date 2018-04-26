@@ -2092,6 +2092,7 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
+                    getGameState().setValue("Health", 100);
                     getMasterTimer().runOnceAfter(() -> {
                        getDisplay().showMessageBox("Returning Back to Base...");
                        getDisplay().showMessageBox("Mission Failed");
@@ -5233,7 +5234,7 @@ public class GameMain extends GameApplication {
 
         getMasterTimer().runOnceAfter(() -> {
             getGameScene().removeUINode(DamageUI);
-        }, Duration.seconds(0.15));
+        }, Duration.seconds(0.18));
     }
 
     //Show Dark Flame Master HP
