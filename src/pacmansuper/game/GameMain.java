@@ -4097,6 +4097,7 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
+                    getGameState().setValue("Health", 100);
                     getMasterTimer().runOnceAfter(() -> {
                         getDisplay().showMessageBox("Returning Back to Base...");
                         getDisplay().showMessageBox("Mission Failed");
@@ -4262,6 +4263,7 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
+                    getGameState().setValue("Health", 100);
                     getMasterTimer().runOnceAfter(() -> {
                         getDisplay().showMessageBox("Returning Back to Base...");
                         getDisplay().showMessageBox("Mission Failed");
@@ -4556,6 +4558,7 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
+                    getGameState().setValue("Health", 100);
                     getMasterTimer().runOnceAfter(() -> {
                         getDisplay().showMessageBox("Returning Back to Base...");
                         getDisplay().showMessageBox("Mission Failed");
@@ -4596,6 +4599,7 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
+                    getGameState().setValue("Health", 100);
                     getMasterTimer().runOnceAfter(() -> {
                         getDisplay().showMessageBox("Returning Back to Base...");
                         getDisplay().showMessageBox("Mission Failed");
@@ -4633,6 +4637,7 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
+                    getGameState().setValue("Health", 100);
                     getMasterTimer().runOnceAfter(() -> {
                         getDisplay().showMessageBox("Returning Back to Base...");
                         getDisplay().showMessageBox("Mission Failed");
@@ -4661,6 +4666,7 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
+                    getGameState().setValue("Health", 100);
                     getMasterTimer().runOnceAfter(() -> {
                         getDisplay().showMessageBox("Returning Back to Base...");
                         getDisplay().showMessageBox("Mission Failed");
@@ -4699,6 +4705,7 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
+                    getGameState().setValue("Health", 100);
                     getMasterTimer().runOnceAfter(() -> {
                         getDisplay().showMessageBox("Returning Back to Base...");
                         getDisplay().showMessageBox("Mission Failed");
@@ -4735,6 +4742,7 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
+                    getGameState().setValue("Health", 100);
                     //Check Player Health
                     getMasterTimer().runOnceAfter(() -> {
                         getDisplay().showMessageBox("Returning Back to Base...");
@@ -4763,6 +4771,7 @@ public class GameMain extends GameApplication {
 
                 //Check Player Health
                 if (getGameState().getInt("Health") <= 0) {
+                    getGameState().setValue("Health", 100);
                     getMasterTimer().runOnceAfter(() -> {
                         getDisplay().showMessageBox("Returning Back to Base...");
                         getDisplay().showMessageBox("Mission Failed");
