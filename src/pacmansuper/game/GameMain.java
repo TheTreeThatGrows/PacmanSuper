@@ -5224,7 +5224,7 @@ public class GameMain extends GameApplication {
 
         getMasterTimer().runOnceAfter(() -> {
             getGameScene().removeUINode(DamageUI);
-        }, Duration.seconds(0.2));
+        }, Duration.seconds(0.15));
     }
 
     //Show Dark Flame Master HP
