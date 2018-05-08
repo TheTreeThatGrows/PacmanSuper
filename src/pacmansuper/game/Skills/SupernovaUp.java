@@ -12,6 +12,12 @@ import java.util.Random;
 
 import static com.almasb.fxgl.app.DSLKt.spawn;
 
+/**
+ * Skill Class For: SupernovaUp
+ *
+ * @author Earl John Laguardia
+ */
+
 public class SupernovaUp extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------
@@ -35,6 +41,13 @@ public class SupernovaUp extends Control {
     }
 
     // ------------------------------------- <<< Movement >>> -------------------------------------
+
+    /**
+     * Method for Shooting SupernovaUp
+     *
+     * @author Earl John Laguardia
+     */
+
     public void supernovaUp() {
 
         getEntity().setScaleX(1);

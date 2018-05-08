@@ -1,5 +1,11 @@
 package pacmansuper.game;
 
+/**
+ * Enum Class for Game Object Types (Used for Collision & Hit Detection)
+ *
+ * @author Earl John Laguardia
+ */
+
 public enum GameType {
 
     // ------------------------------------- <<< Main types >>> -------------------------------------

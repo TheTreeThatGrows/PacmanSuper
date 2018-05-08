@@ -25,6 +25,14 @@ import java.util.function.Supplier;
 import static com.almasb.fxgl.app.FXGL.getAudioPlayer;
 import static com.almasb.fxgl.app.FXGL.localizedStringProperty;
 
+/**
+ * FXGL Default Menu: This is the default code for FXGL  Menu
+ * We did not write this, only tweaked it. All credits goes to its owner: Almas Baimagambetov
+ *
+ * @author Almas Baimagambetov
+ *
+ */
+
 public class Menu extends FXGLMenu {
 
     //Menu Box

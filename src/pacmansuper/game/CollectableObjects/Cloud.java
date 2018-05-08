@@ -16,6 +16,12 @@ import java.util.Random;
 import static com.almasb.fxgl.app.DSLKt.play;
 import static com.almasb.fxgl.app.DSLKt.spawn;
 
+/**
+ * Cloud Class Animation
+ *
+ * @author Earl John Laguardia
+ */
+
 public class Cloud extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------
@@ -59,10 +65,23 @@ public class Cloud extends Control {
 
 
     // ------------------------------------- <<< Movement >>> -------------------------------------
+
+    /**
+     * Method for Cloud Animation Right
+     *
+     * @author Earl John Laguardia
+     */
+
     public void cloudRight() {
 
         getEntity().translateX(0.4);
     }
+
+    /**
+     * Method for Cloud Animation Left
+     *
+     * @author Earl John Laguardia
+     */
 
     public void cloudLeft() {
 

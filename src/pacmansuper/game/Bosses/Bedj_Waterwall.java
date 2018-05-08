@@ -12,6 +12,13 @@ import java.util.Random;
 
 import static com.almasb.fxgl.app.DSLKt.spawn;
 
+/**
+ * Bedj Attack Pattern: Waterwall
+ *
+ * @author Earl John Laguardia
+ */
+
+
 public class Bedj_Waterwall extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------
@@ -39,6 +46,13 @@ public class Bedj_Waterwall extends Control {
 
 
     // ------------------------------------- <<< Movement >>> -------------------------------------
+
+    /**
+     * Method for Shooting Left
+     *
+     * @author Earl John Laguardia
+     */
+
     public void shootLeft() {
 
         getEntity().setScaleX(1);

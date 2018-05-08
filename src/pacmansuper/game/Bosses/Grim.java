@@ -16,6 +16,12 @@ import java.util.Random;
 import static com.almasb.fxgl.app.DSLKt.play;
 import static com.almasb.fxgl.app.DSLKt.spawn;
 
+/**
+ * Boss Class: Grim
+ *
+ * @author Earl John Laguardia
+ */
+
 public class Grim extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------
@@ -61,17 +67,36 @@ public class Grim extends Control {
 
 
     // ------------------------------------- <<< Movement >>> -------------------------------------
+
+    /**
+     * Method for Moving Right
+     *
+     * @author Earl John Laguardia
+     */
+
     public void enemyRight() {
 
         getEntity().setScaleX(-1); //Enemy faces right
         physics.setVelocityX(700); //Move right Velocity
     }
 
+    /**
+     * Method for Moving Left
+     *
+     * @author Earl John Laguardia
+     */
+
     public void enemyLeft() {
 
         getEntity().setScaleX(1); //Enemy faces left
         physics.setVelocityX(-700); //Move left Velocity
     }
+
+    /**
+     * Method for Flying Up
+     *
+     * @author Earl John Laguardia
+     */
 
     public void enemyJump() {
 

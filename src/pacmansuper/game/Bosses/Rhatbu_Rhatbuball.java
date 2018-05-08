@@ -12,6 +12,12 @@ import java.util.Random;
 
 import static com.almasb.fxgl.app.DSLKt.spawn;
 
+/**
+ * Rhatbu Attack Pattern: Rhatbuball
+ *
+ * @author Earl John Laguardia
+ */
+
 public class Rhatbu_Rhatbuball extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------
@@ -35,6 +41,13 @@ public class Rhatbu_Rhatbuball extends Control {
     }
 
     // ------------------------------------- <<< Movement >>> -------------------------------------
+
+    /**
+     * Method for Shooting Rhatbuball
+     *
+     * @author Earl John Laguardia
+     */
+
     public void rhatbuball() {
 
         getEntity().setScaleX(1);

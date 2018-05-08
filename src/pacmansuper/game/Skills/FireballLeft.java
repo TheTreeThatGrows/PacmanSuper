@@ -12,6 +12,12 @@ import java.util.Random;
 
 import static com.almasb.fxgl.app.DSLKt.spawn;
 
+/**
+ * Skill Class For: FireballLeft
+ *
+ * @author Earl John Laguardia
+ */
+
 public class FireballLeft extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------
@@ -39,6 +45,13 @@ public class FireballLeft extends Control {
 
 
     // ------------------------------------- <<< Movement >>> -------------------------------------
+
+    /**
+     * Method for Shooting Left
+     *
+     * @author Earl John Laguardia
+     */
+
     public void shootLeft() {
 
         getEntity().setScaleX(-1);

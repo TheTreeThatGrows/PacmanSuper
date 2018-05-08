@@ -14,6 +14,12 @@ import javafx.util.Duration;
 import static com.almasb.fxgl.app.DSLKt.play;
 import static com.almasb.fxgl.app.DSLKt.spawn;
 
+/**
+ * Player Class
+ *
+ * @author Earl John Laguardia
+ */
+
 public class Player extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------
@@ -25,6 +31,12 @@ public class Player extends Control {
     //Animation
     private AnimatedTexture texture;
     private AnimationChannel idle, walk;
+
+    /**
+     * Method for Player Animation
+     *
+     * @author Earl John Laguardia
+     */
 
     public Player() {
 
@@ -67,25 +79,54 @@ public class Player extends Control {
 
 
     // ------------------------------------- <<< Movement >>> -------------------------------------
+
+    /**
+     * Method for Moving Right
+     *
+     * @author Earl John Laguardia
+     */
     public void right() {
 
         getEntity().setScaleX(1); //Player faces right
         physics.setVelocityX(320); //Move right Velocity
     }
 
+    /**
+     * Method for Moving Left
+     *
+     * @author Earl John Laguardia
+     */
     public void left() {
 
         getEntity().setScaleX(-1); //Player faces left
         physics.setVelocityX(-320); //Move left Velocity
     }
 
+    /**
+     * Method for Flying Up
+     *
+     * @author Earl John Laguardia
+     */
+
     public void fly() {
         physics.setVelocityY(-350);
     }
 
+    /**
+     * Method for Flying Down
+     *
+     * @author Earl John Laguardia
+     */
+
     public void descend() {
         physics.setVelocityY(350);
     }
+
+    /**
+     * Method for preventing Flight
+     *
+     * @author Earl John Laguardia
+     */
 
     public void cantfly() {
         physics.getVelocityY();

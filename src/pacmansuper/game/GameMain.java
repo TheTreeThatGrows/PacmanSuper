@@ -33,6 +33,14 @@ import java.util.logging.Level;
 
 import static com.almasb.fxgl.app.DSLKt.*;
 
+/**
+ * Main Class that extends FXGL Library
+ *
+ * @author Earl John Laguardia
+ * @author Celina Kai
+ * @author Mariha Bati
+ */
+
 public class GameMain extends GameApplication {
 
     // ------------------------------------- <<< Data >>> -------------------------------------
@@ -96,6 +104,12 @@ public class GameMain extends GameApplication {
     private LocalTimer finalBossTimer;
 
     // ------------------------------------- <<< Game Settings >>> -------------------------------------
+
+    /**
+     * Game Launcher Settings
+     *
+     * @author Earl John Laguardia
+     */
     @Override
     protected void initSettings(GameSettings settings) {
 
@@ -113,6 +127,12 @@ public class GameMain extends GameApplication {
     }
 
     // ------------------------------------- <<< Save & Load >>> -------------------------------------
+
+    /**
+     * Save Method
+     *
+     * @author Mariha Bati
+     */
     @Override
     public DataFile saveState() {
 
@@ -177,6 +197,11 @@ public class GameMain extends GameApplication {
         return new DataFile(bundleRoot);
     }
 
+    /**
+     * Load Method
+     *
+     * @author Mariha Bati
+     */
     @Override
     public void loadState(DataFile dataFile) {
 
@@ -241,6 +266,12 @@ public class GameMain extends GameApplication {
         
     }
     // ------------------------------------- <<< Game Menu >>> -------------------------------------
+
+    /**
+     * Menu Class that extends FXGL Default Menu
+     *
+     * @author Earl John Laguardia
+     */
     public static class GameMenu extends SceneFactory {
 
         //Main Menu
@@ -260,6 +291,12 @@ public class GameMain extends GameApplication {
     }
 
     // ------------------------------------- <<< Game Initialize >>> -------------------------------------
+
+    /**
+     * Main Game Initializer
+     *
+     * @author Earl John Laguardia
+     */
     @Override
     protected void initGame() {
 
@@ -374,6 +411,12 @@ public class GameMain extends GameApplication {
 
     }
 
+    /**
+     * Initialize Level: Jungle Clear
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initLevelClear_Jungle() {
 
         //Initialize Map
@@ -399,6 +442,11 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: Jungle Clear
+     *
+     * @author Earl John Laguardia
+     */
     protected void initLevelClear_Cave() {
 
         //Initialize Map
@@ -425,6 +473,11 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: Dive Tutorial
+     *
+     * @author Earl John Laguardia
+     */
     protected void initDiveTutorial() {
 
         //Initialize Map
@@ -451,6 +504,11 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: Tutorial 1
+     *
+     * @author Earl John Laguardia
+     */
     protected void initTutorial() {
 
         //Initialize Map
@@ -488,6 +546,11 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: Tutorial 2
+     *
+     * @author Earl John Laguardia
+     */
     protected void initTutoria2() {
 
         //Initialize Map
@@ -526,6 +589,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: Dive Tutorial 3
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initDiveTutorial3() {
 
         //Initialize Map
@@ -551,6 +620,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 1400, 4900);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: Tutorial 3
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initTutoria3() {
 
@@ -590,6 +665,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: Dive 1-3
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initDiveLevel_1x3() {
 
         //Initialize Map
@@ -615,6 +696,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 2800, 4900);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: Dive 4-6
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initDiveLevel_4x6() {
 
@@ -642,6 +729,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: Dive 7-9
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initDiveLevel_7x9() {
 
         //Initialize Map
@@ -667,6 +760,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 2800, 4900);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: Dive 11-13
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initDiveLevel_11x13() {
 
@@ -694,6 +793,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: Dive 14-16
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initDiveLevel_14x16() {
 
         //Initialize Map
@@ -719,6 +824,13 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 2800, 4900);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: Dive 17-19
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initDiveLevel_17x19() {
 
         //Initialize Map
@@ -744,6 +856,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 2800, 4900);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: 1
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initLevel_1() {
 
@@ -781,6 +899,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 5600, 770);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: 2
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initLevel_2() {
 
@@ -820,6 +944,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: 3
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initLevel_3() {
 
         //Initialize Map
@@ -858,6 +988,11 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: 4
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initLevel_4() {
 
@@ -897,6 +1032,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: 5
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initLevel_5() {
 
         //Initialize Map
@@ -933,6 +1074,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 4900, 770);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: 6
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initLevel_6() {
 
@@ -976,6 +1123,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: 7
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initLevel_7() {
 
         //Initialize Map
@@ -1017,6 +1170,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: 8
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initLevel_8() {
 
         //Initialize Map
@@ -1057,6 +1216,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: 9
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initLevel_9() {
 
         //Initialize Map
@@ -1096,6 +1261,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 4900, 770);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: 11
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initLevel_11() {
 
@@ -1139,6 +1310,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 7000, 770);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: 12
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initLevel_12() {
 
@@ -1185,6 +1362,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: 13
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initLevel_13() {
 
         //Initialize Map
@@ -1230,6 +1413,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 7000, 770);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: 14
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initLevel_14() {
 
@@ -1282,6 +1471,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: 15
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initLevel_15() {
 
         //Initialize Map
@@ -1329,6 +1524,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 7000, 770);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: 16
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initLevel_16() {
 
@@ -1382,6 +1583,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: 17
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initLevel_17() {
 
         //Initialize Map
@@ -1420,6 +1627,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 7000, 770);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: 18
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initLevel_18() {
 
@@ -1461,6 +1674,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 7000, 770);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: 19
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initLevel_19() {
 
@@ -1509,6 +1728,11 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: Dive Boss 1
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initDiveBoss1() {
 
@@ -1535,6 +1759,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 2800, 4900);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: Boss 1
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initBoss1() {
 
@@ -1578,6 +1808,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: Dive Boss 2
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initDiveBoss2() {
 
         //Initialize Map
@@ -1603,6 +1839,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().setBounds(0, 0, 2800, 4900);
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
+
+    /**
+     * Initialize Level: Boss 2
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initBoss2() {
 
@@ -1642,6 +1884,12 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: Dive Final Boss
+     *
+     * @author Earl John Laguardia
+     */
+
     protected void initDiveBossFinal() {
 
         //Initialize Map
@@ -1668,6 +1916,11 @@ public class GameMain extends GameApplication {
         getGameScene().getViewport().bindToEntity(player, getWidth() / 2, getHeight() / 2);
     }
 
+    /**
+     * Initialize Level: Final Boss
+     *
+     * @author Earl John Laguardia
+     */
 
     protected void initBossFinal() {
 
@@ -1710,6 +1963,13 @@ public class GameMain extends GameApplication {
     }
 
     // ------------------------------------- <<< Inputs >>> -------------------------------------
+
+    /**
+     * Initialize User Input for Movement/Skill usage
+     *
+     * @author Earl John Laguardia
+     */
+
     @Override
     protected void initInput() {
 
@@ -1867,6 +2127,12 @@ public class GameMain extends GameApplication {
 
     // ------------------------------------- <<< Skills >>> -------------------------------------
 
+    /**
+     * Method for Charging Health Percentage
+     *
+     * @author Earl John Laguardia
+     */
+
     //Player Health
     private void HealthCharge() {
 
@@ -1887,6 +2153,12 @@ public class GameMain extends GameApplication {
         }
     }
 
+    /**
+     * Method for Capping Max Rank Points
+     *
+     * @author Earl John Laguardia
+     */
+
     //Player Max Rank & Points Cap
     private void RankPointsCap() {
         getMasterTimer().runAtInterval(() -> {
@@ -1902,6 +2174,12 @@ public class GameMain extends GameApplication {
             }
         }, Duration.seconds(0));
     }
+
+    /**
+     * Method for Capping Maximum Skill Upgrade
+     *
+     * @author Earl John Laguardia
+     */
 
     //Skill Upgrade Cap
     private void SkillUpgradeCap() {
@@ -1923,6 +2201,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(0));
     }
 
+    /**
+     * Method for Using Health Potions
+     *
+     * @author Earl John Laguardia
+     */
+
     //Potion
     private void Potion() {
         if(canPotion) {
@@ -1931,6 +2215,12 @@ public class GameMain extends GameApplication {
             getGameState().setValue("Health", 100);
         }
     }
+
+    /**
+     * Method for validation of Health Potion usage (True & False)
+     *
+     * @author Earl John Laguardia
+     */
 
     private void canDrinkPotion() {
         if(getGameState().getInt("PotionCharge") != 100 || getGameState().getInt("Potion") <= 0) {
@@ -1941,6 +2231,12 @@ public class GameMain extends GameApplication {
         }
     }
 
+    /**
+     * Method for Charging Health Potion Percentage Cooldown
+     *
+     * @author Earl John Laguardia
+     */
+
     private void PotionDrinkCharge() {
         getMasterTimer().runAtInterval(() -> {
             getGameState().increment("PotionCharge", +40);
@@ -1949,6 +2245,12 @@ public class GameMain extends GameApplication {
             }
         }, Duration.seconds(0.2));
     }
+
+    /**
+     * Method for validating usage of Fireball (True & False)
+     *
+     * @author Earl John Laguardia
+     */
 
     //Fireball
     private void canShoot() {
@@ -1959,6 +2261,13 @@ public class GameMain extends GameApplication {
             canShootValue = true;
         }
     }
+
+    /**
+     * Method for Charging Fireball Charge Percentage
+     *
+     * @author Earl John Laguardia
+     */
+
     public void FireballCharge() {
         getMasterTimer().runAtInterval(() -> {
             getGameState().increment("Fireball", +50);
@@ -1967,18 +2276,38 @@ public class GameMain extends GameApplication {
             }
         }, Duration.seconds(0.1));
     }
+
+    /**
+     * Method for Shooting Fireball Right
+     *
+     * @author Earl John Laguardia
+     */
+
     public void fireballRight() {
         if (canShootValue) {
             spawn("fireballRight", player.getPosition());
             getAudioPlayer().playSound("fireball.wav");
         }
     }
+
+    /**
+     * Method for Shooting Fireball Left
+     *
+     * @author Earl John Laguardia
+     */
+
     public void fireballLeft() {
         if (canShootValue) {
             spawn("fireballLeft", player.getPosition());
             getAudioPlayer().playSound("fireball.wav");
         }
     }
+
+    /**
+     * Method for validating Fireblast usage (True & False)
+     *
+     * @author Earl John Laguardia
+     */
 
     //Fireblast
     private void canFireblast() {
@@ -1989,6 +2318,13 @@ public class GameMain extends GameApplication {
             canFireblastValue = true;
         }
     }
+
+    /**
+     * Method for Charging Fireblast charge Percentage
+     *
+     * @author Earl John Laguardia
+     */
+
     public void FireblastCharge() {
         getMasterTimer().runAtInterval(() -> {
             getGameState().increment("Fireblast", +6);
@@ -1997,18 +2333,38 @@ public class GameMain extends GameApplication {
             }
         }, Duration.seconds(0.3));
     }
+
+    /**
+     * Method for Shooting Fireblast Right
+     *
+     * @author Earl John Laguardia
+     */
+
     public void FireblasRight() {
         if (canFireblastValue) {
             spawn("fireblastRight", player.getPosition());
             getAudioPlayer().playSound("Supernova1.wav");
         }
     }
+
+    /**
+     * Method for Shooting Fireblast Left
+     *
+     * @author Earl John Laguardia
+     */
+
     public void FireblasLeft() {
         if (canFireblastValue) {
             spawn("fireblastLeft", player.getPosition());
             getAudioPlayer().playSound("Supernova1.wav");
         }
     }
+
+    /**
+     * Method for validating Flamestrike usage (True & False)
+     *
+     * @author Earl John Laguardia
+     */
 
     //Flamestrike
     private void canFlamestrike() {
@@ -2019,6 +2375,13 @@ public class GameMain extends GameApplication {
             canFlamestrikeValue = true;
         }
     }
+
+    /**
+     * Method for Charging Flamestrike Charge Percentage
+     *
+     * @author Earl John Laguardia
+     */
+
     public void FlamestrikeCharge() {
         getMasterTimer().runAtInterval(() -> {
             getGameState().increment("Flamestrike", +4);
@@ -2028,6 +2391,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(0.3));
     }
 
+    /**
+     * Method for Shooting Flamestrike
+     *
+     * @author Earl John Laguardia
+     */
+
     public void Flamestrike() {
         if (canFlamestrikeValue) {
             spawn("flamestrikeRight", player.getPosition());
@@ -2035,6 +2404,12 @@ public class GameMain extends GameApplication {
             getAudioPlayer().playSound("Supernova1.wav");
         }
     }
+
+    /**
+     * Method for Validating Supernova Usage (True & False)
+     *
+     * @author Earl John Laguardia
+     */
 
     //Supernova
     private void canSupernova() {
@@ -2045,6 +2420,13 @@ public class GameMain extends GameApplication {
             canSupernovaValue = true;
         }
     }
+
+    /**
+     * Method for Charging Supernova Charge Percentage
+     *
+     * @author Earl John Laguardia
+     */
+
     public void SupernovaCharge() {
         getMasterTimer().runAtInterval(() -> {
             getGameState().increment("Supernova", +2);
@@ -2053,6 +2435,12 @@ public class GameMain extends GameApplication {
             }
         }, Duration.seconds(0.3));
     }
+
+    /**
+     * Method for Shooting Supernova
+     *
+     * @author Earl John Laguardia
+     */
 
     public void Supernova() {
         if (canSupernovaValue) {
@@ -2070,6 +2458,13 @@ public class GameMain extends GameApplication {
 
 
     // ------------------------------------- <<< Physics >>> -------------------------------------
+
+    /**
+     * Initializess Physics (Collision, Hitboxes etc...)
+     *
+     * @author Earl John Laguardia
+     */
+
     @Override
     protected void initPhysics() {
 
@@ -3595,6 +3990,12 @@ public class GameMain extends GameApplication {
 
         // ----- PlAYER COLLISIONS MAIN -----
 
+        /**
+         * Player & Coin Collision
+         *
+         * @author Celina Kai
+         */
+
         //PLAYER & COIN
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.COIN) {
 
@@ -3607,7 +4008,11 @@ public class GameMain extends GameApplication {
             }
         });
 
-
+        /**
+         * Player & Healthboost Collision
+         *
+         * @author Celina Kai
+         */
 
         //PLAYER & HEALTHYBOOST
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.HEALTHBOOST) {
@@ -4083,6 +4488,12 @@ public class GameMain extends GameApplication {
                 getGameScene().getViewport().shakeRotational(0.6);
             }
         });
+
+        /**
+         * Player & Fall Collision
+         *
+         * @author Celina Kai
+         */
 
         //PLAYER & FALL
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(GameType.PLAYER, GameType.FALL) {
@@ -4785,6 +5196,13 @@ public class GameMain extends GameApplication {
     }
 
     // ------------------------------------- <<< Heads Up Display (HUD) >>> -------------------------------------
+
+    /**
+     * initialize In-Game HUD / UI Display
+     *
+     * @author Earl John Laguardia
+     */
+
     @Override
     protected void initUI() {
 
@@ -5220,6 +5638,12 @@ public class GameMain extends GameApplication {
     }
     // ------------------------------------- <<< Heads Up Display (HUD) >>> -------------------------------------
 
+    /**
+     * Initialize Damage Indicator
+     *
+     * @author Earl John Laguardia
+     */
+
     //Damage Indicator
     protected void initDamageIndicator() {
 
@@ -5234,6 +5658,12 @@ public class GameMain extends GameApplication {
             getGameScene().removeUINode(DamageUI);
         }, Duration.seconds(0.15));
     }
+
+    /**
+     * Show Dark Flame Master Health
+     *
+     * @author Earl John Laguardia
+     */
 
     //Show Dark Flame Master HP
     protected void initDarkFlameMasterHP() {
@@ -5267,6 +5697,12 @@ public class GameMain extends GameApplication {
 
         DarkFlameMasterHealth.textProperty().bind(getGameState().intProperty("DarkFlameMasterHealth").asString());
     }
+
+    /**
+     * Show Rhatbu Health
+     *
+     * @author Earl John Laguardia
+     */
 
     //Show Rhatbu HP
     protected void initRhatbuHP() {
@@ -5302,6 +5738,12 @@ public class GameMain extends GameApplication {
         RhatbuHealth.textProperty().bind(getGameState().intProperty("RhatbuHealth").asString());
     }
 
+    /**
+     * Show Bedj Health
+     *
+     * @author Earl John Laguardia
+     */
+
     //Show Bedj HP
     protected void initBedjHP() {
 
@@ -5335,6 +5777,12 @@ public class GameMain extends GameApplication {
 
         BedjHealth.textProperty().bind(getGameState().intProperty("BedjHealth").asString());
     }
+
+    /**
+     * Show Grim Health
+     *
+     * @author Earl John Laguardia
+     */
 
     //Show Grim HP
     protected void initGrimHP() {
@@ -5374,6 +5822,12 @@ public class GameMain extends GameApplication {
     private Animation<?> animationTextEnter;
     private Animation<?> animationBorderExit;
     private Animation<?> animationTextExit;
+
+    /**
+     * Initializes Notification: Welcome Back
+     *
+     * @author Earl John Laguardia
+     */
 
     //Notification: Welcome Back
     public void initNotification_WelcomeBack() {
@@ -5444,6 +5898,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    /**
+     * Initializes Notification: Save Reminder
+     *
+     * @author Earl John Laguardia
+     */
+
     //Notification: Save Reminder
     public void initNotification_SaveReminder() {
         getAudioPlayer().playSound("Notification.wav");
@@ -5512,6 +5972,12 @@ public class GameMain extends GameApplication {
             getGameScene().removeUINode(ExitLevel_Tutorial);
         }, Duration.seconds(4));
     }
+
+    /**
+     * Initializes Notification: Complete Tutorial Requirement
+     *
+     * @author Earl John Laguardia
+     */
 
     //Notification: Complete_Tutorial
     public void initNotification_CompleteTutorial() {
@@ -5582,6 +6048,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    /**
+     * Initializes Notification: Airship Arrival Message
+     *
+     * @author Earl John Laguardia
+     */
+
     //Notification: Preparing for Adventure...
     public void initNotification_PrepareForAdventure() {
         getAudioPlayer().playSound("Notification.wav");
@@ -5651,6 +6123,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    /**
+     * Initializes Notification: Returing to Base
+     *
+     * @author Earl John Laguardia
+     */
+
     //Notification: Returning to Base...
     public void initNotification_ReturnToBase() {
         getAudioPlayer().playSound("Notification.wav");
@@ -5719,6 +6197,12 @@ public class GameMain extends GameApplication {
             getGameScene().removeUINode(ExitLevel_Tutorial);
         }, Duration.seconds(4));
     }
+
+    /**
+     * Initializes Level Indicator: Level Cleared
+     *
+     * @author Earl John Laguardia
+     */
 
     //Level: Completed
     public void initLevelIndicator_LevelCleared() {
@@ -5790,6 +6274,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    /**
+     * Initializes Level Indicator: Tutorial
+     *
+     * @author Earl John Laguardia
+     */
+
     //Level: Tutorial
     public void initLevelIndicator_Tutorial() {
 
@@ -5857,6 +6347,12 @@ public class GameMain extends GameApplication {
             getGameScene().removeUINode(ExitLevel_Tutorial);
         }, Duration.seconds(4));
     }
+
+    /**
+     * Initializes Level Indicator: Level 1
+     *
+     * @author Earl John Laguardia
+     */
 
     //Level: 1
     public void initLevelIndicator_1() {
@@ -5926,6 +6422,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    /**
+     * Initializes Level Indicator: Level 2
+     *
+     * @author Earl John Laguardia
+     */
+
     //Level: 2
     public void initLevelIndicator_2() {
 
@@ -5993,6 +6495,12 @@ public class GameMain extends GameApplication {
             getGameScene().removeUINode(ExitLevel_Tutorial);
         }, Duration.seconds(4));
     }
+
+    /**
+     * Initializes Level Indicator: Level 3
+     *
+     * @author Earl John Laguardia
+     */
 
     //Level: 3
     public void initLevelIndicator_3() {
@@ -6062,6 +6570,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    /**
+     * Initializes Level Indicator: Level 4
+     *
+     * @author Earl John Laguardia
+     */
+
     //Level: 4
     public void initLevelIndicator_4() {
 
@@ -6129,6 +6643,12 @@ public class GameMain extends GameApplication {
             getGameScene().removeUINode(ExitLevel_Tutorial);
         }, Duration.seconds(4));
     }
+
+    /**
+     * Initializes Level Indicator: Level 5
+     *
+     * @author Earl John Laguardia
+     */
 
     //Level: 5
     public void initLevelIndicator_5() {
@@ -6198,6 +6718,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    /**
+     * Initializes Level Indicator: Level 6
+     *
+     * @author Earl John Laguardia
+     */
+
     //Level: 6
     public void initLevelIndicator_6() {
 
@@ -6265,6 +6791,12 @@ public class GameMain extends GameApplication {
             getGameScene().removeUINode(ExitLevel_Tutorial);
         }, Duration.seconds(4));
     }
+
+    /**
+     * Initializes Level Indicator: Level 7
+     *
+     * @author Earl John Laguardia
+     */
 
     //Level: 7
     public void initLevelIndicator_7() {
@@ -6334,6 +6866,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    /**
+     * Initializes Level Indicator: Level 8
+     *
+     * @author Earl John Laguardia
+     */
+
     //Level: 8
     public void initLevelIndicator_8() {
 
@@ -6401,6 +6939,12 @@ public class GameMain extends GameApplication {
             getGameScene().removeUINode(ExitLevel_Tutorial);
         }, Duration.seconds(4));
     }
+
+    /**
+     * Initializes Level Indicator: Level 9
+     *
+     * @author Earl John Laguardia
+     */
 
     //Level: 9
     public void initLevelIndicator_9() {
@@ -6470,6 +7014,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    /**
+     * Initializes Level Indicator: Level 11
+     *
+     * @author Earl John Laguardia
+     */
+
     //Level: 11
     public void initLevelIndicator_11() {
 
@@ -6537,6 +7087,12 @@ public class GameMain extends GameApplication {
             getGameScene().removeUINode(ExitLevel_Tutorial);
         }, Duration.seconds(4));
     }
+
+    /**
+     * Initializes Level Indicator: Level 12
+     *
+     * @author Earl John Laguardia
+     */
 
     //Level: 12
     public void initLevelIndicator_12() {
@@ -6606,6 +7162,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    /**
+     * Initializes Level Indicator: Level 13
+     *
+     * @author Earl John Laguardia
+     */
+
     //Level: 13
     public void initLevelIndicator_13() {
 
@@ -6673,6 +7235,12 @@ public class GameMain extends GameApplication {
             getGameScene().removeUINode(ExitLevel_Tutorial);
         }, Duration.seconds(4));
     }
+
+    /**
+     * Initializes Level Indicator: Level 14
+     *
+     * @author Earl John Laguardia
+     */
 
     //Level: 14
     public void initLevelIndicator_14() {
@@ -6742,6 +7310,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    /**
+     * Initializes Level Indicator: Level 15
+     *
+     * @author Earl John Laguardia
+     */
+
     //Level: 15
     public void initLevelIndicator_15() {
 
@@ -6809,6 +7383,12 @@ public class GameMain extends GameApplication {
             getGameScene().removeUINode(ExitLevel_Tutorial);
         }, Duration.seconds(4));
     }
+
+    /**
+     * Initializes Level Indicator: Level 16
+     *
+     * @author Earl John Laguardia
+     */
 
     //Level: 16
     public void initLevelIndicator_16() {
@@ -6878,6 +7458,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    /**
+     * Initializes Level Indicator: Level 17
+     *
+     * @author Earl John Laguardia
+     */
+
     //Level: 17
     public void initLevelIndicator_17() {
 
@@ -6945,6 +7531,12 @@ public class GameMain extends GameApplication {
             getGameScene().removeUINode(ExitLevel_Tutorial);
         }, Duration.seconds(4));
     }
+
+    /**
+     * Initializes Level Indicator: Level 18
+     *
+     * @author Earl John Laguardia
+     */
 
     //Level: 18
     public void initLevelIndicator_18() {
@@ -7014,6 +7606,12 @@ public class GameMain extends GameApplication {
         }, Duration.seconds(4));
     }
 
+    /**
+     * Initializes Level Indicator: Level 19
+     *
+     * @author Earl John Laguardia
+     */
+
     //Level: 19
     public void initLevelIndicator_19() {
 
@@ -7081,6 +7679,12 @@ public class GameMain extends GameApplication {
             getGameScene().removeUINode(ExitLevel_Tutorial);
         }, Duration.seconds(4));
     }
+
+    /**
+     * Initializes Level Indicator: Boss Fight
+     *
+     * @author Earl John Laguardia
+     */
 
     //Level: Boss Fight
     public void initLevelIndicator_BOSSFIGHT() {
@@ -7154,6 +7758,13 @@ public class GameMain extends GameApplication {
 
 
     // ------------------------------------- <<< Integer values in Game >>> -------------------------------------
+
+    /**
+     * Initializes Game Vars to In-Game HUD/UI
+     *
+     * @author Earl John Laguardia
+     */
+
     @Override
     protected void initGameVars(Map<String, Object> vars) {
 
@@ -7202,6 +7813,7 @@ public class GameMain extends GameApplication {
 
 
     // ------------------------------------- <<< Main Launch >>> -------------------------------------
+
     public static void main(String[] args) {
         launch(args);
     }

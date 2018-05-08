@@ -10,6 +10,12 @@ import com.almasb.fxgl.texture.AnimationChannel;
 import com.almasb.fxgl.time.LocalTimer;
 import javafx.util.Duration;
 
+/**
+ * Healthboost Class Animation
+ *
+ * @author Earl John Laguardia
+ */
+
 public class HealthBoost extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------

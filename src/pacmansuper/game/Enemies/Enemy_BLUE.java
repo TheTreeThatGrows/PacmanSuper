@@ -12,6 +12,12 @@ import java.util.Random;
 
 import static com.almasb.fxgl.app.DSLKt.spawn;
 
+/**
+ * Enemy Blue Class
+ *
+ * @author Earl John Laguardia
+ */
+
 public class Enemy_BLUE extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------
@@ -40,17 +46,36 @@ public class Enemy_BLUE extends Control {
 
 
     // ------------------------------------- <<< Movement >>> -------------------------------------
+
+    /**
+     * Method for Moving Right
+     *
+     * @author Earl John Laguardia
+     */
+
     public void enemyRight() {
 
         getEntity().setScaleX(-1); //Enemy faces right
         physics.setVelocityX(250); //Move right Velocity
     }
 
+    /**
+     * Method for Moving Left
+     *
+     * @author Earl John Laguardia
+     */
+
     public void enemyLeft() {
 
         getEntity().setScaleX(1); //Enemy faces left
         physics.setVelocityX(-250); //Move left Velocity
     }
+
+    /**
+     * Method for Jumping
+     *
+     * @author Earl John Laguardia
+     */
 
     public void enemyJump() {
 

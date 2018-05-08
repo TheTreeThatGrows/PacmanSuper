@@ -17,6 +17,12 @@ import pacmansuper.game.Skills.FireballRight;
 
 import static com.almasb.fxgl.app.DSLKt.texture;
 
+/**
+ * Factory Class for creating Game Objects (Coin, Enemies, Skills etc...)
+ *
+ * @author Earl John Laguardia
+ */
+
 @SetEntityFactory
 public class PacmanFactory implements EntityFactory {
 

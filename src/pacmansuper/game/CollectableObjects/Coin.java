@@ -10,6 +10,12 @@ import com.almasb.fxgl.texture.AnimationChannel;
 import com.almasb.fxgl.time.LocalTimer;
 import javafx.util.Duration;
 
+/**
+ * Coin Class Animation
+ *
+ * @author Earl John Laguardia
+ */
+
 public class Coin extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------

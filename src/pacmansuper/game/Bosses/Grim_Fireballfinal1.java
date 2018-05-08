@@ -12,6 +12,12 @@ import java.util.Random;
 
 import static com.almasb.fxgl.app.DSLKt.spawn;
 
+/**
+ * Grim Attack Pattern: Fireball Final 1
+ *
+ * @author Earl John Laguardia
+ */
+
 public class Grim_Fireballfinal1 extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------
@@ -35,6 +41,13 @@ public class Grim_Fireballfinal1 extends Control {
     }
 
     // ------------------------------------- <<< Movement >>> -------------------------------------
+
+    /**
+     * Method for Shooting Fireball Final 1
+     *
+     * @author Earl John Laguardia
+     */
+
     public void fireballfinal1() {
 
         getEntity().setScaleX(1);

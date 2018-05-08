@@ -16,6 +16,12 @@ import java.util.Random;
 import static com.almasb.fxgl.app.DSLKt.play;
 import static com.almasb.fxgl.app.DSLKt.spawn;
 
+/**
+ * Grim Attack Pattern: Fireball
+ *
+ * @author Earl John Laguardia
+ */
+
 public class Grim_Fireball extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------
@@ -61,17 +67,36 @@ public class Grim_Fireball extends Control {
 
 
     // ------------------------------------- <<< Movement >>> -------------------------------------
+
+    /**
+     * Method for Shooting Right
+     *
+     * @author Earl John Laguardia
+     */
+
     public void enemyRight() {
 
         getEntity().setScaleX(1); //Enemy faces right
         physics.setVelocityX(900); //Move right Velocity
     }
 
+    /**
+     * Method for Shooting Left
+     *
+     * @author Earl John Laguardia
+     */
+
     public void enemyLeft() {
 
         getEntity().setScaleX(-1); //Enemy faces left
         physics.setVelocityX(-900); //Move left Velocity
     }
+
+    /**
+     * Method for Shooting Up
+     *
+     * @author Earl John Laguardia
+     */
 
     public void enemyJump() {
 

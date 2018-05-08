@@ -12,6 +12,12 @@ import java.util.Random;
 
 import static com.almasb.fxgl.app.DSLKt.spawn;
 
+/**
+ * Dark Flame Master Attack Pattern: Deathball
+ *
+ * @author Earl John Laguardia
+ */
+
 public class DarkFlameMaster_Deathball extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------
@@ -39,6 +45,12 @@ public class DarkFlameMaster_Deathball extends Control {
 
 
     // ------------------------------------- <<< Movement >>> -------------------------------------
+    /**
+     * Method for Shooting Left
+     *
+     * @author Earl John Laguardia
+     */
+
     public void shootLeft() {
 
         getEntity().setScaleX(-1);

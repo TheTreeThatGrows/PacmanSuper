@@ -12,6 +12,12 @@ import java.util.Random;
 
 import static com.almasb.fxgl.app.DSLKt.spawn;
 
+/**
+ * Airship Class Animation
+ *
+ * @author Earl John Laguardia
+ */
+
 public class Airship extends Control {
 
     // ------------------------------------- <<< Data >>> -------------------------------------
@@ -39,6 +45,13 @@ public class Airship extends Control {
 
 
     // ------------------------------------- <<< Movement >>> -------------------------------------
+
+    /**
+     * Method for Moving Airship Right
+     *
+     * @author Earl John Laguardia
+     */
+
     public void FlyRight() {
 
         getEntity().setScaleX(1);
